@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
+    var selectedButton: UIButton?
+    
     let titleLabel: UIView = {
-        
         let roundedView = UIView()
         roundedView.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         roundedView.layer.cornerRadius = 30
@@ -77,6 +79,37 @@ class ProfileViewController: UIViewController {
         
         return label
     }()
+    
+    let libraryButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Kütüphane", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        button.layer.cornerRadius = 20
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.addTarget(self, action: #selector(tabButtonsClicked), for: .touchUpInside)
+        return button
+    }()
+    let postsButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Gönderiler", for: .normal)
+        button.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
+        //button.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        button.layer.cornerRadius = 20
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.addTarget(self, action: #selector(tabButtonsClicked), for: .touchUpInside)
+        return button
+    }()
+    let readingListButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Okuma Listem", for: .normal)
+        button.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
+        //button.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        button.layer.cornerRadius = 20
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.addTarget(self, action: #selector(tabButtonsClicked), for: .touchUpInside)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +126,7 @@ class ProfileViewController: UIViewController {
         combinedString1.append(secondString1)
         followingLabel.attributedText = combinedString1
         
-        usernameLabel.text = "afasdf"
+        usernameLabel.text = "kadir01"
         locationLabel.text = "📍Bursa"
         scoreLabel.text = "⚡ 567 Puan"
 
@@ -102,6 +135,9 @@ class ProfileViewController: UIViewController {
     
     func setViews(){
         view.backgroundColor = .white
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Çıkış Yap", style: .done, target: self, action: #selector(handleLogOut))
+        navigationController?.navigationBar.tintColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         
         view.addSubview(titleLabel)
         
@@ -125,8 +161,54 @@ class ProfileViewController: UIViewController {
         view.addSubview(scoreLabel)
         scoreLabel.anchor(top: usernameLabel.topAnchor, left: locationLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 100, height: 0)
         
+        let stackView = UIStackView(arrangedSubviews: [libraryButton,postsButton,readingListButton])
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+        
+        view.addSubview(stackView)
+        
+        stackView.anchor(top: usernameLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 5, paddingBottom: 0, paddingRight: 5, width: 0, height: 50)
+        
+        
     }
     
+    @objc func handleLogOut(){
+        let ac = UIAlertController(title: nil, message: "Çıkış yapmak istiyor musunuz?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Tamam", style: .default,handler: { action in
+            do{
+                try Auth.auth().signOut()
+                self.navigationController?.pushViewController(LoginViewController(), animated: true)
+            }
+            catch{
+                
+            }
+        }))
+        ac.addAction(UIAlertAction(title: "İptal", style: .cancel))
+        self.present(ac,animated: true)
+    }
+    
+    @objc func tabButtonsClicked(_ sender: UIButton) {
+        
+        if sender == selectedButton {
+            return
+        }
+    
+        selectedButton = sender
+        
+        
+        libraryButton.backgroundColor = .white
+        libraryButton.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
+        postsButton.backgroundColor = .white
+        postsButton.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
+        readingListButton.backgroundColor = .white
+        readingListButton.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
+        
+        
+        sender.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        sender.setTitleColor(.white, for: .normal)
+    }
+
 
 
 

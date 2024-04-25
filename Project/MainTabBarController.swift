@@ -14,12 +14,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        do{
-//            try Auth.auth().signOut()
-//        }
-//        catch{
-//            
-//        }
+
         
         if Auth.auth().currentUser == nil{
             DispatchQueue.main.async {

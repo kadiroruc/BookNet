@@ -238,7 +238,7 @@ class SignUpViewController: UIViewController {
     
     func showAlert(title: String?, message: String){
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Okay", style: .default))
+        ac.addAction(UIAlertAction(title: "Tamam", style: .default))
         present(ac,animated: true)
     }
     
