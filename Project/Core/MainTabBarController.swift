@@ -35,6 +35,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     func setupViewControllers(){
         
+        let homeNavController = templateNavController(unselectedImage: UIImage(systemName: "house")!, selectedImage: UIImage(systemName: "house.fill")!,rootViewController: UICollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+        
         //userProfile
         let profileNavController = templateNavController(unselectedImage: UIImage(systemName: "person")!, selectedImage: UIImage(systemName: "person.fill")!,rootViewController: ProfileViewController())
         
@@ -42,7 +44,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.tintColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         tabBar.backgroundColor = .systemGray5
         
-        viewControllers = [profileNavController]
+        viewControllers = [homeNavController,profileNavController]
         
         //modify tabbar items insets
         guard let items = tabBar.items else{return}

@@ -158,12 +158,12 @@ class SignUpViewController: UIViewController {
             }
             
             guard let uid = user?.user.uid else{return}
-            let dictionaryValues = ["username":username,]
+            let dictionaryValues = ["username":username]
             let values = [uid:dictionaryValues]
             
             Database.database().reference().child("users").updateChildValues(values,withCompletionBlock: { err, ref in
                 if let err = error{
-                    print("Failed to save user info into db")
+                    print("Failed to save user info into db",err)
                     return
                 }
                 print("Sucessfully saved user info into db")
