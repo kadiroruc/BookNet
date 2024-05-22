@@ -10,11 +10,12 @@ import FirebaseAuth
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        self.delegate = self
         
         if Auth.auth().currentUser == nil{
             DispatchQueue.main.async {
@@ -24,11 +25,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
                 self.present(navController,animated: true)
             }
         }
+       
         
-
-        
-
-
         setupViewControllers()
     }
     
@@ -40,11 +38,15 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         //userProfile
         let profileNavController = templateNavController(unselectedImage: UIImage(systemName: "person")!, selectedImage: UIImage(systemName: "person.fill")!,rootViewController: ProfileViewController())
         
+        let plusNavController = templateNavController(unselectedImage: UIImage(systemName: "arrow.2.squarepath")!, selectedImage: UIImage(systemName: "arrow.2.squarepath")!)
+        
 
         tabBar.tintColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         tabBar.backgroundColor = .systemGray5
         
-        viewControllers = [homeNavController,profileNavController]
+        viewControllers = [homeNavController,
+                           plusNavController,
+                           profileNavController]
         
         //modify tabbar items insets
         guard let items = tabBar.items else{return}
@@ -59,6 +61,20 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         navController.tabBarItem.image = unselectedImage
         navController.tabBarItem.selectedImage = selectedImage
         return navController
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        let index = viewControllers?.firstIndex(of: viewController)
+        
+        if index == 1{
+            let photoSelectorController = PhotoSelectorController(collectionViewLayout: UICollectionViewFlowLayout())
+            let navController = UINavigationController(rootViewController: photoSelectorController)
+            navController.modalPresentationStyle = .fullScreen
+            present(navController, animated: true)
+            return false
+        }else{
+            return true
+        }
     }
 
 }

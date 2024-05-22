@@ -12,6 +12,10 @@
 		E957AA152BDAA50E0089E395 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957AA142BDAA50E0089E395 /* Post.swift */; };
 		E957AA172BDAA6450089E395 /* FirebaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957AA162BDAA6450089E395 /* FirebaseExtension.swift */; };
 		E957AA192BDAA6E80089E395 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957AA182BDAA6E80089E395 /* CustomImageView.swift */; };
+		E9B24A3B2BFBC2CB009C21C1 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A362BFBC2CB009C21C1 /* PhotoSelectorCell.swift */; };
+		E9B24A3C2BFBC2CB009C21C1 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A372BFBC2CB009C21C1 /* PhotoSelectorController.swift */; };
+		E9B24A3D2BFBC2CB009C21C1 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */; };
+		E9B24A3E2BFBC2CB009C21C1 /* AddBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A392BFBC2CB009C21C1 /* AddBookController.swift */; };
 		E9B949F52BD437D00025D344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B949F42BD437D00025D344 /* AppDelegate.swift */; };
 		E9B949F72BD437D00025D344 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B949F62BD437D00025D344 /* SceneDelegate.swift */; };
 		E9B949F92BD437D00025D344 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B949F82BD437D00025D344 /* ViewController.swift */; };
@@ -38,6 +42,10 @@
 		E957AA142BDAA50E0089E395 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		E957AA162BDAA6450089E395 /* FirebaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseExtension.swift; sourceTree = "<group>"; };
 		E957AA182BDAA6E80089E395 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		E9B24A362BFBC2CB009C21C1 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
+		E9B24A372BFBC2CB009C21C1 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
+		E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
+		E9B24A392BFBC2CB009C21C1 /* AddBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookController.swift; sourceTree = "<group>"; };
 		E9B949F12BD437D00025D344 /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9B949F42BD437D00025D344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9B949F62BD437D00025D344 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +96,8 @@
 				E9B949F82BD437D00025D344 /* ViewController.swift */,
 				E9B94A082BD4393B0025D344 /* SignUpViewController.swift */,
 				E9D9FA872BD53FE000BAADD5 /* LoginViewController.swift */,
+				E9B24A372BFBC2CB009C21C1 /* PhotoSelectorController.swift */,
+				E9B24A392BFBC2CB009C21C1 /* AddBookController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -107,6 +117,8 @@
 				E9B949FF2BD437D20025D344 /* LaunchScreen.storyboard */,
 				E9B949FA2BD437D10025D344 /* Main.storyboard */,
 				E957AA102BDA8CE70089E395 /* CustomPostCell.swift */,
+				E9B24A362BFBC2CB009C21C1 /* PhotoSelectorCell.swift */,
+				E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -127,13 +139,6 @@
 				E957AA162BDAA6450089E395 /* FirebaseExtension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		E920F9EA2BE2E3D100AD5CE9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		E9B949E82BD437D00025D344 = {
@@ -157,7 +162,6 @@
 			children = (
 				E920F9E42BE2E34F00AD5CE9 /* Core */,
 				E920F9E52BE2E36500AD5CE9 /* ViewController */,
-				E920F9EA2BE2E3D100AD5CE9 /* ViewModel */,
 				E920F9E62BE2E37B00AD5CE9 /* Utils */,
 				E920F9E72BE2E38B00AD5CE9 /* View */,
 				E920F9E82BE2E3A000AD5CE9 /* Model */,
@@ -211,7 +215,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E9B949EC2BD437D00025D344 /* Build configuration list for PBXProject "Project" */;
+			buildConfigurationList = E9B949EC2BD437D00025D344 /* Build configuration list for PBXProject "BookNet" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -254,11 +258,15 @@
 				E9D9FA882BD53FE000BAADD5 /* LoginViewController.swift in Sources */,
 				E957AA152BDAA50E0089E395 /* Post.swift in Sources */,
 				E9B94A0B2BD43B5B0025D344 /* UIViewExtension.swift in Sources */,
+				E9B24A3B2BFBC2CB009C21C1 /* PhotoSelectorCell.swift in Sources */,
 				E9B949F92BD437D00025D344 /* ViewController.swift in Sources */,
 				E957AA172BDAA6450089E395 /* FirebaseExtension.swift in Sources */,
 				E9B94A0D2BD43E810025D344 /* MainTabBarController.swift in Sources */,
 				E9B949F52BD437D00025D344 /* AppDelegate.swift in Sources */,
+				E9B24A3D2BFBC2CB009C21C1 /* PhotoSelectorHeader.swift in Sources */,
 				E9B94A092BD4393B0025D344 /* SignUpViewController.swift in Sources */,
+				E9B24A3E2BFBC2CB009C21C1 /* AddBookController.swift in Sources */,
+				E9B24A3C2BFBC2CB009C21C1 /* PhotoSelectorController.swift in Sources */,
 				E9D9FA992BD55C6900BAADD5 /* ProfileViewController.swift in Sources */,
 				E957AA112BDA8CE70089E395 /* CustomPostCell.swift in Sources */,
 				E957AA132BDAA4F10089E395 /* User.swift in Sources */,
@@ -467,7 +475,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E9B949EC2BD437D00025D344 /* Build configuration list for PBXProject "Project" */ = {
+		E9B949EC2BD437D00025D344 /* Build configuration list for PBXProject "BookNet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E9B94A032BD437D20025D344 /* Debug */,
