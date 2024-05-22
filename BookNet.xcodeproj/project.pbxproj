@@ -144,7 +144,7 @@
 		E9B949E82BD437D00025D344 = {
 			isa = PBXGroup;
 			children = (
-				E9B949F32BD437D00025D344 /* Project */,
+				E9B949F32BD437D00025D344 /* BookNet */,
 				E9B949F22BD437D00025D344 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -157,7 +157,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E9B949F32BD437D00025D344 /* Project */ = {
+		E9B949F32BD437D00025D344 /* BookNet */ = {
 			isa = PBXGroup;
 			children = (
 				E920F9E42BE2E34F00AD5CE9 /* Core */,
@@ -169,7 +169,7 @@
 				E9B94A022BD437D20025D344 /* Info.plist */,
 				E9D9FA892BD5437800BAADD5 /* GoogleService-Info.plist */,
 			);
-			path = Project;
+			path = BookNet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,7 +425,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9W5Z8G2RNJ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Project/Info.plist;
+				INFOPLIST_FILE = BookNet/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -453,7 +453,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9W5Z8G2RNJ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Project/Info.plist;
+				INFOPLIST_FILE = BookNet/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
