@@ -15,7 +15,7 @@ Kitap takas uygulaması ile ortak ilgi alanlarına sahip insanları bir araya ge
 - **Sanem Coşkun** - Android Developer
 - **Abdulkadir Oruç** - iOS Developer
 - **Ayşen Aydın** - 
-- **Zeynep Sueda Tuna** - Yazılım Geliştirme Uzmanı
+- **Zeynep Sueda Tuna** - Software Developer
 
 ## Takım Üyelerinin Görevleri
 - **Dilara Kardaş**: Android uygulama geliştirme
