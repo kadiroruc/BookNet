@@ -1,4 +1,4 @@
-# Kitap Takas Uygulaması
+# BookNet - Kitap Takas Uygulaması
 
 ## Proje Amacı
 Kitap takas uygulaması ile ortak ilgi alanlarına sahip insanları bir araya getirerek sosyal bir çevre oluşturmak, kağıt tüketimini azaltarak çevre dostu bir yaklaşım sunmak ve kargo ile uğraşmadan hem karbon emisyonunu azaltıp hem de ulaşılabilirliği kolaylaştırmak amaçlanmıştır.
