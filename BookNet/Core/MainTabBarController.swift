@@ -35,6 +35,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         let homeNavController = templateNavController(unselectedImage: UIImage(systemName: "house")!, selectedImage: UIImage(systemName: "house.fill")!,rootViewController: UICollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         
+        let searchNavController = templateNavController(unselectedImage: UIImage(systemName: "magnifyingglass")!, selectedImage: UIImage(systemName: "magnifyingglass")!,rootViewController: SearchBookController(collectionViewLayout: UICollectionViewFlowLayout()))
+        
         //userProfile
         let profileNavController = templateNavController(unselectedImage: UIImage(systemName: "person")!, selectedImage: UIImage(systemName: "person.fill")!,rootViewController: ProfileViewController())
         
@@ -45,6 +47,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.backgroundColor = .systemGray5
         
         viewControllers = [homeNavController,
+                           searchNavController,
                            plusNavController,
                            profileNavController]
         
@@ -66,7 +69,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = viewControllers?.firstIndex(of: viewController)
         
-        if index == 1{
+        if index == 2{
             let photoSelectorController = PhotoSelectorController(collectionViewLayout: UICollectionViewFlowLayout())
             let navController = UINavigationController(rootViewController: photoSelectorController)
             navController.modalPresentationStyle = .fullScreen
@@ -75,6 +78,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         }else{
             return true
         }
+
     }
 
 }

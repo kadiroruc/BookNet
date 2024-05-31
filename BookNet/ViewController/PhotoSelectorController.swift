@@ -25,6 +25,10 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+    }
+    
     var selectedImage:UIImage?
     var images = [UIImage]()
     var assets = [PHAsset]()
@@ -61,18 +65,32 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     }
 
     fileprivate func setupNavigationButtons(){
+    
         navigationController?.navigationBar.tintColor = UIColor.rgb(red: 251, green: 186, blue: 18)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(handleNext))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "İptal", style: .plain, target: self, action: #selector(handleCancel))
+        
+        let addBarButton = UIBarButtonItem(title: "Ekle", style: .plain, target: self, action: #selector(handleAdd))
+        
+        let shareButton = UIBarButtonItem(title: "Paylaş", style: .plain, target: self, action: #selector(handleShare))
+        
+        navigationItem.rightBarButtonItems = [addBarButton,shareButton]
+        
+
     }
     @objc func handleCancel(){
         dismiss(animated: true)
     }
-    @objc func handleNext(){
+    @objc func handleAdd(){
         let addBookVC = AddBookController()
         addBookVC.selectedImage = header?.photoImageView.image
         navigationController?.pushViewController(addBookVC, animated: true)
+    }
+    
+    @objc func handleShare(){
+        let postVC = ShareBookController()
+        postVC.selectedImage = header?.photoImageView.image
+        navigationController?.pushViewController(postVC, animated: true)
     }
 
 

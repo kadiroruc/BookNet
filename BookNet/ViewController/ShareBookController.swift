@@ -1,8 +1,8 @@
 //
-//  SharePhotoController.swift
-//  InstagramClone
+//  ShareBookController.swift
+//  Project
 //
-//  Created by Abdulkadir Oruç on 21.10.2023.
+//  Created by Abdulkadir Oruç on 22.05.2024.
 //
 
 import UIKit
@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-class AddBookController: UIViewController {
+class ShareBookController: UIViewController {
     
     var selectedImage: UIImage?{
         didSet{
@@ -34,12 +34,12 @@ class AddBookController: UIViewController {
         tf.textAlignment = .center
         return tf
     }()
-    let authorNameTextField: UITextField = {
+    let postTextField: UITextField = {
         let tf = UITextField()
         tf.backgroundColor = .white
-        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.font = UIFont.systemFont(ofSize: 10)
         tf.layer.cornerRadius = 10
-        tf.placeholder = "Yazar İsmi"
+        tf.placeholder = "Bir alıntı yapın, düşüncelerinizi paylaşın."
         tf.textAlignment = .center
         return tf
     }()
@@ -47,11 +47,11 @@ class AddBookController: UIViewController {
        
         let button = UIButton()
         button.backgroundColor = .white
-        button.setTitle("Kitabı Ekle", for: .normal)
+        button.setTitle("Paylaş", for: .normal)
         button.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
         button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(handleAdd), for: .touchUpInside)
+        button.addTarget(ShareBookController.self, action: #selector(handleShare), for: .touchUpInside)
         return button
     }()
 
@@ -61,21 +61,18 @@ class AddBookController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
         
         view.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
-        title = "Takas İçin Kitap Ekle"
+        title = "Kitabı Paylaş"
         
         setupImageAndTextViews()
         
     }
-    @objc func handleAdd(){
-        self.shareButton.backgroundColor = .systemGray5
-        self.shareButton.isEnabled = false
-        
-        guard let bookName = bookNameTextField.text, bookName.count > 0 else{return}
+    @objc func handleShare(){
+        guard let caption = bookNameTextField.text, caption.count > 0 else{return}
         guard let image = selectedImage else {return}
         guard let uploadData = image.jpegData(compressionQuality: 0.5)else {return}
         
         let filename = NSUUID().uuidString
-        let storageRef = Storage.storage().reference().child("books").child(filename)
+        let storageRef = Storage.storage().reference().child("posts").child(filename)
         navigationItem.rightBarButtonItem?.isEnabled = true
         
         storageRef.putData(uploadData) {[weak self] metadata, error in
@@ -97,18 +94,18 @@ class AddBookController: UIViewController {
     static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed")
     
     fileprivate func saveToDatabaseWithImageURL(imageUrl:String){
-        guard let bookName = bookNameTextField.text else {return}
-        guard let authorName = authorNameTextField.text else{return}
+        guard let caption = bookNameTextField.text else {return}
         guard let image = selectedImage else {return}
         guard let uid = Auth.auth().currentUser?.uid else{return}
+        let databaseRef = Database.database().reference().child("posts").child(uid)
+        let postRef = databaseRef.childByAutoId()
+        let values = ["imageUrl":imageUrl, "caption":caption,"imageWidth":image.size.width,"imageHeight":image.size.height,"creationDate":Date().timeIntervalSince1970] as [String:Any]
         
-        let databaseRef = Database.database().reference().child("books").child(uid)
-        let bookRef = databaseRef.childByAutoId()
-        
-        let values = ["imageUrl":imageUrl, "bookName":bookName,"authorName":authorName,"imageWidth":image.size.width,"imageHeight":image.size.height,"creationDate":Date().timeIntervalSince1970] as [String:Any]
-        
-        bookRef.updateChildValues(values) {[weak self] error, ref in
+        postRef.updateChildValues(values) {[weak self] error, ref in
             if let err = error{
+                DispatchQueue.main.async {
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = false
+                }
                 print("Failed to save post to db",err)
                 return
             }
@@ -119,28 +116,6 @@ class AddBookController: UIViewController {
             }
         }
     }
-    
-//    fileprivate func saveToDatabaseWithImageURL(imageUrl:String){
-//        guard let caption = textField.text else {return}
-//        guard let image = selectedImage else {return}
-//        guard let uid = Auth.auth().currentUser?.uid else{return}
-//        
-//        let dictionaryValues = ["bookName": caption ,"bookImageUrl":imageUrl]
-//        
-//        let databaseRef = Database.database().reference().child("users").child(uid).child("books").childByAutoId()
-//        databaseRef.setValue(dictionaryValues) {[weak self] error, ref in
-//            if let err = error{
-//                
-//                print("Failed to save post to db",err)
-//                return
-//            }
-//            DispatchQueue.main.async {
-//                self?.dismiss(animated: true)
-//                
-//                NotificationCenter.default.post(name: AddBookController.updateFeedNotificationName, object: nil)
-//            }
-//        }
-//    }
     
     fileprivate func setupImageAndTextViews(){
         let containerView = UIView()
@@ -158,9 +133,8 @@ class AddBookController: UIViewController {
         containerView.addSubview(bookNameTextField)
         bookNameTextField.anchor(top: imageView.bottomAnchor, left: imageView.leftAnchor, bottom: nil, right: imageView.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 45)
         
-        containerView.addSubview(authorNameTextField)
-        authorNameTextField.anchor(top: bookNameTextField.bottomAnchor, left: bookNameTextField.leftAnchor, bottom: containerView.bottomAnchor, right: bookNameTextField.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 0, height: 0)
-        
+        containerView.addSubview(postTextField)
+        postTextField.anchor(top: bookNameTextField.bottomAnchor, left: bookNameTextField.leftAnchor, bottom: containerView.bottomAnchor, right: bookNameTextField.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 0, height: 0)
         
         view.addSubview(shareButton)
         shareButton.anchor(top: containerView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 50)
@@ -169,3 +143,4 @@ class AddBookController: UIViewController {
     }
     
 }
+

@@ -29,6 +29,9 @@ class ProfileViewController: UIViewController {
         }
     }
     var posts = [Post]()
+    var books = [Book]()
+    
+    var currentCellType = "Gönderiler"
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
@@ -103,8 +106,7 @@ class ProfileViewController: UIViewController {
     let libraryButton: UIButton = {
         let button = UIButton()
         button.setTitle("Kütüphane", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        button.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.addTarget(self, action: #selector(tabButtonsClicked), for: .touchUpInside)
@@ -113,8 +115,8 @@ class ProfileViewController: UIViewController {
     let postsButton: UIButton = {
         let button = UIButton()
         button.setTitle("Gönderiler", for: .normal)
-        button.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
-        //button.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.addTarget(self, action: #selector(tabButtonsClicked), for: .touchUpInside)
@@ -147,16 +149,15 @@ class ProfileViewController: UIViewController {
         followingLabel.attributedText = combinedString1
         
         
-        locationLabel.text = "📍Temp"
-        scoreLabel.text = "⚡ Temp"
+        locationLabel.text = "📍Bursa"
+        scoreLabel.text = "⚡ 587"
 
         setViews()
         
         setupCollectionView()
         
         
-        
-        
+
     }
     override func viewWillAppear(_ animated: Bool) {
         fetchUser()
@@ -191,7 +192,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(scoreLabel)
         scoreLabel.anchor(top: usernameLabel.topAnchor, left: locationLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 100, height: 0)
         
-        let stackView = UIStackView(arrangedSubviews: [libraryButton,postsButton,readingListButton])
+        let stackView = UIStackView(arrangedSubviews: [postsButton,libraryButton,readingListButton])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 10
@@ -251,7 +252,6 @@ class ProfileViewController: UIViewController {
     
         selectedButton = sender
         
-        
         libraryButton.backgroundColor = .white
         libraryButton.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
         postsButton.backgroundColor = .white
@@ -262,6 +262,30 @@ class ProfileViewController: UIViewController {
         
         sender.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         sender.setTitleColor(.white, for: .normal)
+        
+        
+        
+        if sender.titleLabel?.text == "Kütüphane"{
+            
+            
+            
+            fetchBooks()
+            
+            currentCellType = "Kütüphane"
+            
+            self.collectionView.register(CustomBookCell.self, forCellWithReuseIdentifier: CustomBookCell.identifier)
+            self.collectionView.reloadData()
+            
+        }else if sender.titleLabel?.text == "Gönderiler"{
+            
+            currentCellType = "Gönderiler"
+            
+            self.collectionView.register(CustomPostCell.self, forCellWithReuseIdentifier: CustomPostCell.identifier)
+            self.collectionView.reloadData()
+        }
+            
+        
+        
     }
 
     func handleChangeProfile(){
@@ -288,7 +312,7 @@ class ProfileViewController: UIViewController {
         
         collectionView.anchor(top: libraryButton.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        collectionView.register(CustomPostCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(CustomPostCell.self, forCellWithReuseIdentifier: CustomPostCell.identifier)
         
         
     }
@@ -319,45 +343,107 @@ class ProfileViewController: UIViewController {
     }
     
     
+//    
+//    fileprivate func fetchOrderedPosts(){
+//        guard let uid = self.user?.uid else {return}
+//        
+//        let ref = Database.database().reference().child("posts").child(uid)
+//        ref.queryOrdered(byChild: "creationDate").observe(.childAdded) {[weak self] snapshot in
+//            guard let dictionary = snapshot.value as? [String:Any] else {return}
+//            guard let user = self?.user else {return}
+//            
+//            
+//            let post = Post(user: user, dictionary: dictionary)
+//            
+//            self?.posts.insert(post, at: 0)
+//            DispatchQueue.main.async {
+//                self?.collectionView.reloadData()
+//            }
+//        }
+//    }
     
-    fileprivate func fetchOrderedPosts(){
+    fileprivate func fetchBooks(){
+        books = []
+        
         guard let uid = self.user?.uid else {return}
         
-        let ref = Database.database().reference().child("posts").child(uid)
-        ref.queryOrdered(byChild: "creationDate").observe(.childAdded) {[weak self] snapshot in
+        
+        let ref = Database.database().reference().child("books").child(uid)
+        ref.observe(.childAdded) {[weak self] snapshot in
+            
             guard let dictionary = snapshot.value as? [String:Any] else {return}
+            
             guard let user = self?.user else {return}
             
+            let key = snapshot.key
+            let book = Book(id: key, user: user, dictionary: dictionary)
             
-            let post = Post(user: user, dictionary: dictionary)
+            self?.books.insert(book, at: 0)
             
-            self?.posts.insert(post, at: 0)
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
+
         }
+        
+        
     }
     
 
 }
 
+//MARK: - Collection View
 extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        if currentCellType == "Gönderiler"{
+            return posts.count
+            
+        }else if currentCellType == "Kütüphane"{
+            return books.count
+        }
+        
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        
+        
+        
+        if currentCellType == "Gönderiler"{
+            var cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomPostCell.identifier, for: indexPath) as! CustomPostCell
+            return cell
+        }else if currentCellType == "Kütüphane"{
+            var cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomBookCell.identifier, for: indexPath) as! CustomBookCell
+            
+            if !books.isEmpty{
+                cell.bookLabel.text = books[indexPath.item].bookName
+                cell.authorLabel.text = books[indexPath.item].authorName
+                cell.bookImageView.loadImage(urlString: books[indexPath.item].imageUrl)
+            }
 
-        return cell
+            return cell
+        }
+        
+        return UICollectionViewCell()
+
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 300)
+        
+        var size = CGSize(width: view.frame.width, height: 300)
+        
+        if currentCellType == "Gönderiler"{
+            size = CGSize(width: view.frame.width, height: 300)
+        }else if currentCellType == "Kütüphane"{
+            size = CGSize(width: view.frame.width, height: 130)
+        }
+        return size
     }
 
 }
 
+//MARK: - Image Picker
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -394,14 +480,14 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                 storageRef.downloadURL { url, error in
                     if let imageUrl = url{
                         let profileImageUrl = imageUrl.absoluteString
-                        
+                    
                         let uid = self.userId ?? (Auth.auth().currentUser?.uid ?? "")
                         
                         let dictionaryValues = ["username":self.user?.username, "profileImageUrl":profileImageUrl]
                         let values = [uid:dictionaryValues]
 
                         Database.database().reference().child("users").updateChildValues(values,withCompletionBlock: { err, ref in
-                            if let err = error{
+                            if let error = error{
                                 print("Failed to save user info into db")
                                 return
                             }
@@ -413,15 +499,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                         })
                     }
                 }
-            
             }
-
         }
-        
-        
-        
-        
-        
     }
 }
 

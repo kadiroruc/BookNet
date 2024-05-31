@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E92F58962C0336CF00289469 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F58952C0336CF00289469 /* Book.swift */; };
+		E92F58982C033D0000289469 /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F58972C033D0000289469 /* CustomBookCell.swift */; };
+		E939479F2C08B9D8008BF5BC /* SearchBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */; };
+		E93947A12C08BA30008BF5BC /* SearchBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93947A02C08BA30008BF5BC /* SearchBookCell.swift */; };
 		E957AA112BDA8CE70089E395 /* CustomPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957AA102BDA8CE70089E395 /* CustomPostCell.swift */; };
 		E957AA132BDAA4F10089E395 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957AA122BDAA4F10089E395 /* User.swift */; };
 		E957AA152BDAA50E0089E395 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957AA142BDAA50E0089E395 /* Post.swift */; };
 		E957AA172BDAA6450089E395 /* FirebaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957AA162BDAA6450089E395 /* FirebaseExtension.swift */; };
 		E957AA192BDAA6E80089E395 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E957AA182BDAA6E80089E395 /* CustomImageView.swift */; };
+		E996D7532BFDBAF7000AE202 /* ShareBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E996D7522BFDBAF7000AE202 /* ShareBookController.swift */; };
 		E9B24A3B2BFBC2CB009C21C1 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A362BFBC2CB009C21C1 /* PhotoSelectorCell.swift */; };
 		E9B24A3C2BFBC2CB009C21C1 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A372BFBC2CB009C21C1 /* PhotoSelectorController.swift */; };
 		E9B24A3D2BFBC2CB009C21C1 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */; };
@@ -37,11 +42,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E92F58952C0336CF00289469 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		E92F58972C033D0000289469 /* CustomBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
+		E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookViewController.swift; sourceTree = "<group>"; };
+		E93947A02C08BA30008BF5BC /* SearchBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookCell.swift; sourceTree = "<group>"; };
 		E957AA102BDA8CE70089E395 /* CustomPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPostCell.swift; sourceTree = "<group>"; };
 		E957AA122BDAA4F10089E395 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E957AA142BDAA50E0089E395 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		E957AA162BDAA6450089E395 /* FirebaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseExtension.swift; sourceTree = "<group>"; };
 		E957AA182BDAA6E80089E395 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		E996D7522BFDBAF7000AE202 /* ShareBookController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBookController.swift; sourceTree = "<group>"; };
 		E9B24A362BFBC2CB009C21C1 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		E9B24A372BFBC2CB009C21C1 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
@@ -98,6 +108,8 @@
 				E9D9FA872BD53FE000BAADD5 /* LoginViewController.swift */,
 				E9B24A372BFBC2CB009C21C1 /* PhotoSelectorController.swift */,
 				E9B24A392BFBC2CB009C21C1 /* AddBookController.swift */,
+				E996D7522BFDBAF7000AE202 /* ShareBookController.swift */,
+				E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -117,8 +129,10 @@
 				E9B949FF2BD437D20025D344 /* LaunchScreen.storyboard */,
 				E9B949FA2BD437D10025D344 /* Main.storyboard */,
 				E957AA102BDA8CE70089E395 /* CustomPostCell.swift */,
+				E92F58972C033D0000289469 /* CustomBookCell.swift */,
 				E9B24A362BFBC2CB009C21C1 /* PhotoSelectorCell.swift */,
 				E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */,
+				E93947A02C08BA30008BF5BC /* SearchBookCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -128,6 +142,7 @@
 			children = (
 				E957AA122BDAA4F10089E395 /* User.swift */,
 				E957AA142BDAA50E0089E395 /* Post.swift */,
+				E92F58952C0336CF00289469 /* Book.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,15 +275,20 @@
 				E9B94A0B2BD43B5B0025D344 /* UIViewExtension.swift in Sources */,
 				E9B24A3B2BFBC2CB009C21C1 /* PhotoSelectorCell.swift in Sources */,
 				E9B949F92BD437D00025D344 /* ViewController.swift in Sources */,
+				E92F58982C033D0000289469 /* CustomBookCell.swift in Sources */,
 				E957AA172BDAA6450089E395 /* FirebaseExtension.swift in Sources */,
 				E9B94A0D2BD43E810025D344 /* MainTabBarController.swift in Sources */,
+				E93947A12C08BA30008BF5BC /* SearchBookCell.swift in Sources */,
 				E9B949F52BD437D00025D344 /* AppDelegate.swift in Sources */,
 				E9B24A3D2BFBC2CB009C21C1 /* PhotoSelectorHeader.swift in Sources */,
 				E9B94A092BD4393B0025D344 /* SignUpViewController.swift in Sources */,
 				E9B24A3E2BFBC2CB009C21C1 /* AddBookController.swift in Sources */,
+				E92F58962C0336CF00289469 /* Book.swift in Sources */,
 				E9B24A3C2BFBC2CB009C21C1 /* PhotoSelectorController.swift in Sources */,
+				E996D7532BFDBAF7000AE202 /* ShareBookController.swift in Sources */,
 				E9D9FA992BD55C6900BAADD5 /* ProfileViewController.swift in Sources */,
 				E957AA112BDA8CE70089E395 /* CustomPostCell.swift in Sources */,
+				E939479F2C08B9D8008BF5BC /* SearchBookViewController.swift in Sources */,
 				E957AA132BDAA4F10089E395 /* User.swift in Sources */,
 				E9B949F72BD437D00025D344 /* SceneDelegate.swift in Sources */,
 				E957AA192BDAA6E80089E395 /* CustomImageView.swift in Sources */,

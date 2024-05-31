@@ -9,6 +9,8 @@ import UIKit
 
 class CustomPostCell: UICollectionViewCell {
     
+    static let identifier = "postCell"
+    
     let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .gray
@@ -104,7 +106,7 @@ class CustomPostCell: UICollectionViewCell {
         headerView.addSubview(usernameLabel)
         headerView.addSubview(dateLabel)
         
-        usernameLabel.text = "Temp"
+        usernameLabel.text = "kadir"
         dateLabel.text = "Day"
         
         profileImageView.anchor(top: headerView.centerYAnchor, left: headerView.leftAnchor, bottom: nil, right: nil, paddingTop: -20, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
@@ -117,8 +119,8 @@ class CustomPostCell: UICollectionViewCell {
         midView.addSubview(postLabel)
         midView.addSubview(postDescriptionLabel)
         
-        postLabel.text = "'Post Metni'"
-        postDescriptionLabel.text = "Temp"
+        postLabel.text = "'Örnek Post Metni'"
+        postDescriptionLabel.text = ""
         
         postLabel.anchor(top: midView.topAnchor, left: midView.leftAnchor, bottom: nil, right: midView.rightAnchor, paddingTop: 10, paddingLeft: 30, paddingBottom: 0, paddingRight: 0, width: 0, height: 70)
         postDescriptionLabel.anchor(top: postLabel.bottomAnchor, left: midView.leftAnchor, bottom: midView.bottomAnchor, right: midView.rightAnchor, paddingTop: 0, paddingLeft: 30, paddingBottom: 5, paddingRight: 0, width: 0, height: 0)
@@ -132,8 +134,8 @@ class CustomPostCell: UICollectionViewCell {
         footerView.addSubview(favoriteCountLabel)
         footerView.addSubview(commentButton)
         
-        bookLabel.text = "Book Name"
-        favoriteCountLabel.text = "58"
+        bookLabel.text = "Kitap İsmi"
+        favoriteCountLabel.text = "00"
         
         bookImageView.anchor(top: footerView.topAnchor, left: footerView.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 30, paddingBottom: 0, paddingRight: 0, width: 40, height: 60)
         bookLabel.anchor(top: bookImageView.topAnchor, left: bookImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 80, height: 40)
