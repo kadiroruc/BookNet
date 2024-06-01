@@ -46,11 +46,20 @@ class SearchBookCell: UICollectionViewCell{
         return label
     }()
     
+    let accessoryImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "greaterthan")
+        imageView.tintColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         addSubview(bookImageView)
         addSubview(bookNameLabel)
+        addSubview(accessoryImageView)
         
         bookImageView.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
         bookImageView.layer.cornerRadius = 50/2
@@ -58,6 +67,9 @@ class SearchBookCell: UICollectionViewCell{
         
         bookNameLabel.anchor(top: nil, left: bookImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         bookNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        accessoryImageView.anchor(top: nil, left: bookNameLabel.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 15, width: 0, height: 0)
+        accessoryImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         let separatorView =  UIView()
         separatorView.backgroundColor = UIColor(white: 0, alpha: 0.5)

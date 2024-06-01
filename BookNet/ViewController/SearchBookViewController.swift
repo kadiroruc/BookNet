@@ -64,14 +64,14 @@ class SearchBookController: UICollectionViewController, UICollectionViewDelegate
             guard let dictionaries = snapshot.value as? [String:Any] else {return}
 
             dictionaries.forEach { key,value in
-                if key == Auth.auth().currentUser?.uid{
-                    return
-                }
+//                if key == Auth.auth().currentUser?.uid{
+//                    return
+//                }
                 
                 guard let bookDictionary = value as? [String:Any] else {return}
                 
                 bookDictionary.forEach { key,value in
-                    let book = Book(id: key, user: nil, dictionary: value as! [String : Any])
+                    let book = Book(id: key, userId: nil, dictionary: value as! [String : Any])
                     self?.books.insert(book, at: 0)
                 }
             }
@@ -99,11 +99,12 @@ class SearchBookController: UICollectionViewController, UICollectionViewDelegate
         searchBar.isHidden = true
         searchBar.resignFirstResponder()
         
-//        let user = filteredBooks[indexPath.item].user
-//        let profileController = ProfileViewController()
-//        profileController.user = user
-//
-//        navigationController?.pushViewController(profileController, animated: true)
+        let userId = filteredBooks[indexPath.item].userId
+        
+        let profileController = ProfileViewController()
+        profileController.userId = userId
+        profileController.titleLabel.subviews.first?.isHidden = true
+        navigationController?.pushViewController(profileController, animated: true)
     }
 }
 

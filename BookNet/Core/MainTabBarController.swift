@@ -35,12 +35,16 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         let homeNavController = templateNavController(unselectedImage: UIImage(systemName: "house")!, selectedImage: UIImage(systemName: "house.fill")!,rootViewController: UICollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         
+        
         let searchNavController = templateNavController(unselectedImage: UIImage(systemName: "magnifyingglass")!, selectedImage: UIImage(systemName: "magnifyingglass")!,rootViewController: SearchBookController(collectionViewLayout: UICollectionViewFlowLayout()))
         
-        //userProfile
-        let profileNavController = templateNavController(unselectedImage: UIImage(systemName: "person")!, selectedImage: UIImage(systemName: "person.fill")!,rootViewController: ProfileViewController())
         
-        let plusNavController = templateNavController(unselectedImage: UIImage(systemName: "arrow.2.squarepath")!, selectedImage: UIImage(systemName: "arrow.2.squarepath")!)
+        let swapNavController = templateNavController(unselectedImage: UIImage(systemName: "arrow.2.squarepath")!, selectedImage: UIImage(systemName: "arrow.2.squarepath")!)
+        
+        let plusNavController = templateNavController(unselectedImage: UIImage(systemName: "plus.app")!, selectedImage: UIImage(systemName: "plus.app.fill")!)
+        
+        
+        let profileNavController = templateNavController(unselectedImage: UIImage(systemName: "person")!, selectedImage: UIImage(systemName: "person.fill")!,rootViewController: ProfileViewController())
         
 
         tabBar.tintColor = UIColor.rgb(red: 251, green: 186, blue: 18)
@@ -48,6 +52,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         viewControllers = [homeNavController,
                            searchNavController,
+                           swapNavController,
                            plusNavController,
                            profileNavController]
         
@@ -69,7 +74,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         let index = viewControllers?.firstIndex(of: viewController)
         
-        if index == 2{
+        if index == 3{
             let photoSelectorController = PhotoSelectorController(collectionViewLayout: UICollectionViewFlowLayout())
             let navController = UINavigationController(rootViewController: photoSelectorController)
             navController.modalPresentationStyle = .fullScreen

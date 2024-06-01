@@ -81,7 +81,7 @@ class ProfileViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
-        
+        label.textAlignment = .center
         return label
     }()
     
@@ -160,7 +160,9 @@ class ProfileViewController: UIViewController {
 
     }
     override func viewWillAppear(_ animated: Bool) {
+        
         fetchUser()
+
     }
     
     func setViews(){
@@ -184,13 +186,13 @@ class ProfileViewController: UIViewController {
         followingLabel.anchor(top: titleLabel.bottomAnchor, left: followersLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
         
         view.addSubview(usernameLabel)
-        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: profileImageView.centerXAnchor, bottom: nil, right: nil, paddingTop: 15, paddingLeft: -35, paddingBottom: 0, paddingRight: 0, width: 70, height: 20)
+        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: profileImageView.leftAnchor, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 35, paddingBottom: 0, paddingRight: 0, width: 70, height: 20)
         
         view.addSubview(locationLabel)
-        locationLabel.anchor(top: usernameLabel.topAnchor, left: usernameLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 100, height: 0)
+        locationLabel.anchor(top: usernameLabel.topAnchor, left: followersLabel.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 70, height: 0)
         
         view.addSubview(scoreLabel)
-        scoreLabel.anchor(top: usernameLabel.topAnchor, left: locationLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 100, height: 0)
+        scoreLabel.anchor(top: usernameLabel.topAnchor, left: followingLabel.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 70, height: 0)
         
         let stackView = UIStackView(arrangedSubviews: [postsButton,libraryButton,readingListButton])
         stackView.axis = .horizontal
@@ -321,7 +323,6 @@ class ProfileViewController: UIViewController {
     fileprivate func fetchUser(){
         let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
         
-        
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) {[weak self] snapshot in
             guard let userDictionary = snapshot.value as? [String:Any] else{return}
             let user = User(uid: uid, dictionary: userDictionary)
@@ -376,7 +377,7 @@ class ProfileViewController: UIViewController {
             guard let user = self?.user else {return}
             
             let key = snapshot.key
-            let book = Book(id: key, user: user, dictionary: dictionary)
+            let book = Book(id: key, userId: nil, dictionary: dictionary)
             
             self?.books.insert(book, at: 0)
             
@@ -420,6 +421,12 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
                 cell.authorLabel.text = books[indexPath.item].authorName
                 cell.bookImageView.loadImage(urlString: books[indexPath.item].imageUrl)
             }
+            
+
+            if self.user?.uid != Auth.auth().currentUser?.uid{
+
+                cell.requestButton.isHidden = false
+            }
 
             return cell
         }
@@ -440,8 +447,13 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         }
         return size
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        <#code#>
+//    }
 
 }
+
 
 //MARK: - Image Picker
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{

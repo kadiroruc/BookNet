@@ -9,15 +9,19 @@ import Foundation
 
 struct Book{
     var id: String
-    let user: User?
+    let userId: String?
     let imageUrl: String
     let bookName: String
     let creationDate: Date
     let authorName: String
     
-    init(id:String, user:User?, dictionary: [String:Any]) {
+    init(id:String, userId:String?, dictionary: [String:Any]) {
         self.id = id
-        self.user = user
+        if let userId = userId{
+            self.userId = userId
+        }else{
+            self.userId = dictionary["userId"] as? String ?? ""
+        }
         self.imageUrl = dictionary["imageUrl"] as? String ?? ""
         self.bookName = dictionary["bookName"] as? String ?? ""
         self.authorName = dictionary["authorName"] as? String ?? ""

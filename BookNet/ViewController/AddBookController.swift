@@ -105,7 +105,7 @@ class AddBookController: UIViewController {
         let databaseRef = Database.database().reference().child("books").child(uid)
         let bookRef = databaseRef.childByAutoId()
         
-        let values = ["imageUrl":imageUrl, "bookName":bookName,"authorName":authorName,"imageWidth":image.size.width,"imageHeight":image.size.height,"creationDate":Date().timeIntervalSince1970] as [String:Any]
+        let values = ["imageUrl":imageUrl,"userId":uid, "bookName":bookName,"authorName":authorName,"imageWidth":image.size.width,"imageHeight":image.size.height,"creationDate":Date().timeIntervalSince1970] as [String:Any]
         
         bookRef.updateChildValues(values) {[weak self] error, ref in
             if let err = error{
