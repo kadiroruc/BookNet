@@ -126,7 +126,6 @@ class ProfileViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Okuma Listem", for: .normal)
         button.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
-        //button.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.addTarget(self, action: #selector(tabButtonsClicked), for: .touchUpInside)
@@ -394,7 +393,8 @@ class ProfileViewController: UIViewController {
 }
 
 //MARK: - Collection View
-extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,CustomBookCellDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if currentCellType == "Gönderiler"{
             return posts.count
@@ -411,15 +411,17 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         
         
         if currentCellType == "Gönderiler"{
-            var cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomPostCell.identifier, for: indexPath) as! CustomPostCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomPostCell.identifier, for: indexPath) as! CustomPostCell
             return cell
         }else if currentCellType == "Kütüphane"{
-            var cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomBookCell.identifier, for: indexPath) as! CustomBookCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomBookCell.identifier, for: indexPath) as! CustomBookCell
+            cell.delegate = self
             
             if !books.isEmpty{
                 cell.bookLabel.text = books[indexPath.item].bookName
                 cell.authorLabel.text = books[indexPath.item].authorName
                 cell.bookImageView.loadImage(urlString: books[indexPath.item].imageUrl)
+                cell.userId = books[indexPath.item].userId
             }
             
 
@@ -448,9 +450,11 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         return size
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    func showAlert(from cell: CustomBookCell, message: String) {
+        let ac = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Tamam", style: .default))
+        self.present(ac,animated: true)
+    }
 
 }
 
@@ -499,7 +503,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                         let values = [uid:dictionaryValues]
 
                         Database.database().reference().child("users").updateChildValues(values,withCompletionBlock: { err, ref in
-                            if let error = error{
+                            if error != nil{
                                 print("Failed to save user info into db")
                                 return
                             }

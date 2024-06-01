@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E924F5862C0B6E0A00DDB21A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924F5852C0B6E0A00DDB21A /* Request.swift */; };
 		E92F58962C0336CF00289469 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F58952C0336CF00289469 /* Book.swift */; };
 		E92F58982C033D0000289469 /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F58972C033D0000289469 /* CustomBookCell.swift */; };
 		E939479F2C08B9D8008BF5BC /* SearchBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E924F5852C0B6E0A00DDB21A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		E92F58952C0336CF00289469 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		E92F58972C033D0000289469 /* CustomBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
 		E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				E957AA122BDAA4F10089E395 /* User.swift */,
 				E957AA142BDAA50E0089E395 /* Post.swift */,
 				E92F58952C0336CF00289469 /* Book.swift */,
+				E924F5852C0B6E0A00DDB21A /* Request.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				E92F58982C033D0000289469 /* CustomBookCell.swift in Sources */,
 				E957AA172BDAA6450089E395 /* FirebaseExtension.swift in Sources */,
 				E9B94A0D2BD43E810025D344 /* MainTabBarController.swift in Sources */,
+				E924F5862C0B6E0A00DDB21A /* Request.swift in Sources */,
 				E93947A12C08BA30008BF5BC /* SearchBookCell.swift in Sources */,
 				E9B949F52BD437D00025D344 /* AppDelegate.swift in Sources */,
 				E9B24A3D2BFBC2CB009C21C1 /* PhotoSelectorHeader.swift in Sources */,
