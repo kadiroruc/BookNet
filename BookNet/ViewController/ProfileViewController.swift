@@ -124,7 +124,7 @@ class ProfileViewController: UIViewController {
     }()
     let readingListButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Okuma Listem", for: .normal)
+        button.setTitle("Okuma Listesi", for: .normal)
         button.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9206BA32C1222BE00B08AFE /* VCPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9206BA22C1222BE00B08AFE /* VCPreview.swift */; };
 		E924F5862C0B6E0A00DDB21A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924F5852C0B6E0A00DDB21A /* Request.swift */; };
 		E92F58962C0336CF00289469 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F58952C0336CF00289469 /* Book.swift */; };
 		E92F58982C033D0000289469 /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F58972C033D0000289469 /* CustomBookCell.swift */; };
@@ -23,14 +24,13 @@
 		E9B24A3D2BFBC2CB009C21C1 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */; };
 		E9B24A3E2BFBC2CB009C21C1 /* AddBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A392BFBC2CB009C21C1 /* AddBookController.swift */; };
 		E9B949F52BD437D00025D344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B949F42BD437D00025D344 /* AppDelegate.swift */; };
-		E9B949F72BD437D00025D344 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B949F62BD437D00025D344 /* SceneDelegate.swift */; };
 		E9B949F92BD437D00025D344 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B949F82BD437D00025D344 /* ViewController.swift */; };
-		E9B949FC2BD437D10025D344 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E9B949FB2BD437D10025D344 /* Base */; };
 		E9B949FE2BD437D20025D344 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9B949FD2BD437D20025D344 /* Assets.xcassets */; };
-		E9B94A012BD437D20025D344 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E9B94A002BD437D20025D344 /* Base */; };
 		E9B94A092BD4393B0025D344 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B94A082BD4393B0025D344 /* SignUpViewController.swift */; };
 		E9B94A0B2BD43B5B0025D344 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B94A0A2BD43B5B0025D344 /* UIViewExtension.swift */; };
 		E9B94A0D2BD43E810025D344 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B94A0C2BD43E810025D344 /* MainTabBarController.swift */; };
+		E9C1EF692C11FECD003035AD /* SwapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1EF682C11FECD003035AD /* SwapViewController.swift */; };
+		E9C1EF6B2C120503003035AD /* CustomRequestsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1EF6A2C120503003035AD /* CustomRequestsCell.swift */; };
 		E9D9FA882BD53FE000BAADD5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D9FA872BD53FE000BAADD5 /* LoginViewController.swift */; };
 		E9D9FA8A2BD5437800BAADD5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9D9FA892BD5437800BAADD5 /* GoogleService-Info.plist */; };
 		E9D9FA8D2BD5469200BAADD5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E9D9FA8C2BD5469200BAADD5 /* FirebaseAuth */; };
@@ -43,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E9206BA22C1222BE00B08AFE /* VCPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCPreview.swift; sourceTree = "<group>"; };
 		E924F5852C0B6E0A00DDB21A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		E92F58952C0336CF00289469 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		E92F58972C033D0000289469 /* CustomBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
@@ -60,15 +61,14 @@
 		E9B24A392BFBC2CB009C21C1 /* AddBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookController.swift; sourceTree = "<group>"; };
 		E9B949F12BD437D00025D344 /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9B949F42BD437D00025D344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E9B949F62BD437D00025D344 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E9B949F82BD437D00025D344 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E9B949FB2BD437D10025D344 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9B949FD2BD437D20025D344 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E9B94A002BD437D20025D344 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9B94A022BD437D20025D344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9B94A082BD4393B0025D344 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E9B94A0A2BD43B5B0025D344 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		E9B94A0C2BD43E810025D344 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		E9C1EF682C11FECD003035AD /* SwapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapViewController.swift; sourceTree = "<group>"; };
+		E9C1EF6A2C120503003035AD /* CustomRequestsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestsCell.swift; sourceTree = "<group>"; };
 		E9D9FA872BD53FE000BAADD5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E9D9FA892BD5437800BAADD5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E9D9FA982BD55C6900BAADD5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +96,6 @@
 			children = (
 				E9B94A0C2BD43E810025D344 /* MainTabBarController.swift */,
 				E9B949F42BD437D00025D344 /* AppDelegate.swift */,
-				E9B949F62BD437D00025D344 /* SceneDelegate.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -112,6 +111,7 @@
 				E9B24A392BFBC2CB009C21C1 /* AddBookController.swift */,
 				E996D7522BFDBAF7000AE202 /* ShareBookController.swift */,
 				E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */,
+				E9C1EF682C11FECD003035AD /* SwapViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -121,6 +121,7 @@
 			children = (
 				E9B949FD2BD437D20025D344 /* Assets.xcassets */,
 				E957AA182BDAA6E80089E395 /* CustomImageView.swift */,
+				E9206BA22C1222BE00B08AFE /* VCPreview.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -128,13 +129,12 @@
 		E920F9E72BE2E38B00AD5CE9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E9B949FF2BD437D20025D344 /* LaunchScreen.storyboard */,
-				E9B949FA2BD437D10025D344 /* Main.storyboard */,
 				E957AA102BDA8CE70089E395 /* CustomPostCell.swift */,
 				E92F58972C033D0000289469 /* CustomBookCell.swift */,
 				E9B24A362BFBC2CB009C21C1 /* PhotoSelectorCell.swift */,
 				E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */,
 				E93947A02C08BA30008BF5BC /* SearchBookCell.swift */,
+				E9C1EF6A2C120503003035AD /* CustomRequestsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -261,8 +261,6 @@
 			files = (
 				E9B949FE2BD437D20025D344 /* Assets.xcassets in Resources */,
 				E9D9FA8A2BD5437800BAADD5 /* GoogleService-Info.plist in Resources */,
-				E9B94A012BD437D20025D344 /* Base in Resources */,
-				E9B949FC2BD437D10025D344 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +274,7 @@
 				E9D9FA882BD53FE000BAADD5 /* LoginViewController.swift in Sources */,
 				E957AA152BDAA50E0089E395 /* Post.swift in Sources */,
 				E9B94A0B2BD43B5B0025D344 /* UIViewExtension.swift in Sources */,
+				E9C1EF6B2C120503003035AD /* CustomRequestsCell.swift in Sources */,
 				E9B24A3B2BFBC2CB009C21C1 /* PhotoSelectorCell.swift in Sources */,
 				E9B949F92BD437D00025D344 /* ViewController.swift in Sources */,
 				E92F58982C033D0000289469 /* CustomBookCell.swift in Sources */,
@@ -286,6 +285,8 @@
 				E9B949F52BD437D00025D344 /* AppDelegate.swift in Sources */,
 				E9B24A3D2BFBC2CB009C21C1 /* PhotoSelectorHeader.swift in Sources */,
 				E9B94A092BD4393B0025D344 /* SignUpViewController.swift in Sources */,
+				E9C1EF692C11FECD003035AD /* SwapViewController.swift in Sources */,
+				E9206BA32C1222BE00B08AFE /* VCPreview.swift in Sources */,
 				E9B24A3E2BFBC2CB009C21C1 /* AddBookController.swift in Sources */,
 				E92F58962C0336CF00289469 /* Book.swift in Sources */,
 				E9B24A3C2BFBC2CB009C21C1 /* PhotoSelectorController.swift in Sources */,
@@ -294,31 +295,11 @@
 				E957AA112BDA8CE70089E395 /* CustomPostCell.swift in Sources */,
 				E939479F2C08B9D8008BF5BC /* SearchBookViewController.swift in Sources */,
 				E957AA132BDAA4F10089E395 /* User.swift in Sources */,
-				E9B949F72BD437D00025D344 /* SceneDelegate.swift in Sources */,
 				E957AA192BDAA6E80089E395 /* CustomImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E9B949FA2BD437D10025D344 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E9B949FB2BD437D10025D344 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E9B949FF2BD437D20025D344 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E9B94A002BD437D20025D344 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E9B94A032BD437D20025D344 /* Debug */ = {
@@ -452,7 +433,6 @@
 				INFOPLIST_FILE = BookNet/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -480,7 +460,6 @@
 				INFOPLIST_FILE = BookNet/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

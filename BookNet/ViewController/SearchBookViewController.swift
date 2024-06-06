@@ -17,7 +17,7 @@ class SearchBookController: UICollectionViewController, UICollectionViewDelegate
     
     lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
-        sb.placeholder = "Enter Book Name"
+        sb.placeholder = "Kitap ismi girin"
         sb.barTintColor = .gray
         sb.searchTextField.backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230)
         sb.delegate = self

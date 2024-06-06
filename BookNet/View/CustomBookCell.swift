@@ -107,7 +107,7 @@ class CustomBookCell: UICollectionViewCell {
         didRequestedBefore(senderId: currentUserId, receiverId: userId) {[weak self] bool in
             if bool{
                 
-                self?.delegate?.showAlert(from: self ?? CustomBookCell(), message: "Onayda bekleyen bir isteğiniz mevcut.")
+                self?.delegate?.showAlert(from: self ?? CustomBookCell(), message: "Bu kullanıcıdan daha önce kitap isteğinde bulundunuz.")
                 return
             }else{
                 
@@ -163,8 +163,6 @@ class CustomBookCell: UICollectionViewCell {
         }
         
     }
-    
-    
     
 }
 

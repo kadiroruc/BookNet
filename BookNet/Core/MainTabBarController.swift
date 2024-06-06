@@ -39,7 +39,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let searchNavController = templateNavController(unselectedImage: UIImage(systemName: "magnifyingglass")!, selectedImage: UIImage(systemName: "magnifyingglass")!,rootViewController: SearchBookController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         
-        let swapNavController = templateNavController(unselectedImage: UIImage(systemName: "arrow.2.squarepath")!, selectedImage: UIImage(systemName: "arrow.2.squarepath")!)
+        let swapNavController = templateNavController(unselectedImage: UIImage(systemName: "arrow.2.squarepath")!, selectedImage: UIImage(systemName: "arrow.2.squarepath")!,rootViewController: SwapCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         
         let plusNavController = templateNavController(unselectedImage: UIImage(systemName: "plus.app")!, selectedImage: UIImage(systemName: "plus.app.fill")!)
         
@@ -87,3 +87,5 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 
 }
+
+
