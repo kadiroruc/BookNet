@@ -8,7 +8,13 @@
 import UIKit
 import SwiftUI
 
+protocol CustomRequestsCellDelegate: AnyObject{
+    func tappedSeeProfileButton(username:String)
+}
+
 class CustomRequestsCell: UICollectionViewCell {
+    
+    weak var delegate: CustomRequestsCellDelegate?
     
     
     lazy var profileImageView: CustomImageView = {
@@ -31,23 +37,23 @@ class CustomRequestsCell: UICollectionViewCell {
         let button = UIButton()
         let image = UIImage(systemName: "arrowshape.turn.up.forward.fill")
         let biggerImage = image?.withRenderingMode(.alwaysOriginal).resize(to: CGSize(width: 25, height: 25))
-        
         button.setImage(biggerImage, for: .normal)
 
+        button.addTarget(self, action: #selector(tappedSeeProfileButton), for: .touchUpInside)
         return button
     }()
     
     lazy var requestedBookLabel: UILabel = {
         let lb = UILabel()
         lb.textAlignment = .center
-        lb.textColor = .white
+        lb.textColor = .black
         return lb
     }()
     
     lazy var emailLabel: UILabel = {
         let lb = UILabel()
         lb.textAlignment = .center
-        lb.textColor = .white
+        lb.textColor = .black
         return lb
     }()
     
@@ -125,6 +131,10 @@ class CustomRequestsCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func tappedSeeProfileButton(){
+        self.delegate?.tappedSeeProfileButton(username: usernameLabel.text ?? "")
     }
 }
 

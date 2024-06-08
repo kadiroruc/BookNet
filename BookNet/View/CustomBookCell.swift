@@ -100,6 +100,7 @@ class CustomBookCell: UICollectionViewCell {
     @objc func requestButtonTapped(){
         requestButton.isHidden = true
         guard let currentUserId = Auth.auth().currentUser?.uid else {return}
+        guard let email = Auth.auth().currentUser?.email else {return}
         guard let userId = userId else{return}
         
         
@@ -116,7 +117,8 @@ class CustomBookCell: UICollectionViewCell {
                 let value = ["requestedBook":self?.bookLabel.text,
                              "senderId":currentUserId,
                              "receiverId": userId,
-                             "status":"pending"]
+                             "status":"pending",
+                             "email":email]
                 
                 ref.setValue(value) {[weak self] error, ref in
                     if error != nil{

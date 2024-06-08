@@ -11,10 +11,14 @@ struct Request{
     let senderId: String
     let receiverId: String
     let status: String
+    let requestedBook: String
+    let email: String
     
     init(dictionary: [String: Any]) {
         self.senderId = dictionary["senderId"] as? String ?? ""
         self.receiverId = dictionary["receiverId"] as? String ?? ""
         self.status = dictionary["status"] as? String ?? ""
+        self.requestedBook = dictionary["requestedBook"] as? String ?? ""
+        self.email = dictionary["email"] as? String ?? ""
     }
 }
