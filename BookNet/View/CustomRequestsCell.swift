@@ -10,6 +10,8 @@ import SwiftUI
 
 protocol CustomRequestsCellDelegate: AnyObject{
     func tappedSeeProfileButton(username:String)
+    func tappedCancelButton()
+    func tappedAcceptButton()
 }
 
 class CustomRequestsCell: UICollectionViewCell {
@@ -62,6 +64,7 @@ class CustomRequestsCell: UICollectionViewCell {
         let image = UIImage(systemName: "xmark")
         let biggerImage = image?.withRenderingMode(.alwaysOriginal).withTintColor(.red).resize(to: CGSize(width: 25, height: 25))
         button.setImage(biggerImage, for: .normal)
+        button.addTarget(self, action: #selector(tappedCancelButton), for: .touchUpInside)
         return button
     }()
     
@@ -70,6 +73,7 @@ class CustomRequestsCell: UICollectionViewCell {
         let image = UIImage(systemName: "checkmark")
         let biggerImage = image?.withRenderingMode(.alwaysOriginal).resize(to: CGSize(width: 25, height: 25))
         button.setImage(biggerImage, for: .normal)
+        button.addTarget(self, action: #selector(tappedAcceptButton), for: .touchUpInside)
         
         return button
     }()
@@ -135,6 +139,14 @@ class CustomRequestsCell: UICollectionViewCell {
     
     @objc func tappedSeeProfileButton(){
         self.delegate?.tappedSeeProfileButton(username: usernameLabel.text ?? "")
+    }
+    
+    @objc func tappedCancelButton(){
+        self.delegate?.tappedCancelButton()
+    }
+    
+    @objc func tappedAcceptButton(){
+        self.delegate?.tappedAcceptButton()
     }
 }
 

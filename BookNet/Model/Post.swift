@@ -11,18 +11,20 @@ struct Post{
     
     var id: String?
     let user: User
-    let imageUrl: String
-    let label: String
-    let description: String
+    let bookImageUrl: String
+    let bookName: String
+    let postText: String
     let creationDate: Date
+    let autherName: String
     
     var hasLiked:Bool = false
     
     init(user:User, dictionary: [String:Any]) {
         self.user = user
-        self.imageUrl = dictionary["imageUrl"] as? String ?? ""
-        self.label = dictionary["label"] as? String ?? ""
-        self.description = dictionary["label"] as? String ?? ""
+        self.bookImageUrl = dictionary["bookImageUrl"] as? String ?? ""
+        self.bookName = dictionary["bookName"] as? String ?? ""
+        self.autherName = dictionary["authorName"] as? String ?? ""
+        self.postText = dictionary["postText"] as? String ?? ""
         
         let secondsFrom1970 = dictionary["creationDate"] as? Double ?? 0
         self.creationDate = Date(timeIntervalSince1970: secondsFrom1970)

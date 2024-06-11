@@ -76,7 +76,6 @@ class AddBookController: UIViewController {
         
         let filename = NSUUID().uuidString
         let storageRef = Storage.storage().reference().child("books").child(filename)
-        navigationItem.rightBarButtonItem?.isEnabled = true
         
         storageRef.putData(uploadData) {[weak self] metadata, error in
             if let error = error{

@@ -158,6 +158,14 @@ class SwapCollectionViewController: UICollectionViewController,UICollectionViewD
 //MARK: - TappedButtons
 
 extension SwapCollectionViewController: CustomRequestsCellDelegate{
+    func tappedCancelButton() {
+            
+    }
+    
+    func tappedAcceptButton() {
+            
+    }
+    
     func tappedSeeProfileButton(username: String) {
         
         let userId = fetchUserId(for: username) { userId in

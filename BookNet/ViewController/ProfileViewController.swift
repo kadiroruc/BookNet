@@ -279,6 +279,8 @@ class ProfileViewController: UIViewController {
             
         }else if sender.titleLabel?.text == "Gönderiler"{
             
+            fetchPosts()
+            
             currentCellType = "Gönderiler"
             
             self.collectionView.register(CustomPostCell.self, forCellWithReuseIdentifier: CustomPostCell.identifier)
@@ -386,6 +388,32 @@ class ProfileViewController: UIViewController {
 
         }
         
+    }
+    
+    fileprivate func fetchPosts(){
+        posts = []
+        
+        guard let uid = self.user?.uid else {return}
+        
+        
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.observe(.childAdded) {[weak self] snapshot in
+            
+            guard let dictionary = snapshot.value as? [String:Any] else {return}
+            
+            guard let user = self?.user else {return}
+            
+            let key = snapshot.key
+            
+            let post = Post(user: user, dictionary: dictionary)
+            
+            self?.posts.insert(post, at: 0)
+            
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+
+        }
         
     }
     
@@ -412,6 +440,18 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         
         if currentCellType == "Gönderiler"{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomPostCell.identifier, for: indexPath) as! CustomPostCell
+//            cell.profileImageView.layer.cornerRadius = 20
+            
+            if !books.isEmpty{
+                cell.usernameLabel.text = posts[indexPath.item].user.username
+                cell.profileImageView.loadImage(urlString: posts[indexPath.item].user.profileImageUrl)
+                cell.bookImageView.loadImage(urlString: posts[indexPath.item].bookImageUrl)
+                cell.bookLabel.text = posts[indexPath.item].bookName
+                cell.postLabel.text = "\"\(posts[indexPath.item].postText)\""
+                cell.dateLabel.text = posts[indexPath.item].creationDate.timeAgoDisplay()
+                cell.postDescriptionLabel.text = posts[indexPath.item].autherName
+            }
+            
             return cell
         }else if currentCellType == "Kütüphane"{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomBookCell.identifier, for: indexPath) as! CustomBookCell

@@ -64,9 +64,9 @@ class SearchBookController: UICollectionViewController, UICollectionViewDelegate
             guard let dictionaries = snapshot.value as? [String:Any] else {return}
 
             dictionaries.forEach { key,value in
-//                if key == Auth.auth().currentUser?.uid{
-//                    return
-//                }
+                if key == Auth.auth().currentUser?.uid{
+                    return
+                }
                 
                 guard let bookDictionary = value as? [String:Any] else {return}
                 

@@ -11,10 +11,11 @@ class CustomPostCell: UICollectionViewCell {
     
     static let identifier = "postCell"
     
-    let profileImageView: UIImageView = {
-        let iv = UIImageView()
+    let profileImageView: CustomImageView = {
+        let iv = CustomImageView()
         iv.backgroundColor = .gray
         iv.layer.cornerRadius = 20
+        iv.clipsToBounds = true
         return iv
     }()
     let usernameLabel: UILabel = {
@@ -45,8 +46,8 @@ class CustomPostCell: UICollectionViewCell {
         
         return label
     }()
-    let bookImageView: UIImageView = {
-        let iv = UIImageView()
+    let bookImageView: CustomImageView = {
+        let iv = CustomImageView()
         iv.backgroundColor = .gray
         return iv
     }()
@@ -72,13 +73,13 @@ class CustomPostCell: UICollectionViewCell {
         button.tintColor = .black
         return button
     }()
-    let commentButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "message"), for: .normal)
-        button.tintColor = .black
-        return button
-    }()
-    
+//    let commentButton: UIButton = {
+//        let button = UIButton()
+//        button.setImage(UIImage(systemName: "message"), for: .normal)
+//        button.tintColor = .black
+//        return button
+//    }()
+//    
 
 
     
@@ -106,12 +107,10 @@ class CustomPostCell: UICollectionViewCell {
         headerView.addSubview(usernameLabel)
         headerView.addSubview(dateLabel)
         
-        usernameLabel.text = "kadir"
-        dateLabel.text = "Day"
         
         profileImageView.anchor(top: headerView.centerYAnchor, left: headerView.leftAnchor, bottom: nil, right: nil, paddingTop: -20, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         usernameLabel.anchor(top: headerView.centerYAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: -15, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 70, height: 30)
-        dateLabel.anchor(top: headerView.centerYAnchor, left: nil, bottom: nil, right: headerView.rightAnchor, paddingTop: -15, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 30, height: 30)
+        dateLabel.anchor(top: headerView.centerYAnchor, left: nil, bottom: nil, right: headerView.rightAnchor, paddingTop: -15, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 80, height: 30)
         
         
         let midView = UIView()
@@ -119,8 +118,6 @@ class CustomPostCell: UICollectionViewCell {
         midView.addSubview(postLabel)
         midView.addSubview(postDescriptionLabel)
         
-        postLabel.text = "'Örnek Post Metni'"
-        postDescriptionLabel.text = ""
         
         postLabel.anchor(top: midView.topAnchor, left: midView.leftAnchor, bottom: nil, right: midView.rightAnchor, paddingTop: 10, paddingLeft: 30, paddingBottom: 0, paddingRight: 0, width: 0, height: 70)
         postDescriptionLabel.anchor(top: postLabel.bottomAnchor, left: midView.leftAnchor, bottom: midView.bottomAnchor, right: midView.rightAnchor, paddingTop: 0, paddingLeft: 30, paddingBottom: 5, paddingRight: 0, width: 0, height: 0)
@@ -132,16 +129,14 @@ class CustomPostCell: UICollectionViewCell {
         footerView.addSubview(bookLabel)
         footerView.addSubview(favoriteButton)
         footerView.addSubview(favoriteCountLabel)
-        footerView.addSubview(commentButton)
+//        footerView.addSubview(commentButton)
         
-        bookLabel.text = "Kitap İsmi"
-        favoriteCountLabel.text = "00"
         
         bookImageView.anchor(top: footerView.topAnchor, left: footerView.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 30, paddingBottom: 0, paddingRight: 0, width: 40, height: 60)
-        bookLabel.anchor(top: bookImageView.topAnchor, left: bookImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 80, height: 40)
+        bookLabel.anchor(top: bookImageView.topAnchor, left: bookImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 160, height: 40)
         favoriteButton.anchor(top: nil, left: bookImageView.leftAnchor, bottom: footerView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 0, height: 0)
         favoriteCountLabel.anchor(top: favoriteButton.centerYAnchor, left: favoriteButton.rightAnchor, bottom: nil, right: nil, paddingTop: -9, paddingLeft: 2, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        commentButton.anchor(top: nil, left: favoriteCountLabel.rightAnchor, bottom: footerView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 5, paddingBottom: 20, paddingRight: 0, width: 0, height: 0)
+//        commentButton.anchor(top: nil, left: favoriteCountLabel.rightAnchor, bottom: footerView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 5, paddingBottom: 20, paddingRight: 0, width: 0, height: 0)
         
         
         
