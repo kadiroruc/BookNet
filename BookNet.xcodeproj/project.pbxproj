@@ -11,6 +11,7 @@
 		E924F5862C0B6E0A00DDB21A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924F5852C0B6E0A00DDB21A /* Request.swift */; };
 		E92F58962C0336CF00289469 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F58952C0336CF00289469 /* Book.swift */; };
 		E92F58982C033D0000289469 /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F58972C033D0000289469 /* CustomBookCell.swift */; };
+		E9355D282C19B057003F212C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9355D272C19B057003F212C /* HomeViewController.swift */; };
 		E939479F2C08B9D8008BF5BC /* SearchBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */; };
 		E93947A12C08BA30008BF5BC /* SearchBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93947A02C08BA30008BF5BC /* SearchBookCell.swift */; };
 		E94AD3652C182CD1007B9A0F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94AD3642C182CD1007B9A0F /* DateExtension.swift */; };
@@ -48,6 +49,7 @@
 		E924F5852C0B6E0A00DDB21A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		E92F58952C0336CF00289469 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		E92F58972C033D0000289469 /* CustomBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
+		E9355D272C19B057003F212C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookViewController.swift; sourceTree = "<group>"; };
 		E93947A02C08BA30008BF5BC /* SearchBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookCell.swift; sourceTree = "<group>"; };
 		E94AD3642C182CD1007B9A0F /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				E996D7522BFDBAF7000AE202 /* ShareBookController.swift */,
 				E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */,
 				E9C1EF682C11FECD003035AD /* SwapViewController.swift */,
+				E9355D272C19B057003F212C /* HomeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				E93947A12C08BA30008BF5BC /* SearchBookCell.swift in Sources */,
 				E9B949F52BD437D00025D344 /* AppDelegate.swift in Sources */,
 				E9B24A3D2BFBC2CB009C21C1 /* PhotoSelectorHeader.swift in Sources */,
+				E9355D282C19B057003F212C /* HomeViewController.swift in Sources */,
 				E9B94A092BD4393B0025D344 /* SignUpViewController.swift in Sources */,
 				E9C1EF692C11FECD003035AD /* SwapViewController.swift in Sources */,
 				E9206BA32C1222BE00B08AFE /* VCPreview.swift in Sources */,

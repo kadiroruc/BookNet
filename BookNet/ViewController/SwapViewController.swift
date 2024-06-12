@@ -173,6 +173,7 @@ extension SwapCollectionViewController: CustomRequestsCellDelegate{
                 let profileController = ProfileViewController()
                 profileController.userId = userId
                 profileController.titleLabel.subviews.first?.isHidden = true
+                profileController.followButton.isHidden = false
                 self.navigationController?.pushViewController(profileController, animated: true)
             }
         }

@@ -104,6 +104,7 @@ class SearchBookController: UICollectionViewController, UICollectionViewDelegate
         let profileController = ProfileViewController()
         profileController.userId = userId
         profileController.titleLabel.subviews.first?.isHidden = true
+        profileController.followButton.isHidden = false
         navigationController?.pushViewController(profileController, animated: true)
     }
 }

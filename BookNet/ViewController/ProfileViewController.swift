@@ -26,6 +26,8 @@ class ProfileViewController: UIViewController {
             
             usernameLabel.text = self.user?.username
             
+            setupFollowButton()
+            
         }
     }
     var posts = [Post]()
@@ -131,18 +133,30 @@ class ProfileViewController: UIViewController {
         button.addTarget(self, action: #selector(tabButtonsClicked), for: .touchUpInside)
         return button
     }()
+    
+    let followButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Takip Et", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        button.layer.cornerRadius = 13
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.addTarget(self, action: #selector(followButtonTapped), for: .touchUpInside)
+        button.isHidden = true
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let firstString = NSAttributedString(string: "Takipçi",attributes: [.font:UIFont.boldSystemFont(ofSize: 26)])
-        let secondString = NSAttributedString(string: "\n     40",attributes: [.font:UIFont.systemFont(ofSize: 24)])
+        let secondString = NSAttributedString(string: "\n     0",attributes: [.font:UIFont.systemFont(ofSize: 24)])
         let combinedString = NSMutableAttributedString(attributedString: firstString)
         combinedString.append(secondString)
         followersLabel.attributedText = combinedString
         
         let firstString1 = NSAttributedString(string: "Takip",attributes: [.font:UIFont.boldSystemFont(ofSize: 26)])
-        let secondString1 = NSAttributedString(string: "\n   40",attributes: [.font:UIFont.systemFont(ofSize: 24)])
+        let secondString1 = NSAttributedString(string: "\n   0",attributes: [.font:UIFont.systemFont(ofSize: 24)])
         let combinedString1 = NSMutableAttributedString(attributedString: firstString1)
         combinedString1.append(secondString1)
         followingLabel.attributedText = combinedString1
@@ -183,6 +197,9 @@ class ProfileViewController: UIViewController {
         
         view.addSubview(followingLabel)
         followingLabel.anchor(top: titleLabel.bottomAnchor, left: followersLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
+        
+        view.addSubview(followButton)
+        followButton.anchor(top: followersLabel.bottomAnchor, left: followersLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: -5, paddingLeft: 10, paddingBottom: 0, paddingRight: 35, width: 0, height: 0)
         
         view.addSubview(usernameLabel)
         usernameLabel.anchor(top: profileImageView.bottomAnchor, left: profileImageView.leftAnchor, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 35, paddingBottom: 0, paddingRight: 0, width: 70, height: 20)
@@ -286,10 +303,68 @@ class ProfileViewController: UIViewController {
             self.collectionView.register(CustomPostCell.self, forCellWithReuseIdentifier: CustomPostCell.identifier)
             self.collectionView.reloadData()
         }
-            
-        
         
     }
+    
+    func setupFollowButton(){
+        guard let currentUserId = Auth.auth().currentUser?.uid else {return}
+        guard let userId = user?.uid else {return}
+        
+        if currentUserId != userId{
+            
+            self.followButton.isHidden = false
+            
+            //takip ediliyor mu kontrol et
+            Database.database().reference().child("following").child(currentUserId).child(userId).observeSingleEvent(of: .value) {[weak self] snapshot in
+                
+                if let isFollowing = snapshot.value as? Int, isFollowing == 1{
+                    DispatchQueue.main.async {
+                        self?.followButton.setTitle("Takibi Bırak", for: .normal)
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        self?.followButton.setTitle("Takip Et", for: .normal)
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    @objc func followButtonTapped(){
+        guard let currentUserId = Auth.auth().currentUser?.uid else {return}
+        guard let userId = user?.uid else {return}
+        
+        if followButton.titleLabel?.text == "Takibi Bırak"{
+            //Takibi Bırak
+            Database.database().reference().child("following").child(currentUserId).child(userId).removeValue {[weak self] error, ref in
+                if let error = error{
+                    print("Failed to unfollow user",error)
+                    return
+                }
+                DispatchQueue.main.async {
+                    self?.followButton.setTitle("Takip Et", for: .normal)
+                }
+            }
+        }else{
+            //Takip Et
+            let ref = Database.database().reference().child("following").child(currentUserId)
+            let values = [userId:1]
+            
+            ref.updateChildValues(values) {[weak self] error, ref in
+                if let error = error{
+                    print("Failed to follow user",error)
+                    return
+                }
+                DispatchQueue.main.async {
+                    self?.followButton.setTitle("Takibi Bırak", for: .normal)
+                }
+            }
+        }
+    }
+    
+
+    
 
     func handleChangeProfile(){
         let picker = UIImagePickerController()
@@ -333,36 +408,10 @@ class ProfileViewController: UIViewController {
             
         }
         
-        
-//        Database.fetchUserWithUID(uid: uid) {[weak self] user in
-//            self?.user = user
-//            
-//            DispatchQueue.main.async {
-//                self?.collectionView.reloadData()
-//                //self?.fetchOrderedPosts()
-//            }
-//        }
     }
     
     
-//    
-//    fileprivate func fetchOrderedPosts(){
-//        guard let uid = self.user?.uid else {return}
-//        
-//        let ref = Database.database().reference().child("posts").child(uid)
-//        ref.queryOrdered(byChild: "creationDate").observe(.childAdded) {[weak self] snapshot in
-//            guard let dictionary = snapshot.value as? [String:Any] else {return}
-//            guard let user = self?.user else {return}
-//            
-//            
-//            let post = Post(user: user, dictionary: dictionary)
-//            
-//            self?.posts.insert(post, at: 0)
-//            DispatchQueue.main.async {
-//                self?.collectionView.reloadData()
-//            }
-//        }
-//    }
+
     
     fileprivate func fetchBooks(){
         books = []
