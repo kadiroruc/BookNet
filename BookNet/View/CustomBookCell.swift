@@ -113,8 +113,10 @@ class CustomBookCell: UICollectionViewCell {
             }else{
                 
                 let ref = Database.database().reference().child("requests").childByAutoId()
+                let autoID = ref.key
                 
-                let value = ["requestedBook":self?.bookLabel.text,
+                let value = ["id":autoID,
+                             "requestedBook":self?.bookLabel.text,
                              "senderId":currentUserId,
                              "receiverId": userId,
                              "status":"pending",

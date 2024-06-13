@@ -10,13 +10,14 @@ import SwiftUI
 
 protocol CustomRequestsCellDelegate: AnyObject{
     func tappedSeeProfileButton(username:String)
-    func tappedCancelButton()
-    func tappedAcceptButton()
+    func tappedCancelButton(at indexPath: IndexPath)
+    func tappedAcceptButton(at indexPath: IndexPath)
 }
 
 class CustomRequestsCell: UICollectionViewCell {
     
     weak var delegate: CustomRequestsCellDelegate?
+    var indexPath: IndexPath?
     
     
     lazy var profileImageView: CustomImageView = {
@@ -142,11 +143,15 @@ class CustomRequestsCell: UICollectionViewCell {
     }
     
     @objc func tappedCancelButton(){
-        self.delegate?.tappedCancelButton()
+        if let indexPath = indexPath {
+            delegate?.tappedCancelButton(at: indexPath)
+        }
     }
     
     @objc func tappedAcceptButton(){
-        self.delegate?.tappedAcceptButton()
+        if let indexPath = indexPath {
+            delegate?.tappedAcceptButton(at: indexPath)
+        }
     }
 }
 

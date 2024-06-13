@@ -20,12 +20,19 @@ class SwapCollectionViewController: UICollectionViewController,UICollectionViewD
         
         collectionView.register(CustomRequestsCell.self, forCellWithReuseIdentifier: "cellId")
         
-        fetchRequestsOfUser()
+//        fetchRequestsOfUser()
      
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         self.requests.removeAll(keepingCapacity: true)
+        self.collectionView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.requests.removeAll(keepingCapacity: true)
+        fetchRequestsOfUser()
+        self.collectionView.reloadData()
     }
     
     func fetchRequestsOfUser(){
@@ -57,9 +64,6 @@ class SwapCollectionViewController: UICollectionViewController,UICollectionViewD
                 completion([:])
                 return
             }
-//            DispatchQueue.main.async {
-//                print(requests)
-//            }
             completion(requests)
         }
     }
@@ -109,6 +113,7 @@ class SwapCollectionViewController: UICollectionViewController,UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! CustomRequestsCell
     
         cell.delegate = self
+        cell.indexPath = indexPath
         
         userOfRequest(request: requests[indexPath.item]) { user in
             DispatchQueue.main.async {
@@ -125,6 +130,12 @@ class SwapCollectionViewController: UICollectionViewController,UICollectionViewD
                     
                     let email = self.requests[indexPath.item].email
                     cell.emailLabel.text = "Email  ->  '\(email)'"
+                    
+                    let status = self.requests[indexPath.item].status
+                    
+                    if status == "accepted" {
+                        cell.acceptButton.isEnabled = false
+                    }
                     
 
                 }
@@ -158,13 +169,50 @@ class SwapCollectionViewController: UICollectionViewController,UICollectionViewD
 //MARK: - TappedButtons
 
 extension SwapCollectionViewController: CustomRequestsCellDelegate{
-    func tappedCancelButton() {
+    
+    func tappedCancelButton(at indexPath: IndexPath) {
+        let request = requests[indexPath.item]
+        let requestId = request.id
+        
+        let ref = Database.database().reference().child("requests").child(requestId)
+        
+        ref.removeValue {[weak self] error, _ in
+            if error != nil {
+                DispatchQueue.main.async {
+                    self?.showAlert(title: nil, message: "Kitap isteği reddelirken hata oluştu.")
+                }
+                return
+            }
             
+            // İstek başarıyla silindi
+            DispatchQueue.main.async {
+                self?.showAlert(title: nil, message: "Kitap isteği reddedildi. ")
+                self?.requests.remove(at: indexPath.item)
+                self?.collectionView.reloadData()
+            }
+        }
     }
     
-    func tappedAcceptButton() {
-            
+    func tappedAcceptButton(at indexPath: IndexPath) {
+        let request = requests[indexPath.item]
+        let requestId = request.id
+        
+        let ref = Database.database().reference().child("requests").child(requestId)
+        ref.updateChildValues(["status": "accepted"]) {[weak self] error, _ in
+            if let error = error {
+                
+                DispatchQueue.main.async {
+                    self?.showAlert(title: nil, message: "Kitap isteği onaylanırken hata oluştu.")
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                self?.showAlert(title: nil, message: "Kitap isteği onaylandı. Kullanıcının kitaplarından birini seçebilirsiniz. ")
+            }
+        }
     }
+    
+    
     
     func tappedSeeProfileButton(username: String) {
         

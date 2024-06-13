@@ -8,6 +8,7 @@
 import Foundation
 
 struct Request{
+    let id: String
     let senderId: String
     let receiverId: String
     let status: String
@@ -15,6 +16,7 @@ struct Request{
     let email: String
     
     init(dictionary: [String: Any]) {
+        self.id = dictionary["id"] as? String ?? ""
         self.senderId = dictionary["senderId"] as? String ?? ""
         self.receiverId = dictionary["receiverId"] as? String ?? ""
         self.status = dictionary["status"] as? String ?? ""

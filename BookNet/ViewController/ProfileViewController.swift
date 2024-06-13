@@ -489,7 +489,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         
         if currentCellType == "Gönderiler"{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomPostCell.identifier, for: indexPath) as! CustomPostCell
-//            cell.profileImageView.layer.cornerRadius = 20
+
             
             if !books.isEmpty{
                 cell.usernameLabel.text = posts[indexPath.item].user.username
