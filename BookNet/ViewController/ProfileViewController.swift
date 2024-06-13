@@ -28,6 +28,8 @@ class ProfileViewController: UIViewController {
             
             setupFollowButton()
             
+            setupFollowStats()
+            
         }
     }
     var posts = [Post]()
@@ -150,16 +152,11 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         let firstString = NSAttributedString(string: "Takipçi",attributes: [.font:UIFont.boldSystemFont(ofSize: 26)])
-        let secondString = NSAttributedString(string: "\n     0",attributes: [.font:UIFont.systemFont(ofSize: 24)])
+        let secondString = NSAttributedString(string: "\n       0",attributes: [.font:UIFont.systemFont(ofSize: 24)])
         let combinedString = NSMutableAttributedString(attributedString: firstString)
         combinedString.append(secondString)
         followersLabel.attributedText = combinedString
         
-        let firstString1 = NSAttributedString(string: "Takip",attributes: [.font:UIFont.boldSystemFont(ofSize: 26)])
-        let secondString1 = NSAttributedString(string: "\n   0",attributes: [.font:UIFont.systemFont(ofSize: 24)])
-        let combinedString1 = NSMutableAttributedString(attributedString: firstString1)
-        combinedString1.append(secondString1)
-        followingLabel.attributedText = combinedString1
         
         
         locationLabel.text = "📍Bursa"
@@ -168,7 +165,6 @@ class ProfileViewController: UIViewController {
         setViews()
         
         setupCollectionView()
-        
         
 
     }
@@ -465,6 +461,63 @@ class ProfileViewController: UIViewController {
         }
         
     }
+    
+    func setupFollowStats(){
+        guard let userId = self.user?.uid else {return}
+        
+        fetchFollowingCount(forUserId: userId) {[weak self] followingCount in
+            DispatchQueue.main.async {
+                let firstString1 = NSAttributedString(string: "Takip",attributes: [.font:UIFont.boldSystemFont(ofSize: 26)])
+                let secondString1 = NSAttributedString(string: "\n     \(followingCount)",attributes: [.font:UIFont.systemFont(ofSize: 24)])
+                let combinedString1 = NSMutableAttributedString(attributedString: firstString1)
+                combinedString1.append(secondString1)
+                self?.followingLabel.attributedText = combinedString1
+            }
+        }
+        
+        fetchFollowerCount(forUserId: userId) {[weak self] followersCount in
+            DispatchQueue.main.async {
+                let firstString1 = NSAttributedString(string: "Takipçi",attributes: [.font:UIFont.boldSystemFont(ofSize: 26)])
+                let secondString1 = NSAttributedString(string: "\n       \(followersCount)",attributes: [.font:UIFont.systemFont(ofSize: 24)])
+                let combinedString1 = NSMutableAttributedString(attributedString: firstString1)
+                combinedString1.append(secondString1)
+                self?.followersLabel.attributedText = combinedString1
+            }
+        }
+    }
+    
+    func fetchFollowingCount(forUserId userId: String, completion: @escaping (Int) -> Void) {
+        let ref = Database.database().reference().child("following").child(userId)
+        
+        ref.observeSingleEvent(of: .value) { snapshot in
+            if let followingDict = snapshot.value as? [String: Any] {
+                completion(followingDict.count)
+            } else {
+                completion(0)
+            }
+        }
+    }
+
+    func fetchFollowerCount(forUserId userId: String, completion: @escaping (Int) -> Void) {
+        let ref = Database.database().reference().child("following")
+        
+        ref.observeSingleEvent(of: .value) { snapshot in
+            var followerCount = 0
+            
+            if let followingDict = snapshot.value as? [String: [String: Any]] {
+                for (_, userFollowing) in followingDict {
+
+                    if userFollowing[userId] != nil {
+                        followerCount += 1
+                    }
+                }
+            }
+            
+            completion(followerCount)
+        }
+    }
+
+    
     
 
 }
