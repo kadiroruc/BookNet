@@ -150,29 +150,24 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
-        let firstString = NSAttributedString(string: "Takipçi",attributes: [.font:UIFont.boldSystemFont(ofSize: 26)])
-        let secondString = NSAttributedString(string: "\n       0",attributes: [.font:UIFont.systemFont(ofSize: 24)])
-        let combinedString = NSMutableAttributedString(attributedString: firstString)
-        combinedString.append(secondString)
-        followersLabel.attributedText = combinedString
-        
-        
-        
-        locationLabel.text = "📍Bursa"
-        scoreLabel.text = "⚡ 587"
+        locationLabel.text = "📍Location"
+        scoreLabel.text = "⚡Score"
 
         setViews()
         
         setupCollectionView()
         
 
+
     }
     override func viewWillAppear(_ animated: Bool) {
         
         fetchUser()
-
+        
     }
+    
     
     func setViews(){
         view.backgroundColor = .white
@@ -198,10 +193,11 @@ class ProfileViewController: UIViewController {
         followButton.anchor(top: followersLabel.bottomAnchor, left: followersLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: -5, paddingLeft: 10, paddingBottom: 0, paddingRight: 35, width: 0, height: 0)
         
         view.addSubview(usernameLabel)
-        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: profileImageView.leftAnchor, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 35, paddingBottom: 0, paddingRight: 0, width: 70, height: 20)
+        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 20)
+        usernameLabel.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor).isActive = true
         
         view.addSubview(locationLabel)
-        locationLabel.anchor(top: usernameLabel.topAnchor, left: followersLabel.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 70, height: 0)
+        locationLabel.anchor(top: usernameLabel.topAnchor, left: followersLabel.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 90, height: 0)
         
         view.addSubview(scoreLabel)
         scoreLabel.anchor(top: usernameLabel.topAnchor, left: followingLabel.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 70, height: 0)

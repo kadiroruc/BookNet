@@ -116,6 +116,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomPostCell.identifier, for: indexPath) as! CustomPostCell
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = CGColor(gray: 0, alpha: 1)
         
         if posts.count > 0 {
             cell.bookLabel.text = posts[indexPath.item].bookName
@@ -127,13 +129,22 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             cell.usernameLabel.text = posts[indexPath.item].user.username
             
         }
-        //cell.delegate = self
+        
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 45
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let profileController = ProfileViewController()
+        profileController.userId = posts[indexPath.item].user.uid
+        profileController.titleLabel.subviews.first?.isHidden = true
+        profileController.followButton.isHidden = false
+        navigationController?.pushViewController(profileController, animated: true)
     }
     
 //    func didTapComment(post: Post) {
