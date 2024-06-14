@@ -3,6 +3,9 @@
 ## Proje Amacı
 Kitap takas uygulaması ile ortak ilgi alanlarına sahip insanları bir araya getirerek sosyal bir çevre oluşturmak, kağıt tüketimini azaltarak çevre dostu bir yaklaşım sunmak ve kargo ile uğraşmadan hem karbon emisyonunu azaltıp hem de ulaşılabilirliği kolaylaştırmak amaçlanmıştır.
 
+## Demo Tanıtım Videosu
+- https://youtu.be/8pGdwLeVlm4 
+
 ## Hedefler
 - Sosyal etkileşimi teşvik etmek
 - Kağıt tüketimini azaltmak
@@ -14,14 +17,12 @@ Kitap takas uygulaması ile ortak ilgi alanlarına sahip insanları bir araya ge
 - **Dilara Kardaş** - Android Developer
 - **Sanem Coşkun** - Android Developer
 - **Abdulkadir Oruç** - iOS Developer
-- **Ayşen Aydın** - 
 - **Zeynep Sueda Tuna** - Software Developer
 
 ## Takım Üyelerinin Görevleri
 - **Dilara Kardaş**: Android uygulama geliştirme
 - **Sanem Coşkun**: Android uygulama geliştirme
 - **Abdulkadir Oruç**: iOS uygulama geliştirme
-- **Ayşen Aydın**: 
 - **Zeynep Sueda Tuna**: Yapay zeka desteği araştırma ve uygulama
 
 ## Kullanılacak Yazılım&Donanım Teknolojileri
