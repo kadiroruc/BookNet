@@ -396,10 +396,7 @@ class ProfileViewController: UIViewController {
             let user = User(uid: uid, dictionary: userDictionary)
             
             self?.user = user
-            
-            
         }
-        
     }
     
     
@@ -540,7 +537,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomPostCell.identifier, for: indexPath) as! CustomPostCell
 
             
-            if !books.isEmpty{
+            if !posts.isEmpty{
                 cell.usernameLabel.text = posts[indexPath.item].user.username
                 cell.profileImageView.loadImage(urlString: posts[indexPath.item].user.profileImageUrl)
                 cell.bookImageView.loadImage(urlString: posts[indexPath.item].bookImageUrl)

@@ -1,15 +1,14 @@
 //
-//  SignUpViewController.swift
+//  SignUpView.swift
 //  Project
 //
-//  Created by Abdulkadir Oruç on 20.04.2024.
+//  Created by Abdulkadir Oruç on 23.06.2024.
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
 
-class SignUpViewController: UIViewController {
+class SignUpView: UIViewController, SignUpViewProtocol {
+    var presenter: SignUpPresenterProtocol?
     
     let circle: UIView = {
         let view = UIView()
@@ -105,7 +104,7 @@ class SignUpViewController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.setTitleColor(.white, for: .normal)
         button.isEnabled = false
-        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        button.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         return button
     }()
     let alreadyHaveAccountButton: UIButton={
@@ -119,8 +118,23 @@ class SignUpViewController: UIViewController {
         button.addTarget(self, action: #selector(handleAlreadyHaveAccount), for: .touchUpInside)
         return button
     }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        setViews()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+
+    }
     
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
     
+ 
     @objc func handleTextInputChange(){
         let emailTextField = emailView.subviews.compactMap { $0 as? UITextField }.first
         let passwordTextField = passwordView.subviews.compactMap { $0 as? UITextField }.first
@@ -139,10 +153,10 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func handleAlreadyHaveAccount(){
-        _ = navigationController?.popViewController(animated: true)
+        presenter?.showLogin()
     }
     
-    @objc func handleSignUp(){
+    @objc func signUpButtonTapped(){
         let emailTextField = emailView.subviews.compactMap { $0 as? UITextField }.first
         let passwordTextField = passwordView.subviews.compactMap { $0 as? UITextField }.first
         let usernameTextField = usernameView.subviews.compactMap { $0 as? UITextField }.first
@@ -151,41 +165,20 @@ class SignUpViewController: UIViewController {
         guard let password = passwordTextField?.text, password.count > 0 else{return}
         guard let username = usernameTextField?.text, username.count > 0 else{return}
         
-        Auth.auth().createUser(withEmail: email, password: password) {[weak self] user, error in
-            if let error = error{
-                self?.showAlert(title: nil, message: error.localizedDescription)
-                return
-            }
-            
-            guard let uid = user?.user.uid else{return}
-            let dictionaryValues = ["username":username]
-            let values = [uid:dictionaryValues]
-            
-            Database.database().reference().child("users").updateChildValues(values,withCompletionBlock: { err, ref in
-                if let err = error{
-                    print("Failed to save user info into db",err)
-                    return
-                }
-                print("Sucessfully saved user info into db")
-
-                self?.dismiss(animated: true)
-            })
-        }
+        presenter?.signUpButtonTapped(username: username, password: password, email: email)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        setViews()
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(tapGesture)
 
+    func showLoading() {
+        // Show loading indicator
     }
-    
-    @objc func hideKeyboard() {
-        view.endEditing(true)
+
+    func hideLoading() {
+        // Hide loading indicator
+    }
+
+    func showError(_ message: String) {
+        // Show error message
     }
     
     func setViews(){
@@ -242,13 +235,5 @@ class SignUpViewController: UIViewController {
 
 
     }
-    
-//    func showAlert(title: String?, message: String){
-//        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//        ac.addAction(UIAlertAction(title: "Tamam", style: .default))
-//        present(ac,animated: true)
-//    }
-    
-
-
 }
+
