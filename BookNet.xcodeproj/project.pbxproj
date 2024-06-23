@@ -25,6 +25,26 @@
 		E9B24A3C2BFBC2CB009C21C1 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A372BFBC2CB009C21C1 /* PhotoSelectorController.swift */; };
 		E9B24A3D2BFBC2CB009C21C1 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */; };
 		E9B24A3E2BFBC2CB009C21C1 /* AddBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B24A392BFBC2CB009C21C1 /* AddBookController.swift */; };
+		E9B88E752C2829FF003D915F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E742C2829FF003D915F /* ProfileView.swift */; };
+		E9B88E782C282C71003D915F /* ProfileProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E772C282C71003D915F /* ProfileProtocols.swift */; };
+		E9B88E7B2C282CE5003D915F /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E7A2C282CE5003D915F /* PostModel.swift */; };
+		E9B88E7E2C282D15003D915F /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E7D2C282D15003D915F /* ProfilePresenter.swift */; };
+		E9B88E822C282D88003D915F /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E812C282D88003D915F /* ProfileInteractor.swift */; };
+		E9B88E852C282DB7003D915F /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E842C282DB7003D915F /* ProfileRouter.swift */; };
+		E9B88E882C283000003D915F /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = E9B88E872C283000003D915F /* PKHUD */; };
+		E9B88E8A2C283207003D915F /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E892C283207003D915F /* PostCollectionViewCell.swift */; };
+		E9B88E8F2C283CE3003D915F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E8E2C283CE3003D915F /* UserModel.swift */; };
+		E9B88E922C2840EC003D915F /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E912C2840EC003D915F /* MainTabBar.swift */; };
+		E9B88E982C284B72003D915F /* LoginProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E972C284B72003D915F /* LoginProtocols.swift */; };
+		E9B88E9B2C284BA6003D915F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E9A2C284BA6003D915F /* LoginView.swift */; };
+		E9B88E9E2C284E38003D915F /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88E9D2C284E38003D915F /* LoginPresenter.swift */; };
+		E9B88EA12C284E83003D915F /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88EA02C284E83003D915F /* LoginRouter.swift */; };
+		E9B88EA42C284EC4003D915F /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88EA32C284EC4003D915F /* LoginInteractor.swift */; };
+		E9B88EAB2C284FD0003D915F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88EAA2C284FD0003D915F /* SignUpView.swift */; };
+		E9B88EAD2C284FDB003D915F /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88EAC2C284FDB003D915F /* SignUpInteractor.swift */; };
+		E9B88EAF2C284FEA003D915F /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88EAE2C284FEA003D915F /* SignUpPresenter.swift */; };
+		E9B88EB12C284FF0003D915F /* SignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88EB02C284FF0003D915F /* SignUpRouter.swift */; };
+		E9B88EB42C285016003D915F /* SignUpProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B88EB32C285016003D915F /* SignUpProtocols.swift */; };
 		E9B949F52BD437D00025D344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B949F42BD437D00025D344 /* AppDelegate.swift */; };
 		E9B949F92BD437D00025D344 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B949F82BD437D00025D344 /* ViewController.swift */; };
 		E9B949FE2BD437D20025D344 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9B949FD2BD437D20025D344 /* Assets.xcassets */; };
@@ -63,6 +83,25 @@
 		E9B24A372BFBC2CB009C21C1 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
 		E9B24A392BFBC2CB009C21C1 /* AddBookController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookController.swift; sourceTree = "<group>"; };
+		E9B88E742C2829FF003D915F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		E9B88E772C282C71003D915F /* ProfileProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProtocols.swift; sourceTree = "<group>"; };
+		E9B88E7A2C282CE5003D915F /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		E9B88E7D2C282D15003D915F /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		E9B88E812C282D88003D915F /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		E9B88E842C282DB7003D915F /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		E9B88E892C283207003D915F /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
+		E9B88E8E2C283CE3003D915F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		E9B88E912C2840EC003D915F /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
+		E9B88E972C284B72003D915F /* LoginProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocols.swift; sourceTree = "<group>"; };
+		E9B88E9A2C284BA6003D915F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		E9B88E9D2C284E38003D915F /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		E9B88EA02C284E83003D915F /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		E9B88EA32C284EC4003D915F /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		E9B88EAA2C284FD0003D915F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		E9B88EAC2C284FDB003D915F /* SignUpInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInteractor.swift; sourceTree = "<group>"; };
+		E9B88EAE2C284FEA003D915F /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		E9B88EB02C284FF0003D915F /* SignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
+		E9B88EB32C285016003D915F /* SignUpProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpProtocols.swift; sourceTree = "<group>"; };
 		E9B949F12BD437D00025D344 /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9B949F42BD437D00025D344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9B949F82BD437D00025D344 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +128,7 @@
 				E9D9FA952BD5469200BAADD5 /* FirebaseStorage in Frameworks */,
 				E9D9FA972BD5469200BAADD5 /* FirebaseStorageCombine-Community in Frameworks */,
 				E9D9FA8F2BD5469200BAADD5 /* FirebaseAuthCombine-Community in Frameworks */,
+				E9B88E882C283000003D915F /* PKHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				E9B94A0C2BD43E810025D344 /* MainTabBarController.swift */,
-				E9B949F42BD437D00025D344 /* AppDelegate.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -165,6 +204,193 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E9B88E712C2829B4003D915F /* BookNetVIPER */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E952C284B42003D915F /* SignUp */,
+				E9B88E942C284B2C003D915F /* Login */,
+				E9B88E902C2840D8003D915F /* Core */,
+				E9B88E792C282CC4003D915F /* Entities */,
+				E9B88E722C2829DA003D915F /* Profile */,
+			);
+			path = BookNetVIPER;
+			sourceTree = "<group>";
+		};
+		E9B88E722C2829DA003D915F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E832C282D9B003D915F /* ProfileRouter */,
+				E9B88E7F2C282D19003D915F /* Interactor */,
+				E9B88E7C2C282D09003D915F /* Presenter */,
+				E9B88E762C282AB0003D915F /* Protocols */,
+				E9B88E732C2829F1003D915F /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E9B88E732C2829F1003D915F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E742C2829FF003D915F /* ProfileView.swift */,
+				E9B88E892C283207003D915F /* PostCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E9B88E762C282AB0003D915F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E772C282C71003D915F /* ProfileProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E9B88E792C282CC4003D915F /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E7A2C282CE5003D915F /* PostModel.swift */,
+				E9B88E8E2C283CE3003D915F /* UserModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		E9B88E7C2C282D09003D915F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E7D2C282D15003D915F /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E9B88E7F2C282D19003D915F /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E812C282D88003D915F /* ProfileInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		E9B88E832C282D9B003D915F /* ProfileRouter */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E842C282DB7003D915F /* ProfileRouter.swift */,
+			);
+			path = ProfileRouter;
+			sourceTree = "<group>";
+		};
+		E9B88E902C2840D8003D915F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E912C2840EC003D915F /* MainTabBar.swift */,
+				E9B949F42BD437D00025D344 /* AppDelegate.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		E9B88E942C284B2C003D915F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88EA22C284E9B003D915F /* Interactor */,
+				E9B88E9F2C284E7B003D915F /* Router */,
+				E9B88E9C2C284E2C003D915F /* Presenter */,
+				E9B88E992C284B9D003D915F /* View */,
+				E9B88E962C284B52003D915F /* Protocols */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E9B88E952C284B42003D915F /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88EB22C285009003D915F /* Protocols */,
+				E9B88EA92C284FBC003D915F /* Router */,
+				E9B88EA82C284FB4003D915F /* Presenter */,
+				E9B88EA72C284FAD003D915F /* Interactor */,
+				E9B88EA62C284FA5003D915F /* View */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		E9B88E962C284B52003D915F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E972C284B72003D915F /* LoginProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E9B88E992C284B9D003D915F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E9A2C284BA6003D915F /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E9B88E9C2C284E2C003D915F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88E9D2C284E38003D915F /* LoginPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E9B88E9F2C284E7B003D915F /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88EA02C284E83003D915F /* LoginRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		E9B88EA22C284E9B003D915F /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88EA32C284EC4003D915F /* LoginInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		E9B88EA62C284FA5003D915F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88EAA2C284FD0003D915F /* SignUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E9B88EA72C284FAD003D915F /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88EAC2C284FDB003D915F /* SignUpInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		E9B88EA82C284FB4003D915F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88EAE2C284FEA003D915F /* SignUpPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E9B88EA92C284FBC003D915F /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88EB02C284FF0003D915F /* SignUpRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		E9B88EB22C285009003D915F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E9B88EB32C285016003D915F /* SignUpProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		E9B949E82BD437D00025D344 = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +410,7 @@
 		E9B949F32BD437D00025D344 /* BookNet */ = {
 			isa = PBXGroup;
 			children = (
+				E9B88E712C2829B4003D915F /* BookNetVIPER */,
 				E920F9E42BE2E34F00AD5CE9 /* Core */,
 				E920F9E52BE2E36500AD5CE9 /* ViewController */,
 				E920F9E62BE2E37B00AD5CE9 /* Utils */,
@@ -219,6 +446,7 @@
 				E9D9FA922BD5469200BAADD5 /* FirebaseDatabaseSwift */,
 				E9D9FA942BD5469200BAADD5 /* FirebaseStorage */,
 				E9D9FA962BD5469200BAADD5 /* FirebaseStorageCombine-Community */,
+				E9B88E872C283000003D915F /* PKHUD */,
 			);
 			productName = Project;
 			productReference = E9B949F12BD437D00025D344 /* Project.app */;
@@ -250,6 +478,7 @@
 			mainGroup = E9B949E82BD437D00025D344;
 			packageReferences = (
 				E9D9FA8B2BD5469200BAADD5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E9B88E862C283000003D915F /* XCRemoteSwiftPackageReference "PKHUD" */,
 			);
 			productRefGroup = E9B949F22BD437D00025D344 /* Products */;
 			projectDirPath = "";
@@ -277,32 +506,51 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9B88EB12C284FF0003D915F /* SignUpRouter.swift in Sources */,
 				E9D9FA882BD53FE000BAADD5 /* LoginViewController.swift in Sources */,
 				E957AA152BDAA50E0089E395 /* Post.swift in Sources */,
+				E9B88E922C2840EC003D915F /* MainTabBar.swift in Sources */,
 				E9B94A0B2BD43B5B0025D344 /* UIViewExtension.swift in Sources */,
 				E9C1EF6B2C120503003035AD /* CustomRequestsCell.swift in Sources */,
+				E9B88E7E2C282D15003D915F /* ProfilePresenter.swift in Sources */,
 				E9B24A3B2BFBC2CB009C21C1 /* PhotoSelectorCell.swift in Sources */,
 				E94AD3652C182CD1007B9A0F /* DateExtension.swift in Sources */,
 				E9B949F92BD437D00025D344 /* ViewController.swift in Sources */,
 				E92F58982C033D0000289469 /* CustomBookCell.swift in Sources */,
+				E9B88EAB2C284FD0003D915F /* SignUpView.swift in Sources */,
 				E957AA172BDAA6450089E395 /* FirebaseExtension.swift in Sources */,
 				E9B94A0D2BD43E810025D344 /* MainTabBarController.swift in Sources */,
+				E9B88EA42C284EC4003D915F /* LoginInteractor.swift in Sources */,
 				E924F5862C0B6E0A00DDB21A /* Request.swift in Sources */,
+				E9B88E8A2C283207003D915F /* PostCollectionViewCell.swift in Sources */,
 				E93947A12C08BA30008BF5BC /* SearchBookCell.swift in Sources */,
+				E9B88E752C2829FF003D915F /* ProfileView.swift in Sources */,
+				E9B88E9B2C284BA6003D915F /* LoginView.swift in Sources */,
 				E9B949F52BD437D00025D344 /* AppDelegate.swift in Sources */,
 				E9B24A3D2BFBC2CB009C21C1 /* PhotoSelectorHeader.swift in Sources */,
 				E9355D282C19B057003F212C /* HomeViewController.swift in Sources */,
 				E9B94A092BD4393B0025D344 /* SignUpViewController.swift in Sources */,
+				E9B88E9E2C284E38003D915F /* LoginPresenter.swift in Sources */,
+				E9B88EB42C285016003D915F /* SignUpProtocols.swift in Sources */,
 				E9C1EF692C11FECD003035AD /* SwapViewController.swift in Sources */,
+				E9B88E782C282C71003D915F /* ProfileProtocols.swift in Sources */,
 				E9206BA32C1222BE00B08AFE /* VCPreview.swift in Sources */,
+				E9B88E852C282DB7003D915F /* ProfileRouter.swift in Sources */,
+				E9B88E7B2C282CE5003D915F /* PostModel.swift in Sources */,
 				E9B24A3E2BFBC2CB009C21C1 /* AddBookController.swift in Sources */,
 				E92F58962C0336CF00289469 /* Book.swift in Sources */,
 				E9B24A3C2BFBC2CB009C21C1 /* PhotoSelectorController.swift in Sources */,
 				E996D7532BFDBAF7000AE202 /* ShareBookController.swift in Sources */,
+				E9B88EAD2C284FDB003D915F /* SignUpInteractor.swift in Sources */,
 				E9D9FA992BD55C6900BAADD5 /* ProfileViewController.swift in Sources */,
 				E957AA112BDA8CE70089E395 /* CustomPostCell.swift in Sources */,
 				E939479F2C08B9D8008BF5BC /* SearchBookViewController.swift in Sources */,
 				E957AA132BDAA4F10089E395 /* User.swift in Sources */,
+				E9B88E822C282D88003D915F /* ProfileInteractor.swift in Sources */,
+				E9B88E8F2C283CE3003D915F /* UserModel.swift in Sources */,
+				E9B88E982C284B72003D915F /* LoginProtocols.swift in Sources */,
+				E9B88EA12C284E83003D915F /* LoginRouter.swift in Sources */,
+				E9B88EAF2C284FEA003D915F /* SignUpPresenter.swift in Sources */,
 				E957AA192BDAA6E80089E395 /* CustomImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +755,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E9B88E862C283000003D915F /* XCRemoteSwiftPackageReference "PKHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pkluz/PKHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
 		E9D9FA8B2BD5469200BAADD5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -518,6 +774,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E9B88E872C283000003D915F /* PKHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9B88E862C283000003D915F /* XCRemoteSwiftPackageReference "PKHUD" */;
+			productName = PKHUD;
+		};
 		E9D9FA8C2BD5469200BAADD5 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E9D9FA8B2BD5469200BAADD5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
