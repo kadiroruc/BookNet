@@ -102,7 +102,7 @@ class SearchBookController: UICollectionViewController, UICollectionViewDelegate
         let userId = filteredBooks[indexPath.item].userId
         
         let profileController = ProfileViewController()
-        profileController.userId = userId
+        //profileController.userId = userId
         profileController.titleLabel.subviews.first?.isHidden = true
         profileController.followButton.isHidden = false
         navigationController?.pushViewController(profileController, animated: true)

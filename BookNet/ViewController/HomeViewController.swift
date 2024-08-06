@@ -141,7 +141,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let profileController = ProfileViewController()
-        profileController.userId = posts[indexPath.item].user.uid
+        //profileController.userId = posts[indexPath.item].user.uid
         profileController.titleLabel.subviews.first?.isHidden = true
         profileController.followButton.isHidden = false
         navigationController?.pushViewController(profileController, animated: true)

@@ -216,15 +216,15 @@ extension SwapCollectionViewController: CustomRequestsCellDelegate{
     
     func tappedSeeProfileButton(username: String) {
         
-        let userId = fetchUserId(for: username) { userId in
-            if let userId = userId{
-                let profileController = ProfileViewController()
-                profileController.userId = userId
-                profileController.titleLabel.subviews.first?.isHidden = true
-                profileController.followButton.isHidden = false
-                self.navigationController?.pushViewController(profileController, animated: true)
-            }
-        }
+//        let userId = fetchUserId(for: username) { userId in
+//            if let userId = userId{
+//                let profileController = ProfileViewController()
+//                profileController.userId = userId
+//                profileController.titleLabel.subviews.first?.isHidden = true
+//                profileController.followButton.isHidden = false
+//                self.navigationController?.pushViewController(profileController, animated: true)
+//            }
+//        }
     }
     
 
