@@ -239,7 +239,7 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc func followButtonTapped(_ sender: UIButton){
-        
+        presenter.followButtonTapped()
     }
     
     func tappedLogOutButton(){
@@ -259,6 +259,26 @@ final class ProfileViewController: UIViewController {
 // MARK: - Extensions -
 
 extension ProfileViewController: ProfileViewInterface {
+    
+    func updateFollowButtonTitle(with title: String) {
+        followButton.setTitle(title, for: .normal)
+    }
+
+    func showFollowButton() {
+        followButton.isHidden = false
+    }
+    
+    var followButtonTitle: String? {
+        return followButton.titleLabel?.text
+    }
+    
+    func updateFollowingLabel(with text: NSAttributedString) {
+        followingLabel.attributedText = text
+    }
+
+    func updateFollowersLabel(with text: NSAttributedString) {
+        followersLabel.attributedText = text
+    }
     
     func reloadCollectionView() {
         collectionView.reloadData()
@@ -294,6 +314,9 @@ extension ProfileViewController: ProfileViewInterface {
         usernameLabel.text = user.username
         profileImageView.loadImage(urlString: user.profileImageUrl)
         profileImageView.clipsToBounds = true
+        
+        presenter.setupFollowStats()
+        presenter.setupFollowButton()
     }
     
     
@@ -323,55 +346,18 @@ extension ProfileViewController: ProfileViewInterface {
 extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if currentCellType == "Gönderiler"{
-//            return posts.count
-//
-//        }else if currentCellType == "Kütüphane"{
-//            return books.count
-//        }
-//
-//        return 1
+
         return presenter.numberOfItems
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        //
+        //            if self.user?.uid != Auth.auth().currentUser?.uid{
+        //
+        //                cell.requestButton.isHidden = false
+        //            }
 
-//        if currentCellType == "Gönderiler"{
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomPostCell.identifier, for: indexPath) as! CustomPostCell
-//
-//
-//            if !posts.isEmpty{
-//                cell.usernameLabel.text = posts[indexPath.item].user.username
-//                cell.profileImageView.loadImage(urlString: posts[indexPath.item].user.profileImageUrl)
-//                cell.bookImageView.loadImage(urlString: posts[indexPath.item].bookImageUrl)
-//                cell.bookLabel.text = posts[indexPath.item].bookName
-//                cell.postLabel.text = "\"\(posts[indexPath.item].postText)\""
-//                cell.dateLabel.text = posts[indexPath.item].creationDate.timeAgoDisplay()
-//                cell.postDescriptionLabel.text = posts[indexPath.item].autherName
-//            }
-//
-//            return cell
-//        }else if currentCellType == "Kütüphane"{
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomBookCell.identifier, for: indexPath) as! CustomBookCell
-//            cell.delegate = self
-//
-//            if !books.isEmpty{
-//                cell.bookLabel.text = books[indexPath.item].bookName
-//                cell.authorLabel.text = books[indexPath.item].authorName
-//                cell.bookImageView.loadImage(urlString: books[indexPath.item].imageUrl)
-//                cell.userId = books[indexPath.item].userId
-//            }
-//
-////
-////            if self.user?.uid != Auth.auth().currentUser?.uid{
-////
-////                cell.requestButton.isHidden = false
-////            }
-//
-//            return cell
-//        }
-//
-//        return UICollectionViewCell()
         
         let identifier = presenter.currentCellType == Constants.TabButtons.posts ? CustomPostCell.identifier : CustomBookCell.identifier
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
@@ -381,24 +367,10 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        var size = CGSize(width: view.frame.width, height: 300)
-//
-//        if currentCellType == "Gönderiler"{
-//            size = CGSize(width: view.frame.width, height: 300)
-//        }else if currentCellType == "Kütüphane"{
-//            size = CGSize(width: view.frame.width, height: 130)
-//        }
-//        return size
+        
         
         return presenter.sizeForItem(at: indexPath)
     }
-
-//    func showAlert(from cell: CustomBookCell, message: String) {
-//        let ac = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-//        ac.addAction(UIAlertAction(title: "Tamam", style: .default))
-//        self.present(ac,animated: true)
-//    }
 
 }
 

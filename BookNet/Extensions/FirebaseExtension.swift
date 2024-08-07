@@ -8,11 +8,11 @@
 import FirebaseDatabase
 
 extension Database{
-    static func fetchUserWithUID(uid: String, completion: @escaping (User) -> ()){
+    static func fetchUserWithUID(uid: String, completion: @escaping (UserModel) -> ()){
         
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { snapshot in
             guard let userDictionary = snapshot.value as? [String:Any] else{return}
-            let user = User(uid: uid, dictionary: userDictionary)
+            let user = UserModel(uid: uid, dictionary: userDictionary)
             
             completion(user)
         }

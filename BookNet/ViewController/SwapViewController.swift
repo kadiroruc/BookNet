@@ -68,14 +68,14 @@ class SwapCollectionViewController: UICollectionViewController,UICollectionViewD
         }
     }
     
-    func userOfRequest(request: Request, completion: @escaping (User?) -> Void){
+    func userOfRequest(request: Request, completion: @escaping (UserModel?) -> Void){
         let userId = request.senderId
         
         let ref = Database.database().reference().child("users").child(userId)
         
-        ref.observeSingleEvent(of: .value) { snapshot in
+        ref.observeSingleEvent(of: .value) { snapshot  in
             if let dictionary = snapshot.value as? [String:Any] {
-                let user = User(uid: userId, dictionary: dictionary)
+                let user = UserModel(uid: userId, dictionary: dictionary)
                 completion(user)
             } else {
                 completion(nil)

@@ -12,7 +12,7 @@ import UIKit
 protocol LoginWireframeInterface: WireframeInterface {
     
     // Presenter -> Router
-    func navigateToProfileScreen(with uid: String)
+    func navigateToProfileScreen()
     func navigateToSignUpScreen()
 }
 

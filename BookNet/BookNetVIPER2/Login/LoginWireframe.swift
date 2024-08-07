@@ -33,7 +33,7 @@ final class LoginWireframe: BaseWireframe<LoginViewController> {
 extension LoginWireframe: LoginWireframeInterface {
     
     
-    func navigateToProfileScreen(with uid: String) {
+    func navigateToProfileScreen() {
         navigationController?.setRootWireframe(TabBarWireframe(),animated: true)
     }
     

@@ -25,12 +25,16 @@ protocol ProfileViewInterface: ViewInterface {
     func updateTabCellType(with cellType: UICollectionViewCell.Type, reuseIdentifier: String)
     func reloadCollectionView()
     func showAlert(message: String)
+    func updateFollowingLabel(with text: NSAttributedString)
+    func updateFollowersLabel(with text: NSAttributedString)
+    func updateFollowButtonTitle(with title: String)
+    func showFollowButton()
+    var followButtonTitle: String? {get}
 }
 
 protocol ProfilePresenterInterface: PresenterInterface {
     
     func viewWillAppear()
-//    func showPostDetail(forPost post: PostModel)
     func tappedLogOutButton()
     func didSelectProfileImage(image: UIImage?)
     func tappedTabButtons(_ sender:UIButton)
@@ -42,6 +46,10 @@ protocol ProfilePresenterInterface: PresenterInterface {
     func didSelectItem(at indexPath: IndexPath)
     func sizeForItem(at indexPath: IndexPath) -> CGSize
     func configure(cell: UICollectionViewCell, at indexPath: IndexPath)
+    
+    func setupFollowStats()
+    func setupFollowButton()
+    func followButtonTapped()
 }
 
 protocol ProfileInteractorOutputInterface: AnyObject {
@@ -52,6 +60,11 @@ protocol ProfileInteractorOutputInterface: AnyObject {
     func onError(_ message: String)
     func didUserLogOut()
     func updateProfileImage(with imageUrl: String)
+    func didFetchFollowingCount(_ count: Int)
+    func didFetchFollowerCount(_ count: Int)
+    func didCheckIfFollowing(isFollowing: Bool)
+    func didFollowUser()
+    func didUnfollowUser()
 }
 
 protocol ProfileInteractorInputInterface: AnyObject {
@@ -61,4 +74,9 @@ protocol ProfileInteractorInputInterface: AnyObject {
     func uploadProfileImage(user: UserModel, image: UIImage)
     func fetchUserBooks(for uid: String?)
     func fetchUserPosts(for user: UserModel?)
+    func fetchFollowingCount(forUserId userId: String)
+    func fetchFollowerCount(forUserId userId: String)
+    func checkIfFollowing(currentUserId: String, userId: String)
+    func followUser(currentUserId: String, userId: String)
+    func unfollowUser(currentUserId: String, userId: String)
 }

@@ -15,12 +15,12 @@ final class ProfileWireframe: BaseWireframe<ProfileViewController> {
 
     // MARK: - Module setup -
 
-    init() {
+    init(uid: String?) {
         let moduleViewController = ProfileViewController()
         super.init(viewController: moduleViewController)
 
         let interactor = ProfileInteractor()
-        let presenter = ProfilePresenter(view: moduleViewController, interactor: interactor, wireframe: self)
+        let presenter = ProfilePresenter(view: moduleViewController, interactor: interactor, wireframe: self,uid: uid)
         interactor.presenter = presenter
         moduleViewController.presenter = presenter
     }

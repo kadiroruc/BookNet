@@ -21,6 +21,66 @@ final class ProfileInteractor {
 
 extension ProfileInteractor: ProfileInteractorInputInterface {
     
+    func checkIfFollowing(currentUserId: String, userId: String) {
+        
+            Database.database().reference().child("following").child(currentUserId).child(userId).observeSingleEvent(of: .value) { snapshot in
+                if let isFollowing = snapshot.value as? Int, isFollowing == 1 {
+                    self.presenter?.didCheckIfFollowing(isFollowing: true)
+                } else {
+                    self.presenter?.didCheckIfFollowing(isFollowing: false)
+                }
+            }
+        }
+
+        func followUser(currentUserId: String, userId: String) {
+            let ref = Database.database().reference().child("following").child(currentUserId)
+            let values = [userId: 1]
+            
+            ref.updateChildValues(values) { error, _ in
+                if error == nil {
+                    self.presenter?.didFollowUser()
+                }
+            }
+        }
+
+        func unfollowUser(currentUserId: String, userId: String) {
+            Database.database().reference().child("following").child(currentUserId).child(userId).removeValue { error, _ in
+                if error == nil {
+                    self.presenter?.didUnfollowUser()
+                }
+            }
+        }
+    
+    func fetchFollowingCount(forUserId userId: String) {
+        let ref = Database.database().reference().child("following").child(userId)
+        
+        ref.observeSingleEvent(of: .value) { snapshot in
+            if let followingDict = snapshot.value as? [String: Any] {
+                self.presenter?.didFetchFollowingCount(followingDict.count)
+            } else {
+                self.presenter?.didFetchFollowingCount(0)
+            }
+        }
+    }
+
+    func fetchFollowerCount(forUserId userId: String) {
+        let ref = Database.database().reference().child("following")
+        
+        ref.observeSingleEvent(of: .value) { snapshot in
+            var followerCount = 0
+            
+            if let followingDict = snapshot.value as? [String: [String: Any]] {
+                for (_, userFollowing) in followingDict {
+                    if userFollowing[userId] != nil {
+                        followerCount += 1
+                    }
+                }
+            }
+            
+            self.presenter?.didFetchFollowerCount(followerCount)
+        }
+    }
+    
     
     func fetchUserProfile(for uid: String?) {
         
@@ -49,7 +109,6 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
             let book = BookModel(id: key, userId: nil, dictionary: dictionary)
             
             books.insert(book, at: 0)
-            print(books)
             
             self?.presenter?.didFetchUserBooks(books)
         }

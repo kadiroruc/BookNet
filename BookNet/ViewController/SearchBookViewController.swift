@@ -12,8 +12,8 @@ import FirebaseAuth
 class SearchBookController: UICollectionViewController, UICollectionViewDelegateFlowLayout,UISearchBarDelegate{
     let cellId = "cellId"
     
-    var books = [Book]()
-    var filteredBooks = [Book]()
+    var books = [BookModel]()
+    var filteredBooks = [BookModel]()
     
     lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
@@ -71,7 +71,7 @@ class SearchBookController: UICollectionViewController, UICollectionViewDelegate
                 guard let bookDictionary = value as? [String:Any] else {return}
                 
                 bookDictionary.forEach { key,value in
-                    let book = Book(id: key, userId: nil, dictionary: value as! [String : Any])
+                    let book = BookModel(id: key, userId: nil, dictionary: value as! [String : Any])
                     self?.books.insert(book, at: 0)
                 }
             }

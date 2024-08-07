@@ -9,7 +9,7 @@ import UIKit
 
 class SearchBookCell: UICollectionViewCell{
     
-    var user: User?{
+    var user: UserModel?{
         didSet{
 //            usernameLabel.text = user?.username
 //            guard let profileImageUrl = user?.profileImageUrl else {return}
@@ -18,7 +18,7 @@ class SearchBookCell: UICollectionViewCell{
         }
     }
     
-    var book: Book?{
+    var book: BookModel?{
         didSet{
             bookNameLabel.text = book?.bookName
             guard let bookImageUrl = book?.imageUrl else {return}

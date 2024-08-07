@@ -20,13 +20,15 @@ final class ProfilePresenter {
 
     // MARK: - Lifecycle -
 
-    init(view: ProfileViewInterface, interactor: ProfileInteractorInputInterface, wireframe: ProfileWireframeInterface) {
+    init(view: ProfileViewInterface, interactor: ProfileInteractorInputInterface, wireframe: ProfileWireframeInterface,uid: String?) {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
+        self.uid = uid
     }
     
-    var uid: String?
+    //var uid: String?
+    private let uid: String?
     var user: UserModel?
     var selectedButton: UIButton?
     var currentCellType: String = Constants.TabButtons.posts
@@ -38,6 +40,26 @@ final class ProfilePresenter {
 // MARK: - Extensions -
 
 extension ProfilePresenter: ProfilePresenterInterface {
+    
+    func setupFollowButton() {
+         guard let currentUserId = Auth.auth().currentUser?.uid, let userId = user?.uid else { return }
+        
+         if currentUserId != userId {
+             view.showFollowButton()
+             interactor.checkIfFollowing(currentUserId: currentUserId, userId: userId)
+         }
+     }
+
+     func followButtonTapped() {
+         view.showLoading()
+         guard let currentUserId = Auth.auth().currentUser?.uid, let userId = user?.uid else { return }
+
+         if view.followButtonTitle == "Takibi Bırak" {
+             interactor.unfollowUser(currentUserId: currentUserId, userId: userId)
+         } else {
+             interactor.followUser(currentUserId: currentUserId, userId: userId)
+         }
+     }
 
     func viewWillAppear() {
         view.showLoading()
@@ -91,6 +113,12 @@ extension ProfilePresenter: ProfilePresenterInterface {
         }
     }
     
+    func setupFollowStats() {
+        guard let userId = self.user?.uid else { return }
+        interactor.fetchFollowingCount(forUserId: userId)
+        interactor.fetchFollowerCount(forUserId: userId)
+     }
+    
     //Collection View
     var numberOfItems: Int {
         return currentCellType == Constants.TabButtons.posts ? posts.count : books.count
@@ -132,6 +160,30 @@ extension ProfilePresenter: ProfilePresenterInterface {
 }
 
 extension ProfilePresenter: ProfileInteractorOutputInterface {
+    
+    func didCheckIfFollowing(isFollowing: Bool) {
+        let title = isFollowing ? "Takibi Bırak" : "Takip Et"
+        
+        view.updateFollowButtonTitle(with: title)
+    }
+
+    func didFollowUser() {
+        view.hideLoading()
+        if let uid = user?.uid{
+            interactor.fetchFollowerCount(forUserId: uid)
+        }
+        
+        view.updateFollowButtonTitle(with: "Takibi Bırak")
+    }
+
+    func didUnfollowUser() {
+        view.hideLoading()
+        if let uid = user?.uid{
+            interactor.fetchFollowerCount(forUserId: uid)
+        }
+        view.updateFollowButtonTitle(with: "Takip Et")
+    }
+    
     func didFetchUserBooks(_ books: [BookModel]) {
         self.books = []
         self.books = books
@@ -163,6 +215,24 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
     func updateProfileImage(with imageUrl: String) {
         view.hideLoading()
         view.updateProfileImage(imageUrl)
+    }
+    
+    func didFetchFollowingCount(_ count: Int) {
+        let firstString1 = NSAttributedString(string: "Takip", attributes: [.font: UIFont.boldSystemFont(ofSize: 26)])
+        let secondString1 = NSAttributedString(string: "\n     \(count)", attributes: [.font: UIFont.systemFont(ofSize: 24)])
+        let combinedString1 = NSMutableAttributedString(attributedString: firstString1)
+        combinedString1.append(secondString1)
+        
+        view.updateFollowingLabel(with: combinedString1)
+    }
+
+    func didFetchFollowerCount(_ count: Int) {
+        let firstString1 = NSAttributedString(string: "Takipçi", attributes: [.font: UIFont.boldSystemFont(ofSize: 26)])
+        let secondString1 = NSAttributedString(string: "\n       \(count)", attributes: [.font: UIFont.systemFont(ofSize: 24)])
+        let combinedString1 = NSMutableAttributedString(attributedString: firstString1)
+        combinedString1.append(secondString1)
+        
+        view.updateFollowersLabel(with: combinedString1)
     }
     
 }

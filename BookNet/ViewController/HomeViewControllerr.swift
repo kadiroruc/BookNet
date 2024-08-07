@@ -8,9 +8,9 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout  {
+class HomeViewControllerr: UICollectionViewController, UICollectionViewDelegateFlowLayout  {
     
-    var posts = [Post]()
+    var posts = [PostModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +67,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
     }
     
-    fileprivate func fetchPostWithUser(user: User){
+    fileprivate func fetchPostWithUser(user: UserModel){
         
         let ref = Database.database().reference().child("posts").child(user.uid)
         ref.observeSingleEvent(of: .value) {[weak self] snapshot in
@@ -80,7 +80,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             dictionaries.forEach { key,value in
                 guard let dictionary = value as? [String:Any] else {return}
 
-                var post = Post(user: user,dictionary: dictionary)
+                var post = PostModel(user: user,dictionary: dictionary)
                 post.id = key
                 
                 guard let uid = Auth.auth().currentUser?.uid else{return}

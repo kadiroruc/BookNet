@@ -29,18 +29,27 @@ final class TabBarWireframe: BaseWireframe<TabBarController> {
 
 extension TabBarWireframe: TabBarWireframeInterface {
     func setupViewControllers() {
-        let profileWireframe = ProfileWireframe()
+        let profileWireframe = ProfileWireframe(uid: nil)
+        let profileVC = profileWireframe.viewController
+        let profileNC = UINavigationController(rootViewController: profileVC)
+        
+        profileNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
         
         
-        let profileViewController = profileWireframe.viewController
+        let searchWireFrame = SearchWireframe()
+        let searchVC = searchWireFrame.viewController
+        let searchNC = UINavigationController(rootViewController: searchVC)
         
-        let profileNavController = UINavigationController(rootViewController: profileViewController)
+        searchNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
         
-        profileNavController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
+        let homeWireFrame = HomeWireframe()
+        let homeVC = homeWireFrame.viewController
+        let homeNC = UINavigationController(rootViewController: homeVC)
         
+        homeNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         
-        viewController.setViewControllers([profileNavController])
-        
+
+        viewController.setViewControllers([homeNC,searchNC,profileNC])
         
 
     }

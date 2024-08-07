@@ -39,6 +39,7 @@ final class TabBarController: UIViewController {
 
     func setViewControllers(_ viewControllers: [UIViewController]) {
         tabBar.viewControllers = viewControllers
+        tabBar.selectedIndex = 0
     }
     
     

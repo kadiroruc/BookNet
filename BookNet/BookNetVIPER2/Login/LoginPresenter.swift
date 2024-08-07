@@ -48,7 +48,7 @@ extension LoginPresenter: LoginPresenterInterface {
 extension LoginPresenter: LoginInteractorOutputInterface {
     func loginDidSucceed(with uid: String) {
         view.hideLoading()
-        wireframe.navigateToProfileScreen(with: uid)
+        wireframe.navigateToProfileScreen()
     }
 
     func loginDidFail(_ error: String) {
