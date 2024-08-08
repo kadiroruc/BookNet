@@ -48,8 +48,20 @@ extension TabBarWireframe: TabBarWireframeInterface {
         
         homeNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         
+        let photoWF = PhotoSelectorWireframe()
+        let photoVC = photoWF.viewController
+        let photoNC = UINavigationController(rootViewController: photoVC)
+        
+        photoNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "plus.app"), selectedImage: UIImage(systemName: "plus.app.fill"))
+        
+        let swapWF = SwapWireframe()
+        let swapVC = swapWF.viewController
+        let swapNC = UINavigationController(rootViewController: swapVC)
+        
+        swapNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "arrow.2.squarepath"), selectedImage: UIImage(systemName: "arrow.2.squarepath"))
+        
 
-        viewController.setViewControllers([homeNC,searchNC,profileNC])
+        viewController.setViewControllers([homeNC,searchNC,photoNC,swapNC,profileNC])
         
 
     }

@@ -28,8 +28,29 @@
 		E915CE372C63A9E400490DA6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE322C63A9E400490DA6 /* HomeViewController.swift */; };
 		E915CE382C63A9E400490DA6 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE332C63A9E400490DA6 /* HomeInteractor.swift */; };
 		E915CE392C63A9E400490DA6 /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE342C63A9E400490DA6 /* HomeWireframe.swift */; };
+		E915CE402C64AAA200490DA6 /* PhotoSelectorInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE3B2C64AAA200490DA6 /* PhotoSelectorInterfaces.swift */; };
+		E915CE412C64AAA200490DA6 /* PhotoSelectorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE3C2C64AAA200490DA6 /* PhotoSelectorPresenter.swift */; };
+		E915CE422C64AAA200490DA6 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE3D2C64AAA200490DA6 /* PhotoSelectorViewController.swift */; };
+		E915CE432C64AAA200490DA6 /* PhotoSelectorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE3E2C64AAA200490DA6 /* PhotoSelectorInteractor.swift */; };
+		E915CE442C64AAA200490DA6 /* PhotoSelectorWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE3F2C64AAA200490DA6 /* PhotoSelectorWireframe.swift */; };
+		E915CE462C64ABE400490DA6 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE452C64ABE400490DA6 /* PhotoModel.swift */; };
+		E915CE5B2C64E1F400490DA6 /* AddBookInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE562C64E1F400490DA6 /* AddBookInterfaces.swift */; };
+		E915CE5C2C64E1F400490DA6 /* AddBookPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE572C64E1F400490DA6 /* AddBookPresenter.swift */; };
+		E915CE5D2C64E1F400490DA6 /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE582C64E1F400490DA6 /* AddBookViewController.swift */; };
+		E915CE5E2C64E1F400490DA6 /* AddBookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE592C64E1F400490DA6 /* AddBookInteractor.swift */; };
+		E915CE5F2C64E1F400490DA6 /* AddBookWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE5A2C64E1F400490DA6 /* AddBookWireframe.swift */; };
+		E915CE652C6502D700490DA6 /* ShareBookInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE602C6502D700490DA6 /* ShareBookInterfaces.swift */; };
+		E915CE662C6502D700490DA6 /* ShareBookPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE612C6502D700490DA6 /* ShareBookPresenter.swift */; };
+		E915CE672C6502D700490DA6 /* ShareBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE622C6502D700490DA6 /* ShareBookViewController.swift */; };
+		E915CE682C6502D700490DA6 /* ShareBookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE632C6502D700490DA6 /* ShareBookInteractor.swift */; };
+		E915CE692C6502D700490DA6 /* ShareBookWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE642C6502D700490DA6 /* ShareBookWireframe.swift */; };
+		E915CE712C650B8600490DA6 /* SwapInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE6C2C650B8600490DA6 /* SwapInterfaces.swift */; };
+		E915CE722C650B8600490DA6 /* SwapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE6D2C650B8600490DA6 /* SwapPresenter.swift */; };
+		E915CE732C650B8600490DA6 /* SwapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE6E2C650B8600490DA6 /* SwapViewController.swift */; };
+		E915CE742C650B8600490DA6 /* SwapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE6F2C650B8600490DA6 /* SwapInteractor.swift */; };
+		E915CE752C650B8600490DA6 /* SwapWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E915CE702C650B8600490DA6 /* SwapWireframe.swift */; };
 		E9206BA32C1222BE00B08AFE /* VCPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9206BA22C1222BE00B08AFE /* VCPreview.swift */; };
-		E924F5862C0B6E0A00DDB21A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924F5852C0B6E0A00DDB21A /* Request.swift */; };
+		E924F5862C0B6E0A00DDB21A /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924F5852C0B6E0A00DDB21A /* RequestModel.swift */; };
 		E92F58982C033D0000289469 /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F58972C033D0000289469 /* CustomBookCell.swift */; };
 		E9355D282C19B057003F212C /* HomeViewControllerr.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9355D272C19B057003F212C /* HomeViewControllerr.swift */; };
 		E939479F2C08B9D8008BF5BC /* SearchBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */; };
@@ -68,7 +89,7 @@
 		E9B94A092BD4393B0025D344 /* SignUpViewControllerr.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B94A082BD4393B0025D344 /* SignUpViewControllerr.swift */; };
 		E9B94A0B2BD43B5B0025D344 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B94A0A2BD43B5B0025D344 /* UIViewExtension.swift */; };
 		E9B94A0D2BD43E810025D344 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B94A0C2BD43E810025D344 /* MainTabBarController.swift */; };
-		E9C1EF692C11FECD003035AD /* SwapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1EF682C11FECD003035AD /* SwapViewController.swift */; };
+		E9C1EF692C11FECD003035AD /* SwapViewControllerr.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1EF682C11FECD003035AD /* SwapViewControllerr.swift */; };
 		E9C1EF6B2C120503003035AD /* CustomRequestsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1EF6A2C120503003035AD /* CustomRequestsCell.swift */; };
 		E9D9FA882BD53FE000BAADD5 /* LoginViewControllerr.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D9FA872BD53FE000BAADD5 /* LoginViewControllerr.swift */; };
 		E9D9FA8A2BD5437800BAADD5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9D9FA892BD5437800BAADD5 /* GoogleService-Info.plist */; };
@@ -102,8 +123,29 @@
 		E915CE322C63A9E400490DA6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E915CE332C63A9E400490DA6 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		E915CE342C63A9E400490DA6 /* HomeWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
+		E915CE3B2C64AAA200490DA6 /* PhotoSelectorInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorInterfaces.swift; sourceTree = "<group>"; };
+		E915CE3C2C64AAA200490DA6 /* PhotoSelectorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorPresenter.swift; sourceTree = "<group>"; };
+		E915CE3D2C64AAA200490DA6 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
+		E915CE3E2C64AAA200490DA6 /* PhotoSelectorInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorInteractor.swift; sourceTree = "<group>"; };
+		E915CE3F2C64AAA200490DA6 /* PhotoSelectorWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorWireframe.swift; sourceTree = "<group>"; };
+		E915CE452C64ABE400490DA6 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		E915CE562C64E1F400490DA6 /* AddBookInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookInterfaces.swift; sourceTree = "<group>"; };
+		E915CE572C64E1F400490DA6 /* AddBookPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookPresenter.swift; sourceTree = "<group>"; };
+		E915CE582C64E1F400490DA6 /* AddBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
+		E915CE592C64E1F400490DA6 /* AddBookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookInteractor.swift; sourceTree = "<group>"; };
+		E915CE5A2C64E1F400490DA6 /* AddBookWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookWireframe.swift; sourceTree = "<group>"; };
+		E915CE602C6502D700490DA6 /* ShareBookInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBookInterfaces.swift; sourceTree = "<group>"; };
+		E915CE612C6502D700490DA6 /* ShareBookPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBookPresenter.swift; sourceTree = "<group>"; };
+		E915CE622C6502D700490DA6 /* ShareBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBookViewController.swift; sourceTree = "<group>"; };
+		E915CE632C6502D700490DA6 /* ShareBookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBookInteractor.swift; sourceTree = "<group>"; };
+		E915CE642C6502D700490DA6 /* ShareBookWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBookWireframe.swift; sourceTree = "<group>"; };
+		E915CE6C2C650B8600490DA6 /* SwapInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapInterfaces.swift; sourceTree = "<group>"; };
+		E915CE6D2C650B8600490DA6 /* SwapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapPresenter.swift; sourceTree = "<group>"; };
+		E915CE6E2C650B8600490DA6 /* SwapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapViewController.swift; sourceTree = "<group>"; };
+		E915CE6F2C650B8600490DA6 /* SwapInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapInteractor.swift; sourceTree = "<group>"; };
+		E915CE702C650B8600490DA6 /* SwapWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapWireframe.swift; sourceTree = "<group>"; };
 		E9206BA22C1222BE00B08AFE /* VCPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCPreview.swift; sourceTree = "<group>"; };
-		E924F5852C0B6E0A00DDB21A /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		E924F5852C0B6E0A00DDB21A /* RequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
 		E92F58972C033D0000289469 /* CustomBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
 		E9355D272C19B057003F212C /* HomeViewControllerr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerr.swift; sourceTree = "<group>"; };
 		E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookViewController.swift; sourceTree = "<group>"; };
@@ -144,7 +186,7 @@
 		E9B94A082BD4393B0025D344 /* SignUpViewControllerr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewControllerr.swift; sourceTree = "<group>"; };
 		E9B94A0A2BD43B5B0025D344 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		E9B94A0C2BD43E810025D344 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		E9C1EF682C11FECD003035AD /* SwapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapViewController.swift; sourceTree = "<group>"; };
+		E9C1EF682C11FECD003035AD /* SwapViewControllerr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapViewControllerr.swift; sourceTree = "<group>"; };
 		E9C1EF6A2C120503003035AD /* CustomRequestsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestsCell.swift; sourceTree = "<group>"; };
 		E9D9FA872BD53FE000BAADD5 /* LoginViewControllerr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerr.swift; sourceTree = "<group>"; };
 		E9D9FA892BD5437800BAADD5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -205,7 +247,6 @@
 				E915CE232C62313800490DA6 /* SearchInterfaces.swift */,
 				E915CE242C62313800490DA6 /* SearchPresenter.swift */,
 				E915CE252C62313800490DA6 /* SearchViewController.swift */,
-				E93947A02C08BA30008BF5BC /* SearchBookCell.swift */,
 				E915CE262C62313800490DA6 /* SearchInteractor.swift */,
 				E915CE272C62313800490DA6 /* SearchWireframe.swift */,
 			);
@@ -218,11 +259,85 @@
 				E915CE302C63A9E400490DA6 /* HomeInterfaces.swift */,
 				E915CE312C63A9E400490DA6 /* HomePresenter.swift */,
 				E915CE322C63A9E400490DA6 /* HomeViewController.swift */,
-				E957AA102BDA8CE70089E395 /* CustomPostCell.swift */,
 				E915CE332C63A9E400490DA6 /* HomeInteractor.swift */,
 				E915CE342C63A9E400490DA6 /* HomeWireframe.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		E915CE3A2C64A90900490DA6 /* PhotoSelector */ = {
+			isa = PBXGroup;
+			children = (
+				E915CE3B2C64AAA200490DA6 /* PhotoSelectorInterfaces.swift */,
+				E915CE3C2C64AAA200490DA6 /* PhotoSelectorPresenter.swift */,
+				E915CE3D2C64AAA200490DA6 /* PhotoSelectorViewController.swift */,
+				E915CE3E2C64AAA200490DA6 /* PhotoSelectorInteractor.swift */,
+				E915CE3F2C64AAA200490DA6 /* PhotoSelectorWireframe.swift */,
+			);
+			path = PhotoSelector;
+			sourceTree = "<group>";
+		};
+		E915CE472C64AF1600490DA6 /* VIPER */ = {
+			isa = PBXGroup;
+			children = (
+				E9AF44A92C594CD4006EA614 /* BaseWireframe.swift */,
+				E9AF44AA2C594CD4006EA614 /* FormatterInterface.swift */,
+				E9AF44AB2C594CD4006EA614 /* UIStoryboardExtension.swift */,
+				E9AF44AC2C594CD4006EA614 /* PresenterInterface.swift */,
+				E9AF44AD2C594CD4006EA614 /* ViewInterface.swift */,
+				E9AF44AE2C594CD4006EA614 /* InteractorInterface.swift */,
+			);
+			path = VIPER;
+			sourceTree = "<group>";
+		};
+		E915CE482C64AF3400490DA6 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				E957AA102BDA8CE70089E395 /* CustomPostCell.swift */,
+				E9B88E892C283207003D915F /* PostCollectionViewCell.swift */,
+				E92F58972C033D0000289469 /* CustomBookCell.swift */,
+				E93947A02C08BA30008BF5BC /* SearchBookCell.swift */,
+				E9B24A362BFBC2CB009C21C1 /* PhotoSelectorCell.swift */,
+				E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */,
+				E9C1EF6A2C120503003035AD /* CustomRequestsCell.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		E915CE4A2C64E14D00490DA6 /* ShareBook */ = {
+			isa = PBXGroup;
+			children = (
+				E915CE602C6502D700490DA6 /* ShareBookInterfaces.swift */,
+				E915CE612C6502D700490DA6 /* ShareBookPresenter.swift */,
+				E915CE622C6502D700490DA6 /* ShareBookViewController.swift */,
+				E915CE632C6502D700490DA6 /* ShareBookInteractor.swift */,
+				E915CE642C6502D700490DA6 /* ShareBookWireframe.swift */,
+			);
+			path = ShareBook;
+			sourceTree = "<group>";
+		};
+		E915CE552C64E1DA00490DA6 /* AddBook */ = {
+			isa = PBXGroup;
+			children = (
+				E915CE562C64E1F400490DA6 /* AddBookInterfaces.swift */,
+				E915CE572C64E1F400490DA6 /* AddBookPresenter.swift */,
+				E915CE582C64E1F400490DA6 /* AddBookViewController.swift */,
+				E915CE592C64E1F400490DA6 /* AddBookInteractor.swift */,
+				E915CE5A2C64E1F400490DA6 /* AddBookWireframe.swift */,
+			);
+			path = AddBook;
+			sourceTree = "<group>";
+		};
+		E915CE6A2C650B7300490DA6 /* Swap */ = {
+			isa = PBXGroup;
+			children = (
+				E915CE6C2C650B8600490DA6 /* SwapInterfaces.swift */,
+				E915CE6D2C650B8600490DA6 /* SwapPresenter.swift */,
+				E915CE6E2C650B8600490DA6 /* SwapViewController.swift */,
+				E915CE6F2C650B8600490DA6 /* SwapInteractor.swift */,
+				E915CE702C650B8600490DA6 /* SwapWireframe.swift */,
+			);
+			path = Swap;
 			sourceTree = "<group>";
 		};
 		E920F9E42BE2E34F00AD5CE9 /* Core */ = {
@@ -236,14 +351,14 @@
 		E920F9E52BE2E36500AD5CE9 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E9C1EF682C11FECD003035AD /* SwapViewControllerr.swift */,
+				E996D7522BFDBAF7000AE202 /* ShareBookController.swift */,
+				E9B24A392BFBC2CB009C21C1 /* AddBookController.swift */,
 				E9D9FA982BD55C6900BAADD5 /* ProfileViewControllerr.swift */,
 				E9B94A082BD4393B0025D344 /* SignUpViewControllerr.swift */,
 				E9D9FA872BD53FE000BAADD5 /* LoginViewControllerr.swift */,
 				E9B24A372BFBC2CB009C21C1 /* PhotoSelectorController.swift */,
-				E9B24A392BFBC2CB009C21C1 /* AddBookController.swift */,
-				E996D7522BFDBAF7000AE202 /* ShareBookController.swift */,
 				E939479E2C08B9D8008BF5BC /* SearchBookViewController.swift */,
-				E9C1EF682C11FECD003035AD /* SwapViewController.swift */,
 				E9355D272C19B057003F212C /* HomeViewControllerr.swift */,
 			);
 			path = ViewController;
@@ -262,9 +377,6 @@
 		E920F9E72BE2E38B00AD5CE9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E9B24A362BFBC2CB009C21C1 /* PhotoSelectorCell.swift */,
-				E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */,
-				E9C1EF6A2C120503003035AD /* CustomRequestsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -272,7 +384,6 @@
 		E920F9E82BE2E3A000AD5CE9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E924F5852C0B6E0A00DDB21A /* Request.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -290,11 +401,9 @@
 		E96FB20B2C5EBFD300CF6243 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				E92F58972C033D0000289469 /* CustomBookCell.swift */,
 				E96FB20C2C5EBFE300CF6243 /* ProfileInterfaces.swift */,
 				E96FB20D2C5EBFE300CF6243 /* ProfilePresenter.swift */,
 				E96FB20E2C5EBFE300CF6243 /* ProfileViewController.swift */,
-				E9B88E892C283207003D915F /* PostCollectionViewCell.swift */,
 				E96FB20F2C5EBFE300CF6243 /* ProfileInteractor.swift */,
 				E96FB2102C5EBFE300CF6243 /* ProfileWireframe.swift */,
 			);
@@ -304,6 +413,10 @@
 		E9AF449D2C594C60006EA614 /* BookNetVIPER2 */ = {
 			isa = PBXGroup;
 			children = (
+				E915CE6A2C650B7300490DA6 /* Swap */,
+				E915CE552C64E1DA00490DA6 /* AddBook */,
+				E915CE4A2C64E14D00490DA6 /* ShareBook */,
+				E915CE3A2C64A90900490DA6 /* PhotoSelector */,
 				E915CE2F2C63A9D600490DA6 /* Home */,
 				E915CE0A2C60EEA800490DA6 /* TabBar */,
 				E96FB20B2C5EBFD300CF6243 /* Profile */,
@@ -331,12 +444,8 @@
 		E9AF44B52C594CDD006EA614 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E9AF44A92C594CD4006EA614 /* BaseWireframe.swift */,
-				E9AF44AA2C594CD4006EA614 /* FormatterInterface.swift */,
-				E9AF44AB2C594CD4006EA614 /* UIStoryboardExtension.swift */,
-				E9AF44AC2C594CD4006EA614 /* PresenterInterface.swift */,
-				E9AF44AD2C594CD4006EA614 /* ViewInterface.swift */,
-				E9AF44AE2C594CD4006EA614 /* InteractorInterface.swift */,
+				E915CE482C64AF3400490DA6 /* CustomCells */,
+				E915CE472C64AF1600490DA6 /* VIPER */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -347,6 +456,8 @@
 				E9B88E7A2C282CE5003D915F /* PostModel.swift */,
 				E9B88E8E2C283CE3003D915F /* UserModel.swift */,
 				E96FB2172C5EC79900CF6243 /* BookModel.swift */,
+				E915CE452C64ABE400490DA6 /* PhotoModel.swift */,
+				E924F5852C0B6E0A00DDB21A /* RequestModel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -478,6 +589,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E915CE5B2C64E1F400490DA6 /* AddBookInterfaces.swift in Sources */,
+				E915CE5C2C64E1F400490DA6 /* AddBookPresenter.swift in Sources */,
+				E915CE5D2C64E1F400490DA6 /* AddBookViewController.swift in Sources */,
+				E915CE5E2C64E1F400490DA6 /* AddBookInteractor.swift in Sources */,
+				E915CE5F2C64E1F400490DA6 /* AddBookWireframe.swift in Sources */,
 				E9D9FA882BD53FE000BAADD5 /* LoginViewControllerr.swift in Sources */,
 				E9B94A0B2BD43B5B0025D344 /* UIViewExtension.swift in Sources */,
 				E9C1EF6B2C120503003035AD /* CustomRequestsCell.swift in Sources */,
@@ -485,6 +601,11 @@
 				E94AD3652C182CD1007B9A0F /* DateExtension.swift in Sources */,
 				E92F58982C033D0000289469 /* CustomBookCell.swift in Sources */,
 				E9AF44A32C594CB7006EA614 /* SignUpInterfaces.swift in Sources */,
+				E915CE712C650B8600490DA6 /* SwapInterfaces.swift in Sources */,
+				E915CE722C650B8600490DA6 /* SwapPresenter.swift in Sources */,
+				E915CE732C650B8600490DA6 /* SwapViewController.swift in Sources */,
+				E915CE742C650B8600490DA6 /* SwapInteractor.swift in Sources */,
+				E915CE752C650B8600490DA6 /* SwapWireframe.swift in Sources */,
 				E96FB2112C5EBFE300CF6243 /* ProfileInterfaces.swift in Sources */,
 				E915CE0F2C60EEC000490DA6 /* TabBarInterfaces.swift in Sources */,
 				E915CE102C60EEC000490DA6 /* TabBarPresenter.swift in Sources */,
@@ -492,6 +613,11 @@
 				E915CE122C60EEC000490DA6 /* TabBarWireframe.swift in Sources */,
 				E96FB2122C5EBFE300CF6243 /* ProfilePresenter.swift in Sources */,
 				E96FB2132C5EBFE300CF6243 /* ProfileViewController.swift in Sources */,
+				E915CE652C6502D700490DA6 /* ShareBookInterfaces.swift in Sources */,
+				E915CE662C6502D700490DA6 /* ShareBookPresenter.swift in Sources */,
+				E915CE672C6502D700490DA6 /* ShareBookViewController.swift in Sources */,
+				E915CE682C6502D700490DA6 /* ShareBookInteractor.swift in Sources */,
+				E915CE692C6502D700490DA6 /* ShareBookWireframe.swift in Sources */,
 				E96FB2142C5EBFE300CF6243 /* ProfileInteractor.swift in Sources */,
 				E96FB2152C5EBFE300CF6243 /* ProfileWireframe.swift in Sources */,
 				E9AF44A42C594CB7006EA614 /* SignUpPresenter.swift in Sources */,
@@ -499,8 +625,13 @@
 				E9AF44A62C594CB7006EA614 /* SignUpInteractor.swift in Sources */,
 				E9AF44A72C594CB7006EA614 /* SignUpWireframe.swift in Sources */,
 				E957AA172BDAA6450089E395 /* FirebaseExtension.swift in Sources */,
+				E915CE402C64AAA200490DA6 /* PhotoSelectorInterfaces.swift in Sources */,
+				E915CE412C64AAA200490DA6 /* PhotoSelectorPresenter.swift in Sources */,
+				E915CE422C64AAA200490DA6 /* PhotoSelectorViewController.swift in Sources */,
+				E915CE432C64AAA200490DA6 /* PhotoSelectorInteractor.swift in Sources */,
+				E915CE442C64AAA200490DA6 /* PhotoSelectorWireframe.swift in Sources */,
 				E9B94A0D2BD43E810025D344 /* MainTabBarController.swift in Sources */,
-				E924F5862C0B6E0A00DDB21A /* Request.swift in Sources */,
+				E924F5862C0B6E0A00DDB21A /* RequestModel.swift in Sources */,
 				E9AF44AF2C594CD4006EA614 /* BaseWireframe.swift in Sources */,
 				E9AF44B02C594CD4006EA614 /* FormatterInterface.swift in Sources */,
 				E915CE282C62313800490DA6 /* SearchInterfaces.swift in Sources */,
@@ -512,6 +643,7 @@
 				E915CE092C60EC1000490DA6 /* Constants.swift in Sources */,
 				E9AF44B22C594CD4006EA614 /* PresenterInterface.swift in Sources */,
 				E9AF44B32C594CD4006EA614 /* ViewInterface.swift in Sources */,
+				E915CE462C64ABE400490DA6 /* PhotoModel.swift in Sources */,
 				E9AF44B42C594CD4006EA614 /* InteractorInterface.swift in Sources */,
 				E9B88E8A2C283207003D915F /* PostCollectionViewCell.swift in Sources */,
 				E93947A12C08BA30008BF5BC /* SearchBookCell.swift in Sources */,
@@ -519,7 +651,7 @@
 				E9B24A3D2BFBC2CB009C21C1 /* PhotoSelectorHeader.swift in Sources */,
 				E9355D282C19B057003F212C /* HomeViewControllerr.swift in Sources */,
 				E9B94A092BD4393B0025D344 /* SignUpViewControllerr.swift in Sources */,
-				E9C1EF692C11FECD003035AD /* SwapViewController.swift in Sources */,
+				E9C1EF692C11FECD003035AD /* SwapViewControllerr.swift in Sources */,
 				E906B52F2C5B98990066B835 /* LoginInterfaces.swift in Sources */,
 				E915CE352C63A9E400490DA6 /* HomeInterfaces.swift in Sources */,
 				E915CE362C63A9E400490DA6 /* HomePresenter.swift in Sources */,

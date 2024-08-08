@@ -53,7 +53,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
      func followButtonTapped() {
          view.showLoading()
          guard let currentUserId = Auth.auth().currentUser?.uid, let userId = user?.uid else { return }
-
+         
          if view.followButtonTitle == "Takibi Bırak" {
              interactor.unfollowUser(currentUserId: currentUserId, userId: userId)
          } else {

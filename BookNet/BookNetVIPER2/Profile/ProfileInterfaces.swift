@@ -15,7 +15,8 @@ protocol ProfileWireframeInterface: WireframeInterface {
 }
 
 protocol ProfileViewInterface: ViewInterface {
-
+    
+    var followButtonTitle: String? {get}
     func showUser(with user: UserModel)
     func showError(_ message: String)
     func showLoading()
@@ -29,7 +30,7 @@ protocol ProfileViewInterface: ViewInterface {
     func updateFollowersLabel(with text: NSAttributedString)
     func updateFollowButtonTitle(with title: String)
     func showFollowButton()
-    var followButtonTitle: String? {get}
+    
 }
 
 protocol ProfilePresenterInterface: PresenterInterface {

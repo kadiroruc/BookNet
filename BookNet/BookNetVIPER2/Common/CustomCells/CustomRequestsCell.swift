@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 protocol CustomRequestsCellDelegate: AnyObject{
-    func tappedSeeProfileButton(username:String)
+    func tappedSeeProfileButton(at indexPath: IndexPath)
     func tappedCancelButton(at indexPath: IndexPath)
     func tappedAcceptButton(at indexPath: IndexPath)
 }
@@ -36,7 +36,7 @@ class CustomRequestsCell: UICollectionViewCell {
         return lb
     }()
     
-    lazy var seeProfileButton: UIButton = {
+    var seeProfileButton: UIButton = {
         let button = UIButton()
         let image = UIImage(systemName: "arrowshape.turn.up.forward.fill")
         let biggerImage = image?.withRenderingMode(.alwaysOriginal).resize(to: CGSize(width: 25, height: 25))
@@ -139,7 +139,11 @@ class CustomRequestsCell: UICollectionViewCell {
     }
     
     @objc func tappedSeeProfileButton(){
-        self.delegate?.tappedSeeProfileButton(username: usernameLabel.text ?? "")
+        print("asdas")
+        if let indexPath = indexPath{
+            
+            self.delegate?.tappedSeeProfileButton(at: indexPath)
+        }
     }
     
     @objc func tappedCancelButton(){

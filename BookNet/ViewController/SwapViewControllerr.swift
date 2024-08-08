@@ -12,7 +12,7 @@ import FirebaseAuth
 
 class SwapCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     
-    var requests = [Request]()
+    var requests = [RequestModel]()
     
     override func viewDidLoad() {
         
@@ -42,7 +42,7 @@ class SwapCollectionViewController: UICollectionViewController,UICollectionViewD
             
             for (_,value) in requests{
                 let valueDictionary = value as! [String:Any]
-                let request = Request(dictionary: valueDictionary)
+                let request = RequestModel(dictionary: valueDictionary)
                 
                 self.requests.append(request)
                 
@@ -68,7 +68,7 @@ class SwapCollectionViewController: UICollectionViewController,UICollectionViewD
         }
     }
     
-    func userOfRequest(request: Request, completion: @escaping (UserModel?) -> Void){
+    func userOfRequest(request: RequestModel, completion: @escaping (UserModel?) -> Void){
         let userId = request.senderId
         
         let ref = Database.database().reference().child("users").child(userId)
@@ -169,6 +169,10 @@ class SwapCollectionViewController: UICollectionViewController,UICollectionViewD
 //MARK: - TappedButtons
 
 extension SwapCollectionViewController: CustomRequestsCellDelegate{
+    func tappedSeeProfileButton(at indexPath: IndexPath) {
+        
+    }
+    
     
     func tappedCancelButton(at indexPath: IndexPath) {
         let request = requests[indexPath.item]
@@ -211,21 +215,7 @@ extension SwapCollectionViewController: CustomRequestsCellDelegate{
             }
         }
     }
-    
-    
-    
-    func tappedSeeProfileButton(username: String) {
-        
-//        let userId = fetchUserId(for: username) { userId in
-//            if let userId = userId{
-//                let profileController = ProfileViewController()
-//                profileController.userId = userId
-//                profileController.titleLabel.subviews.first?.isHidden = true
-//                profileController.followButton.isHidden = false
-//                self.navigationController?.pushViewController(profileController, animated: true)
-//            }
-//        }
-    }
+
     
 
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Request{
+struct RequestModel{
     let id: String
     let senderId: String
     let receiverId: String
