@@ -20,6 +20,7 @@ final class SwapPresenter {
     
     private var requests: [RequestModel] = []
     private var userOfRequest: UserModel?
+    
 
     // MARK: - Lifecycle -
 
@@ -38,58 +39,44 @@ extension SwapPresenter: SwapPresenterInterface {
         cell.delegate = self
         cell.indexPath = indexPath
         
-        let group = DispatchGroup()
-
-
-        group.enter()
+        interactor.fetchUserOfRequest(request: request) { [weak self] user in
+            guard let self = self, let user = user else { return }
             
-        self.interactor.fetchUserOfRequest(request: request)
-        group.leave()
-
-        // Grup içindeki tüm görevlerin bitmesini bekle
-        group.notify(queue: .main) {
+            self.userOfRequest = user
+            cell.usernameLabel.text = user.username
             
-            if let user = self.userOfRequest {
-
-                cell.usernameLabel.text = user.username
-                
-                let secondGroup = DispatchGroup()
-                secondGroup.enter()
+            DispatchQueue.global().async {
+                var image: UIImage?
                 
                 if let url = URL(string: user.profileImageUrl), let imageData = try? Data(contentsOf: url) {
-                    let image = UIImage(data: imageData)
-                    secondGroup.leave()
-                    
-                    secondGroup.notify(queue: .main) {
-                        if cell.usernameLabel.text == user.username {
-                            cell.profileImageView.image = image
-                        }
-                        
-                        let requestedBook = self.requests[indexPath.item].requestedBook
-                        cell.requestedBookLabel.text = "Requested Book  ->  '\(requestedBook)'"
-                        
-                        let email = self.requests[indexPath.item].email
-                        cell.emailLabel.text = "Email  ->  '\(email)'"
-                        
-                        let status = self.requests[indexPath.item].status
-                        
-                        if status == "accepted" {
-                            cell.acceptButton.isEnabled = false
-                        }
-                        
-                    }
+                    image = UIImage(data: imageData)
                 }
                 
-
+                DispatchQueue.main.async {
+                    if cell.usernameLabel.text == user.username {
+                        cell.profileImageView.image = image
+                    }
+                    
+                    let requestedBook = self.requests[indexPath.item].requestedBook
+                    cell.requestedBookLabel.text = "Requested Book  ->  '\(requestedBook)'"
+                    
+                    let email = self.requests[indexPath.item].email
+                    cell.emailLabel.text = "Email  ->  '\(email)'"
+                    
+                    let status = self.requests[indexPath.item].status
+                    
+                    if status == "accepted" {
+                        cell.acceptButton.isEnabled = false
+                    }
+                    
+                    if indexPath.item == self.requests.count - 1 {
+                        self.view.hideLoading()
+                    }
+                }
             }
-            
         }
- 
-        if indexPath.item == requests.count - 1{
-            view.hideLoading()
-        }
-        
     }
+
     
     
     func viewDidLoad() {
@@ -119,9 +106,6 @@ extension SwapPresenter: SwapPresenterInterface {
 // MARK: - Interactor Output
 
 extension SwapPresenter: SwapInteractorOutputInterface {
-    func didFetchUserOfRequest(_ user: UserModel) {
-        self.userOfRequest = user
-    }
     
     func didFetchRequests(_ requests: [RequestModel]) {
         self.requests = requests
@@ -148,11 +132,11 @@ extension SwapPresenter: SwapInteractorOutputInterface {
 
 extension SwapPresenter: CustomRequestsCellDelegate{
     func tappedSeeProfileButton(at indexPath: IndexPath) {
-        print("sdasdfas")
-        interactor.fetchUserOfRequest(request: requests[indexPath.item])
         
-        if let user = userOfRequest{
-            wireframe.navigateToProfile(userId: user.uid)
+        interactor.fetchUserOfRequest(request: requests[indexPath.item]) { user in
+            if let user = user{
+                self.wireframe.navigateToProfile(userId: user.uid)
+            }
         }
     }
     

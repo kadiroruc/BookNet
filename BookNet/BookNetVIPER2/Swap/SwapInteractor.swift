@@ -39,8 +39,8 @@ extension SwapInteractor: SwapInteractorInterface {
             self.presenter?.didFetchRequests(fetchedRequests)
         }
     }
-    
-    func fetchUserOfRequest(request: RequestModel) {
+    func fetchUserOfRequest(request: RequestModel, completion: @escaping (UserModel?) -> Void) {
+        
         let userId = request.senderId
         
         let ref = Database.database().reference().child("users").child(userId)
@@ -48,7 +48,7 @@ extension SwapInteractor: SwapInteractorInterface {
         ref.observeSingleEvent(of: .value) {[weak self] snapshot  in
             if let dictionary = snapshot.value as? [String:Any] {
                 let user = UserModel(uid: userId, dictionary: dictionary)
-                self?.presenter?.didFetchUserOfRequest(user)
+                completion(user)
             } else {
                 
             }

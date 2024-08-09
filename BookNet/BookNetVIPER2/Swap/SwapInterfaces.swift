@@ -32,14 +32,13 @@ protocol SwapPresenterInterface: PresenterInterface {
 
 protocol SwapInteractorInterface: InteractorInterface {
     func fetchRequests(forUserId userId: String)
-    func fetchUserOfRequest(request: RequestModel)
+    func fetchUserOfRequest(request: RequestModel, completion: @escaping (UserModel?) -> Void)
     func acceptRequest(_ request: RequestModel)
     func cancelRequest(_ request: RequestModel, index: Int)
 }
 
 protocol SwapInteractorOutputInterface: PresenterInterface {
     func didFetchRequests(_ requests: [RequestModel])
-    func didFetchUserOfRequest(_ user: UserModel)
     func didAcceptRequest()
     func didCancelRequest(index: Int)
     func didFail(_ error: String)
