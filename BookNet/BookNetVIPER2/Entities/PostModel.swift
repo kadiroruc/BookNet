@@ -9,6 +9,7 @@ import Foundation
 
 struct PostModel{
     
+    var postId: String?
     var id: String?
     let user: UserModel
     let bookImageUrl: String
@@ -20,6 +21,7 @@ struct PostModel{
     var hasLiked:Bool = false
     
     init(user:UserModel, dictionary: [String:Any]) {
+        self.postId = dictionary["postId"] as? String ?? ""
         self.user = user
         self.bookImageUrl = dictionary["bookImageUrl"] as? String ?? ""
         self.bookName = dictionary["bookName"] as? String ?? ""

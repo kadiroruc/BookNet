@@ -143,7 +143,7 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
             try Auth.auth().signOut()
             presenter?.didUserLogOut()
         }catch{
-            presenter?.onError("Failed to log out")
+            presenter?.showMessage("Failed to log out")
         }
     }
     
@@ -158,7 +158,7 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
         storageRef.putData(uploadData) {[weak self] metadata, error in
             
             if let error = error{
-                self?.presenter?.onError(error.localizedDescription)
+                self?.presenter?.showMessage(error.localizedDescription)
                 return
             }
             
@@ -174,7 +174,7 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
                     
                     Database.database().reference().child("users").updateChildValues(values,withCompletionBlock: { err, ref in
                         if error != nil{
-                            self?.presenter?.onError("Failed to save user info into db")
+                            self?.presenter?.showMessage("Failed to save user info into db")
                             return
                         }
         
@@ -186,5 +186,70 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
         }
 
     }
+
+    func deletePost(forUserId userId: String, postId: String) {
+        let ref = Database.database().reference()
+        let postRef = ref.child("posts").child(userId).child(postId)
+
+        postRef.removeValue {[weak self] error, _ in
+            if let error = error {
+                self?.presenter?.showMessage(error.localizedDescription)
+            } else {
+                self?.presenter?.didDeletePost()
+            }
+        }
+    }
+
+    func checkDidRequestedBefore(senderId: String, receiverId: String, email: String, requestedBook: String) {
+        
+        let ref = Database.database().reference().child("requests")
+        var requested = false
+        
+        ref.observeSingleEvent(of: .value) {[weak self] snapshot,arg   in
+            guard let dictionaries = snapshot.value as? [String:Any] else{
+                return
+            }
+            
+            dictionaries.forEach { key,value in
+                guard let requestDictionaries = value as? [String:Any] else {
+                    return
+                }
+                
+                if requestDictionaries["senderId"] as! String == senderId, requestDictionaries["receiverId"] as! String == receiverId, requestDictionaries["status"] as! String == "pending"{
+                    requested = true
+                    self?.presenter?.didRequestedBefore()
+                    
+                }
+            }
+            
+            if !requested{
+                print("asdas")
+                self?.sendRequest(senderId: senderId, receiverId: receiverId, email: email, requestedBook: requestedBook)
+            }
+            
+        }
+    }
+    
+    func sendRequest(senderId: String, receiverId: String, email: String, requestedBook: String){
+        
+        let ref = Database.database().reference().child("requests").childByAutoId()
+        let autoID = ref.key
+        
+        let value = ["id":autoID,
+                     "requestedBook":requestedBook,
+                     "senderId":senderId,
+                     "receiverId": receiverId,
+                     "status":"pending",
+                     "email":email]
+        
+        ref.setValue(value) {[weak self] error, ref in
+            if error != nil{
+                self?.presenter?.showMessage("İstek gönderilirken hata oluştu!")
+                return
+            }
+            self?.presenter?.showMessage("İstek başarıyla gönderildi")
+        }
+    }
+    
     
 }

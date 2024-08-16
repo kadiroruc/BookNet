@@ -11,6 +11,7 @@ import FirebaseDatabase
 
 protocol CustomBookCellDelegate: AnyObject {
     func showAlert(from cell: CustomBookCell,message:String)
+    func requestButtonTapped(senderId: String, receiverId: String, email:String,requestedBook:String)
 }
 
 class CustomBookCell: UICollectionViewCell {
@@ -98,74 +99,16 @@ class CustomBookCell: UICollectionViewCell {
     }
     
     @objc func requestButtonTapped(){
-        requestButton.isHidden = true
+        self.requestButton.isHidden = true
+        
+        
         guard let currentUserId = Auth.auth().currentUser?.uid else {return}
         guard let email = Auth.auth().currentUser?.email else {return}
         guard let userId = userId else{return}
         
+        delegate?.requestButtonTapped(senderId: currentUserId, receiverId: userId, email: email,requestedBook: self.bookLabel.text!)
         
-        
-        didRequestedBefore(senderId: currentUserId, receiverId: userId) {[weak self] bool in
-            if bool{
-                
-                self?.delegate?.showAlert(from: self ?? CustomBookCell(), message: "Bu kullanıcıdan daha önce kitap isteğinde bulundunuz.")
-                return
-            }else{
-                
-                let ref = Database.database().reference().child("requests").childByAutoId()
-                let autoID = ref.key
-                
-                let value = ["id":autoID,
-                             "requestedBook":self?.bookLabel.text,
-                             "senderId":currentUserId,
-                             "receiverId": userId,
-                             "status":"pending",
-                             "email":email]
-                
-                ref.setValue(value) {[weak self] error, ref in
-                    if error != nil{
-                        self?.delegate?.showAlert(from: self ?? CustomBookCell(), message: "İstek gönderilirken hata oluştu.")
-                        self?.requestButton.isHidden = false
-                        return
-                    }
-                    
-                    self?.delegate?.showAlert(from: self ?? CustomBookCell(), message: "İstek başarıyla gönderildi.")
-                }
-            }
-        }
 
-    }
-    
-    func didRequestedBefore(senderId:String,receiverId:String,completion: @escaping (Bool) -> Void){
-    
-        let ref = Database.database().reference().child("requests")
-        
-        ref.observeSingleEvent(of: .value) { snapshot,arg   in
-            guard let dictionaries = snapshot.value as? [String:Any] else{
-                completion(false)
-                return
-            }
-            var isCompletionCalled = false
-            
-            dictionaries.forEach { key,value in
-                guard let requestDictionaries = value as? [String:Any] else {
-                    completion(false)
-                    return
-                }
-                
-                if requestDictionaries["senderId"] as! String == senderId, requestDictionaries["receiverId"] as! String == receiverId, requestDictionaries["status"] as! String == "pending"{
-                    if !isCompletionCalled {
-                        completion(true)
-                        isCompletionCalled = true
-                        return
-                    }
-                }
-            }
-            if isCompletionCalled == false{
-                completion(false)
-            }
-        }
-        
     }
     
 }

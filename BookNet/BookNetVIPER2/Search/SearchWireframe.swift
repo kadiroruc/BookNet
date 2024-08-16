@@ -37,7 +37,7 @@ extension SearchWireframe: SearchWireframeInterface {
         let profileVC = profileWireFrame.viewController
         profileVC.titleLabel.isHidden = true
         profileVC.followButton.isHidden = false
-    
+        
         navigationController?.pushWireframe(profileWireFrame, animated: true)
     }
     

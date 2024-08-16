@@ -18,6 +18,7 @@ protocol SwapViewInterface: ViewInterface {
     func showMessage(_ message: String)
     func showLoading()
     func hideLoading()
+    
 }
 
 protocol SwapPresenterInterface: PresenterInterface {

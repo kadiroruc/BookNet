@@ -88,7 +88,6 @@
 		E9B949FE2BD437D20025D344 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9B949FD2BD437D20025D344 /* Assets.xcassets */; };
 		E9B94A092BD4393B0025D344 /* SignUpViewControllerr.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B94A082BD4393B0025D344 /* SignUpViewControllerr.swift */; };
 		E9B94A0B2BD43B5B0025D344 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B94A0A2BD43B5B0025D344 /* UIViewExtension.swift */; };
-		E9B94A0D2BD43E810025D344 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B94A0C2BD43E810025D344 /* MainTabBarController.swift */; };
 		E9C1EF692C11FECD003035AD /* SwapViewControllerr.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1EF682C11FECD003035AD /* SwapViewControllerr.swift */; };
 		E9C1EF6B2C120503003035AD /* CustomRequestsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C1EF6A2C120503003035AD /* CustomRequestsCell.swift */; };
 		E9D9FA882BD53FE000BAADD5 /* LoginViewControllerr.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D9FA872BD53FE000BAADD5 /* LoginViewControllerr.swift */; };
@@ -185,7 +184,6 @@
 		E9B94A022BD437D20025D344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9B94A082BD4393B0025D344 /* SignUpViewControllerr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewControllerr.swift; sourceTree = "<group>"; };
 		E9B94A0A2BD43B5B0025D344 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		E9B94A0C2BD43E810025D344 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E9C1EF682C11FECD003035AD /* SwapViewControllerr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapViewControllerr.swift; sourceTree = "<group>"; };
 		E9C1EF6A2C120503003035AD /* CustomRequestsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestsCell.swift; sourceTree = "<group>"; };
 		E9D9FA872BD53FE000BAADD5 /* LoginViewControllerr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerr.swift; sourceTree = "<group>"; };
@@ -293,9 +291,9 @@
 		E915CE482C64AF3400490DA6 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
-				E957AA102BDA8CE70089E395 /* CustomPostCell.swift */,
-				E9B88E892C283207003D915F /* PostCollectionViewCell.swift */,
 				E92F58972C033D0000289469 /* CustomBookCell.swift */,
+				E9B88E892C283207003D915F /* PostCollectionViewCell.swift */,
+				E957AA102BDA8CE70089E395 /* CustomPostCell.swift */,
 				E93947A02C08BA30008BF5BC /* SearchBookCell.swift */,
 				E9B24A362BFBC2CB009C21C1 /* PhotoSelectorCell.swift */,
 				E9B24A382BFBC2CB009C21C1 /* PhotoSelectorHeader.swift */,
@@ -338,14 +336,6 @@
 				E915CE702C650B8600490DA6 /* SwapWireframe.swift */,
 			);
 			path = Swap;
-			sourceTree = "<group>";
-		};
-		E920F9E42BE2E34F00AD5CE9 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				E9B94A0C2BD43E810025D344 /* MainTabBarController.swift */,
-			);
-			path = Core;
 			sourceTree = "<group>";
 		};
 		E920F9E52BE2E36500AD5CE9 /* ViewController */ = {
@@ -494,7 +484,6 @@
 			children = (
 				E9AF449D2C594C60006EA614 /* BookNetVIPER2 */,
 				E9B88E902C2840D8003D915F /* Core */,
-				E920F9E42BE2E34F00AD5CE9 /* Core */,
 				E920F9E52BE2E36500AD5CE9 /* ViewController */,
 				E920F9E62BE2E37B00AD5CE9 /* Utils */,
 				E920F9E72BE2E38B00AD5CE9 /* View */,
@@ -630,7 +619,6 @@
 				E915CE422C64AAA200490DA6 /* PhotoSelectorViewController.swift in Sources */,
 				E915CE432C64AAA200490DA6 /* PhotoSelectorInteractor.swift in Sources */,
 				E915CE442C64AAA200490DA6 /* PhotoSelectorWireframe.swift in Sources */,
-				E9B94A0D2BD43E810025D344 /* MainTabBarController.swift in Sources */,
 				E924F5862C0B6E0A00DDB21A /* RequestModel.swift in Sources */,
 				E9AF44AF2C594CD4006EA614 /* BaseWireframe.swift in Sources */,
 				E9AF44B02C594CD4006EA614 /* FormatterInterface.swift in Sources */,

@@ -60,9 +60,8 @@ extension TabBarWireframe: TabBarWireframeInterface {
         
         swapNC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "arrow.2.squarepath"), selectedImage: UIImage(systemName: "arrow.2.squarepath"))
         
-
-        viewController.setViewControllers([homeNC,searchNC,photoNC,swapNC,profileNC])
         
+        viewController.setViewControllers([homeNC,searchNC,photoNC,swapNC,profileNC])
 
     }
     

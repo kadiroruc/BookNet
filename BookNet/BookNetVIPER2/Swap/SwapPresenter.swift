@@ -67,6 +67,7 @@ extension SwapPresenter: SwapPresenterInterface {
                     
                     if status == "accepted" {
                         cell.acceptButton.isEnabled = false
+                        cell.subviews.first?.backgroundColor = .green
                     }
                     
                     if indexPath.item == self.requests.count - 1 {

@@ -30,6 +30,7 @@ protocol ProfileViewInterface: ViewInterface {
     func updateFollowersLabel(with text: NSAttributedString)
     func updateFollowButtonTitle(with title: String)
     func showFollowButton()
+    func showContextMenu(for indexPath: IndexPath)
     
 }
 
@@ -47,10 +48,13 @@ protocol ProfilePresenterInterface: PresenterInterface {
     func didSelectItem(at indexPath: IndexPath)
     func sizeForItem(at indexPath: IndexPath) -> CGSize
     func configure(cell: UICollectionViewCell, at indexPath: IndexPath)
+    func didLongPressCell(at indexPath: IndexPath)
     
     func setupFollowStats()
     func setupFollowButton()
     func followButtonTapped()
+    func tappedDeleteForCell(indexPath: IndexPath)
+    
 }
 
 protocol ProfileInteractorOutputInterface: AnyObject {
@@ -58,7 +62,7 @@ protocol ProfileInteractorOutputInterface: AnyObject {
     func didFetchUserProfile(_ user: UserModel)
     func didFetchUserPosts(_ posts: [PostModel])
     func didFetchUserBooks(_ books: [BookModel])
-    func onError(_ message: String)
+    func showMessage(_ message: String)
     func didUserLogOut()
     func updateProfileImage(with imageUrl: String)
     func didFetchFollowingCount(_ count: Int)
@@ -66,6 +70,8 @@ protocol ProfileInteractorOutputInterface: AnyObject {
     func didCheckIfFollowing(isFollowing: Bool)
     func didFollowUser()
     func didUnfollowUser()
+    func didDeletePost()
+    func didRequestedBefore()
 }
 
 protocol ProfileInteractorInputInterface: AnyObject {
@@ -80,4 +86,6 @@ protocol ProfileInteractorInputInterface: AnyObject {
     func checkIfFollowing(currentUserId: String, userId: String)
     func followUser(currentUserId: String, userId: String)
     func unfollowUser(currentUserId: String, userId: String)
+    func deletePost(forUserId userId: String, postId: String)
+    func checkDidRequestedBefore(senderId:String,receiverId:String,email: String,requestedBook:String)
 }

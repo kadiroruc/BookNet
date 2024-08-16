@@ -139,7 +139,6 @@ class CustomRequestsCell: UICollectionViewCell {
     }
     
     @objc func tappedSeeProfileButton(){
-        print("asdas")
         if let indexPath = indexPath{
             
             self.delegate?.tappedSeeProfileButton(at: indexPath)
@@ -153,6 +152,7 @@ class CustomRequestsCell: UICollectionViewCell {
     }
     
     @objc func tappedAcceptButton(){
+        self.acceptButton.isEnabled = false
         if let indexPath = indexPath {
             delegate?.tappedAcceptButton(at: indexPath)
         }

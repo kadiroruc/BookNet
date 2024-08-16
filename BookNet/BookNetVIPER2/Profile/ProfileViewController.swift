@@ -23,8 +23,8 @@ final class ProfileViewController: UIViewController {
     
     var currentCellType = "Gönderiler"
     
-    var posts = [PostModel]()
-    var books = [BookModel]()
+    var indexPath: IndexPath?
+    var selectedCell: UICollectionViewCell?
     
     let titleLabel: UIView = {
         let roundedView = UIView()
@@ -142,6 +142,7 @@ final class ProfileViewController: UIViewController {
         
         setViews()
         setupCollectionView()
+        setupLongPressGesture()
 
     }
     
@@ -226,7 +227,7 @@ final class ProfileViewController: UIViewController {
         
         view.addSubview(collectionView)
         
-        collectionView.anchor(top: libraryButton.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        collectionView.anchor(top: libraryButton.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         collectionView.register(CustomPostCell.self, forCellWithReuseIdentifier: CustomPostCell.identifier)
         
@@ -251,6 +252,23 @@ final class ProfileViewController: UIViewController {
         picker.delegate = self
         picker.allowsEditing = true
         present(picker,animated: true)
+    }
+    
+    private func setupLongPressGesture() {
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        self.collectionView.addGestureRecognizer(longPressGesture)
+    }
+    
+    @objc private func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        let point = gesture.location(in: self.collectionView)
+        
+        if let indexPath = self.collectionView.indexPathForItem(at: point) {
+            if gesture.state == .began {
+                let cell = self.collectionView.cellForItem(at: indexPath)
+                selectedCell = cell
+                presenter.didLongPressCell(at: indexPath)
+            }
+        }
     }
     
 
@@ -339,6 +357,24 @@ extension ProfileViewController: ProfileViewInterface {
         self.present(ac, animated: true)
     }
     
+    func showContextMenu(for indexPath: IndexPath) {
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? CustomPostCell {
+            
+            let interaction = UIContextMenuInteraction(delegate: self)
+            cell.addInteraction(interaction)
+            self.indexPath = indexPath
+
+        }
+        else if let cell = collectionView.cellForItem(at: indexPath) as? CustomBookCell{
+            
+            let interaction = UIContextMenuInteraction(delegate: self)
+            cell.addInteraction(interaction)
+            self.indexPath = indexPath
+            
+        }
+    }
+    
     
 }
 
@@ -351,12 +387,6 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        //
-        //            if self.user?.uid != Auth.auth().currentUser?.uid{
-        //
-        //                cell.requestButton.isHidden = false
-        //            }
 
         
         let identifier = presenter.currentCellType == Constants.TabButtons.posts ? CustomPostCell.identifier : CustomBookCell.identifier
@@ -397,6 +427,37 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
         picker.dismiss(animated: true)
 
+    }
+}
+
+extension ProfileViewController: UIContextMenuInteractionDelegate {
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+
+        let menu = UIMenu(title: "", children: [
+            UIAction(title: "Sil", image: UIImage(systemName: "trash.fill")) { action in
+                if let indexPath = self.indexPath{
+                    self.presenter.tappedDeleteForCell(indexPath: indexPath)
+                }
+            }
+//            UIAction(title: "Menu Item 2", image: UIImage(systemName: "heart.fill")) { action in
+//                self.handleMenuItem2()
+//            }
+        ])
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            return menu
+        }
+        
+    }
+    
+    
+    private func handleMenuItem1() {
+        print("Menu Item 1 selected")
+    }
+
+    private func handleMenuItem2() {
+        print("Menu Item 2 selected")
     }
 }
 

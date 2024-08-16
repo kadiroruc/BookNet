@@ -154,6 +154,32 @@ extension ProfilePresenter: ProfilePresenterInterface {
             cell.authorLabel.text = book.authorName
             cell.bookImageView.loadImage(urlString: book.imageUrl)
             cell.userId = book.userId
+            cell.delegate = self
+            
+            if user?.uid != Auth.auth().currentUser?.uid {
+                cell.requestButton.isHidden = false
+            }
+        }
+    }
+    
+    func didLongPressCell(at indexPath: IndexPath) {
+        view.showContextMenu(for: indexPath)
+    }
+    
+    func tappedDeleteForCell(indexPath: IndexPath) {
+        guard let tabButtonTitle = selectedButton?.titleLabel?.text else{return}
+        
+        if tabButtonTitle == Constants.TabButtons.posts{
+            if Auth.auth().currentUser?.uid == self.user?.uid{
+                if let uid = self.uid ?? self.user?.uid,let postId = posts[indexPath.item].postId{
+                    self.posts.remove(at: indexPath.item)
+                    interactor.deletePost(forUserId: uid, postId: postId)
+                    
+                }
+
+            }
+        }else if tabButtonTitle == Constants.TabButtons.library{
+            
         }
     }
     
@@ -203,7 +229,7 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
         view.reloadCollectionView()
     }
     
-    func onError(_ message: String) {
+    func showMessage(_ message: String) {
         view.hideLoading()
         view.showError(message)
     }
@@ -235,10 +261,27 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
         view.updateFollowersLabel(with: combinedString1)
     }
     
+    func didDeletePost() {
+        //view.reloadCollectionView()
+    }
+    
+    func didRequestedBefore() {
+        view.showAlert(message: "Bu kullanıcıdan daha önce kitap isteğinde bulundunuz.")
+    }
+    
+    
+    
+    
 }
 
 extension ProfilePresenter: CustomBookCellDelegate {
     func showAlert(from cell: CustomBookCell, message: String) {
         view.showAlert(message: message)
     }
+    
+    func requestButtonTapped(senderId: String, receiverId: String, email: String, requestedBook:String) {
+        
+        interactor.checkDidRequestedBefore(senderId: senderId, receiverId: receiverId,email: email,requestedBook: requestedBook)
+    }
+    
 }
