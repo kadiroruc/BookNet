@@ -67,7 +67,9 @@ extension SwapPresenter: SwapPresenterInterface {
                     
                     if status == "accepted" {
                         cell.acceptButton.isEnabled = false
-                        cell.subviews.first?.backgroundColor = .green
+                        //cell.subviews.first?.backgroundColor = .green
+                        cell.usernameLabel.text = "\(cell.usernameLabel.text!)  -> Onayladın"
+                        cell.usernameLabel.textColor = UIColor.rgb(red: 0, green: 160, blue: 0)
                     }
                     
                     if indexPath.item == self.requests.count - 1 {

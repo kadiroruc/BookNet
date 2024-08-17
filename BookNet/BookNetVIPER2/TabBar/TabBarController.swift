@@ -21,16 +21,17 @@ final class TabBarController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         setupTabBar()
     }
 
     private func setupTabBar() {
-        addChild(tabBar)
+        
         view.addSubview(tabBar.view)
         
-        tabBar.view.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        tabBar.view.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: -30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        tabBar.didMove(toParent: self)
+        
         
         tabBar.tabBar.tintColor = Constants.Colors.appYellow
         
