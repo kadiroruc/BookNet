@@ -10,7 +10,7 @@
 import UIKit
 import Firebase
 
-final class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var presenter: HomePresenterInterface!
     var collectionView: UICollectionView!

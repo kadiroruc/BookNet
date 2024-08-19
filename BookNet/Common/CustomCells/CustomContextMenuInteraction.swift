@@ -8,10 +8,5 @@
 import UIKit
 
 class CustomContextMenuInteraction: UIContextMenuInteraction {
-    var indexPath: IndexPath?
 
-    init(indexPath: IndexPath) {
-        self.indexPath = indexPath
-        super.init(delegate: )
-    }
 }

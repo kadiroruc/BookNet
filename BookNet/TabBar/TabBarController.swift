@@ -26,13 +26,12 @@ final class TabBarController: UIViewController {
     }
 
     private func setupTabBar() {
-        
+        addChild(tabBar)
         view.addSubview(tabBar.view)
         
-        tabBar.view.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: -30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        tabBar.view.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        
-        
+        tabBar.didMove(toParent: self)
         tabBar.tabBar.tintColor = Constants.Colors.appYellow
         
         presenter?.setupViewControllers()
