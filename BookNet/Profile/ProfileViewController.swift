@@ -388,9 +388,17 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
 
         
         let identifier = presenter.currentCellType == Constants.TabButtons.posts ? CustomPostCell.identifier : CustomBookCell.identifier
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-        presenter.configure(cell: cell, at: indexPath)
-        return cell
+        
+        if identifier == CustomPostCell.identifier{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CustomPostCell
+            cell.trashDelegate = self
+            presenter.configure(cell: cell, at: indexPath)
+            return cell
+        }else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CustomBookCell
+            presenter.configure(cell: cell, at: indexPath)
+            return cell
+        }
 
     }
 
@@ -459,4 +467,13 @@ extension ProfileViewController: UIContextMenuInteractionDelegate {
     }
 }
 
+extension ProfileViewController: CustomPostCellTrashDelegate{
+    func trashButtonTapped(in cell: CustomPostCell) {
+        if let indexPath = collectionView.indexPath(for: cell) {
+            presenter.trashButtonTapped(index: indexPath.item)
+        }
+    }
+    
+    
+}
 

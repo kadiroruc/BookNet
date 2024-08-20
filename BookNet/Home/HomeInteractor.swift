@@ -13,7 +13,6 @@ final class HomeInteractor {
     weak var presenter: HomeInteractorOutputInterface?
     
     private var posts = [PostModel]()
-    var hasLiked: Bool = false
 }
 
 extension HomeInteractor: HomeInteractorInputInterface{

@@ -185,7 +185,7 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
 
     }
 
-    func deletePost(forUserId userId: String, postId: String) {
+    func deletePost(forUserId userId: String, postId: String, index: Int) {
         let ref = Database.database().reference()
         let postRef = ref.child("posts").child(userId).child(postId)
 
@@ -193,7 +193,7 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
             if let error = error {
                 self?.presenter?.showMessage(error.localizedDescription)
             } else {
-                self?.presenter?.didDeletePost()
+                self?.presenter?.didDeletePost(at: index)
             }
         }
     }

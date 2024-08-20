@@ -7,15 +7,19 @@
 
 import UIKit
 
-protocol CustomPostCellDelegate: AnyObject{
+protocol CustomPostCellLikeDelegate: AnyObject{
     func likeButtonTapped(in cell: CustomPostCell)
+}
+protocol CustomPostCellTrashDelegate: AnyObject{
+    func trashButtonTapped(in cell: CustomPostCell)
 }
 
 class CustomPostCell: UICollectionViewCell {
     
     static let identifier = "postCell"
     
-    weak var delegate: CustomPostCellDelegate?
+    weak var likeDelegate: CustomPostCellLikeDelegate?
+    weak var trashDelegate: CustomPostCellTrashDelegate?
     
     let profileImageView: CustomImageView = {
         let iv = CustomImageView()
@@ -80,12 +84,21 @@ class CustomPostCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    let trashButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "trash"), for: .normal)
+        button.tintColor = .black
+        button.isHidden = true
+        button.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
+        return button
+    }()
 
 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
+
         setViews()
     }
     
@@ -94,7 +107,26 @@ class CustomPostCell: UICollectionViewCell {
     }
     
     @objc func likeButtonTapped(){
-        self.delegate?.likeButtonTapped(in: self)
+        
+        if likeButton.imageView?.image == UIImage(systemName: "heart"){
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            if var count = Int(likeCountLabel.text!){
+                count += 1
+                likeCountLabel.text = "\(count)"
+            }
+        }else{
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            if var count = Int(likeCountLabel.text!){
+                count -= 1
+                likeCountLabel.text = "\(count)"
+            }
+        }
+        
+        self.likeDelegate?.likeButtonTapped(in: self)
+    }
+    
+    @objc func trashButtonTapped(){
+        self.trashDelegate?.trashButtonTapped(in: self)
     }
     
     func setViews(){
@@ -131,12 +163,13 @@ class CustomPostCell: UICollectionViewCell {
         footerView.addSubview(bookLabel)
         footerView.addSubview(likeButton)
         footerView.addSubview(likeCountLabel)
-        
+        footerView.addSubview(trashButton)
         
         bookImageView.anchor(top: footerView.topAnchor, left: footerView.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 30, paddingBottom: 0, paddingRight: 0, width: 40, height: 60)
         bookLabel.anchor(top: bookImageView.topAnchor, left: bookImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 160, height: 40)
         likeButton.anchor(top: nil, left: bookImageView.leftAnchor, bottom: footerView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 0, height: 0)
         likeCountLabel.anchor(top: likeButton.centerYAnchor, left: likeButton.rightAnchor, bottom: nil, right: nil, paddingTop: -9, paddingLeft: 2, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        trashButton.anchor(top: likeButton.centerYAnchor, left: nil, bottom: nil, right: footerView.rightAnchor, paddingTop: -9, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
         
         
         

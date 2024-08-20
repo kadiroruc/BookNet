@@ -57,7 +57,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomPostCell.identifier, for: indexPath) as! CustomPostCell
-        cell.delegate = self
+        cell.likeDelegate = self
         presenter.configureCell(cell, for: indexPath.item)
         return cell
     }
@@ -89,7 +89,7 @@ extension HomeViewController: HomeViewInterface {
     }
 }
 
-extension HomeViewController: CustomPostCellDelegate{
+extension HomeViewController: CustomPostCellLikeDelegate{
     func likeButtonTapped(in cell: CustomPostCell) {
         if let indexPath = collectionView.indexPath(for: cell) {
             presenter.likeButtonTapped(for: indexPath.item)

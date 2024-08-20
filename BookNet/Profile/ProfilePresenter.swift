@@ -144,6 +144,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
             cell.postLabel.text = "\"\(post.postText)\""
             cell.dateLabel.text = post.creationDate.timeAgoDisplay()
             cell.postDescriptionLabel.text = post.autherName
+            cell.trashButton.isHidden = false
             
         } else if currentCellType == Constants.TabButtons.library, let cell = cell as? CustomBookCell {
             
@@ -171,7 +172,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
             if Auth.auth().currentUser?.uid == self.user?.uid{
                 if let uid = self.uid ?? self.user?.uid, posts[indexPath.item].postId != ""{
                     self.posts.remove(at: indexPath.item)
-                    interactor.deletePost(forUserId: uid, postId: posts[indexPath.item].postId)
+                    interactor.deletePost(forUserId: uid, postId: posts[indexPath.item].postId,index: indexPath.item)
                     
                 }
 
@@ -179,6 +180,12 @@ extension ProfilePresenter: ProfilePresenterInterface {
         }else if tabButtonTitle == Constants.TabButtons.library{
             
         }
+    }
+    
+    func trashButtonTapped(index: Int) {
+        //posts.remove(at: index)
+        guard let uid = Auth.auth().currentUser?.uid else{return}
+        interactor.deletePost(forUserId: uid, postId: posts[index].postId,index: index)
     }
     
 }
@@ -259,8 +266,10 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
         view.updateFollowersLabel(with: combinedString1)
     }
     
-    func didDeletePost() {
-        //view.reloadCollectionView()
+    func didDeletePost(at index: Int) {
+        posts.remove(at: index)
+        view.reloadCollectionView()
+        view.showAlert(message: "Gönderi başarı ile silindi!")
     }
     
     func didRequestedBefore() {
@@ -281,5 +290,4 @@ extension ProfilePresenter: CustomBookCellDelegate {
         
         interactor.checkDidRequestedBefore(senderId: senderId, receiverId: receiverId,email: email,requestedBook: requestedBook)
     }
-    
 }

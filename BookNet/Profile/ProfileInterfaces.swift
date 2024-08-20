@@ -52,6 +52,7 @@ protocol ProfilePresenterInterface: PresenterInterface {
     func setupFollowButton()
     func followButtonTapped()
     func tappedDeleteForCell(indexPath: IndexPath)
+    func trashButtonTapped(index: Int)
     
 }
 
@@ -68,7 +69,7 @@ protocol ProfileInteractorOutputInterface: AnyObject {
     func didCheckIfFollowing(isFollowing: Bool)
     func didFollowUser()
     func didUnfollowUser()
-    func didDeletePost()
+    func didDeletePost(at index: Int)
     func didRequestedBefore()
 }
 
@@ -84,6 +85,6 @@ protocol ProfileInteractorInputInterface: AnyObject {
     func checkIfFollowing(currentUserId: String, userId: String)
     func followUser(currentUserId: String, userId: String)
     func unfollowUser(currentUserId: String, userId: String)
-    func deletePost(forUserId userId: String, postId: String)
+    func deletePost(forUserId userId: String, postId: String, index: Int)
     func checkDidRequestedBefore(senderId:String,receiverId:String,email: String,requestedBook:String)
 }
