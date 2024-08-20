@@ -235,9 +235,9 @@
 		E91AFAE12C7384C400872A00 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				E91AFADB2C7384C400872A00 /* CustomPostCell.swift */,
 				E91AFAD92C7384C400872A00 /* CustomBookCell.swift */,
 				E91AFADA2C7384C400872A00 /* CustomContextMenuInteraction.swift */,
-				E91AFADB2C7384C400872A00 /* CustomPostCell.swift */,
 				E91AFADC2C7384C400872A00 /* CustomRequestsCell.swift */,
 				E91AFADD2C7384C400872A00 /* PhotoSelectorCell.swift */,
 				E91AFADE2C7384C400872A00 /* PhotoSelectorHeader.swift */,
@@ -281,9 +281,9 @@
 		E91AFAF22C7384C400872A00 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				E91AFAEF2C7384C400872A00 /* PostModel.swift */,
 				E91AFAED2C7384C400872A00 /* BookModel.swift */,
 				E91AFAEE2C7384C400872A00 /* PhotoModel.swift */,
-				E91AFAEF2C7384C400872A00 /* PostModel.swift */,
 				E91AFAF02C7384C400872A00 /* RequestModel.swift */,
 				E91AFAF12C7384C400872A00 /* UserModel.swift */,
 			);

@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol CustomPostCellDelegate: AnyObject{
+    func likeButtonTapped(in cell: CustomPostCell)
+}
+
 class CustomPostCell: UICollectionViewCell {
     
     static let identifier = "postCell"
+    
+    weak var delegate: CustomPostCellDelegate?
     
     let profileImageView: CustomImageView = {
         let iv = CustomImageView()
@@ -59,7 +65,7 @@ class CustomPostCell: UICollectionViewCell {
         return label
     }()
     
-    let favoriteCountLabel: UILabel = {
+    let likeCountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = .black
@@ -67,32 +73,28 @@ class CustomPostCell: UICollectionViewCell {
         return label
     }()
     
-    let favoriteButton: UIButton = {
+    let likeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.tintColor = .black
+        button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         return button
     }()
-//    let commentButton: UIButton = {
-//        let button = UIButton()
-//        button.setImage(UIImage(systemName: "message"), for: .normal)
-//        button.tintColor = .black
-//        return button
-//    }()
-//    
 
 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        
+    
         setViews()
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func likeButtonTapped(){
+        self.delegate?.likeButtonTapped(in: self)
     }
     
     func setViews(){
@@ -110,7 +112,7 @@ class CustomPostCell: UICollectionViewCell {
         
         profileImageView.anchor(top: headerView.centerYAnchor, left: headerView.leftAnchor, bottom: nil, right: nil, paddingTop: -20, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         usernameLabel.anchor(top: headerView.centerYAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: -15, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 70, height: 30)
-        dateLabel.anchor(top: headerView.centerYAnchor, left: nil, bottom: nil, right: headerView.rightAnchor, paddingTop: -15, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 80, height: 30)
+        dateLabel.anchor(top: headerView.centerYAnchor, left: nil, bottom: nil, right: headerView.rightAnchor, paddingTop: -15, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 80, height: 50)
         
         
         let midView = UIView()
@@ -127,16 +129,14 @@ class CustomPostCell: UICollectionViewCell {
         footerView.backgroundColor = UIColor.rgb(red: 254, green: 245, blue: 215)
         footerView.addSubview(bookImageView)
         footerView.addSubview(bookLabel)
-        footerView.addSubview(favoriteButton)
-        footerView.addSubview(favoriteCountLabel)
-//        footerView.addSubview(commentButton)
+        footerView.addSubview(likeButton)
+        footerView.addSubview(likeCountLabel)
         
         
         bookImageView.anchor(top: footerView.topAnchor, left: footerView.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 30, paddingBottom: 0, paddingRight: 0, width: 40, height: 60)
         bookLabel.anchor(top: bookImageView.topAnchor, left: bookImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 160, height: 40)
-        favoriteButton.anchor(top: nil, left: bookImageView.leftAnchor, bottom: footerView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 0, height: 0)
-        favoriteCountLabel.anchor(top: favoriteButton.centerYAnchor, left: favoriteButton.rightAnchor, bottom: nil, right: nil, paddingTop: -9, paddingLeft: 2, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-//        commentButton.anchor(top: nil, left: favoriteCountLabel.rightAnchor, bottom: footerView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 5, paddingBottom: 20, paddingRight: 0, width: 0, height: 0)
+        likeButton.anchor(top: nil, left: bookImageView.leftAnchor, bottom: footerView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 0, height: 0)
+        likeCountLabel.anchor(top: likeButton.centerYAnchor, left: likeButton.rightAnchor, bottom: nil, right: nil, paddingTop: -9, paddingLeft: 2, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         
         

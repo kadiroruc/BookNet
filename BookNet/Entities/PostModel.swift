@@ -9,7 +9,7 @@ import Foundation
 
 struct PostModel{
     
-    var postId: String?
+    var postId: String
     var id: String?
     let user: UserModel
     let bookImageUrl: String
@@ -17,6 +17,7 @@ struct PostModel{
     let postText: String
     let creationDate: Date
     let autherName: String
+    let likes: [String]?
     
     var hasLiked:Bool = false
     
@@ -30,6 +31,7 @@ struct PostModel{
         
         let secondsFrom1970 = dictionary["creationDate"] as? Double ?? 0
         self.creationDate = Date(timeIntervalSince1970: secondsFrom1970)
+        self.likes = dictionary["likes"] as? [String] ?? []
     }
 }
 
