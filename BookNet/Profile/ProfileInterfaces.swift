@@ -28,7 +28,6 @@ protocol ProfileViewInterface: ViewInterface {
     func updateFollowersLabel(with text: NSAttributedString)
     func updateFollowButtonTitle(with title: String)
     func showFollowButton()
-    func showContextMenu(for indexPath: IndexPath)
     
 }
 
@@ -46,13 +45,11 @@ protocol ProfilePresenterInterface: PresenterInterface {
     func didSelectItem(at indexPath: IndexPath)
     func sizeForItem(at indexPath: IndexPath) -> CGSize
     func configure(cell: UICollectionViewCell, at indexPath: IndexPath)
-    func didLongPressCell(at indexPath: IndexPath)
     
     func setupFollowStats()
     func setupFollowButton()
     func followButtonTapped()
-    func tappedDeleteForCell(indexPath: IndexPath)
-    func trashButtonTapped(index: Int)
+    func trashButtonTapped(index: Int, cellType: String)
     
 }
 
@@ -71,6 +68,7 @@ protocol ProfileInteractorOutputInterface: AnyObject {
     func didUnfollowUser()
     func didDeletePost(at index: Int)
     func didRequestedBefore()
+    func didDeleteBook(at index: Int)
 }
 
 protocol ProfileInteractorInputInterface: AnyObject {
@@ -87,4 +85,5 @@ protocol ProfileInteractorInputInterface: AnyObject {
     func unfollowUser(currentUserId: String, userId: String)
     func deletePost(forUserId userId: String, postId: String, index: Int)
     func checkDidRequestedBefore(senderId:String,receiverId:String,email: String,requestedBook:String)
+    func deleteBook(userId: String, bookId: String, index: Int)
 }

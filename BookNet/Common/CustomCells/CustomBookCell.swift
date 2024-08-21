@@ -14,11 +14,16 @@ protocol CustomBookCellDelegate: AnyObject {
     func requestButtonTapped(senderId: String, receiverId: String, email:String,requestedBook:String)
 }
 
+protocol CustomBookCellTrashDelegate: AnyObject{
+    func trashButtonTapped(in cell: CustomBookCell)
+}
+
 class CustomBookCell: UICollectionViewCell {
     
     static let identifier = "bookCell"
     
     weak var delegate: CustomBookCellDelegate?
+    weak var trashDelegate: CustomBookCellTrashDelegate?
     
     let bookImageView: CustomImageView = {
         let iv = CustomImageView()
@@ -54,6 +59,15 @@ class CustomBookCell: UICollectionViewCell {
         return button
     }()
     
+    let trashButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "trash"), for: .normal)
+        button.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
+        button.tintColor = .black
+        button.isHidden = true
+        return button
+    }()
+    
     var userId:String?
     
 
@@ -69,10 +83,12 @@ class CustomBookCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func trashButtonTapped(){
+        self.trashDelegate?.trashButtonTapped(in: self)
+    }
+    
     func setViews(){
         
-        bookLabel.text = "TempTempTempTempTempTempTempTempTempTempTemp"
-        authorLabel.text = "Temp"
         
         layer.cornerRadius = 10
         clipsToBounds = true
@@ -83,6 +99,7 @@ class CustomBookCell: UICollectionViewCell {
         containerView.addSubview(bookLabel)
         containerView.addSubview(authorLabel)
         containerView.addSubview(requestButton)
+        containerView.addSubview(trashButton)
         
         bookImageView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: nil, paddingTop: 10, paddingLeft: 30, paddingBottom: 10, paddingRight: 0, width: 80, height: 110)
         
@@ -92,6 +109,9 @@ class CustomBookCell: UICollectionViewCell {
         
         requestButton.anchor(top: nil, left: nil, bottom: nil, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 0, height: 35)
         requestButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        
+        trashButton.anchor(top: nil, left: nil, bottom: nil, right: requestButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        trashButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         
         addSubview(containerView)
         containerView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)

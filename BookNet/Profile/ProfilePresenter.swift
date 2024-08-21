@@ -157,35 +157,20 @@ extension ProfilePresenter: ProfilePresenterInterface {
             
             if user?.uid != Auth.auth().currentUser?.uid {
                 cell.requestButton.isHidden = false
+            }else{
+                cell.trashButton.isHidden = false
             }
         }
     }
     
-    func didLongPressCell(at indexPath: IndexPath) {
-        view.showContextMenu(for: indexPath)
-    }
-    
-    func tappedDeleteForCell(indexPath: IndexPath) {
-        guard let tabButtonTitle = selectedButton?.titleLabel?.text else{return}
-        
-        if tabButtonTitle == Constants.TabButtons.posts{
-            if Auth.auth().currentUser?.uid == self.user?.uid{
-                if let uid = self.uid ?? self.user?.uid, posts[indexPath.item].postId != ""{
-                    self.posts.remove(at: indexPath.item)
-                    interactor.deletePost(forUserId: uid, postId: posts[indexPath.item].postId,index: indexPath.item)
-                    
-                }
-
-            }
-        }else if tabButtonTitle == Constants.TabButtons.library{
-            
-        }
-    }
-    
-    func trashButtonTapped(index: Int) {
-        //posts.remove(at: index)
+    func trashButtonTapped(index: Int, cellType: String) {
         guard let uid = Auth.auth().currentUser?.uid else{return}
-        interactor.deletePost(forUserId: uid, postId: posts[index].postId,index: index)
+        if cellType == Constants.TabButtons.posts{
+            interactor.deletePost(forUserId: uid, postId: posts[index].postId,index: index)
+        }else if cellType == Constants.TabButtons.library{
+            interactor.deleteBook(userId: uid, bookId: books[index].id, index: index)
+        }
+
     }
     
 }
@@ -276,8 +261,11 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
         view.showAlert(message: "Bu kullanıcıdan daha önce kitap isteğinde bulundunuz.")
     }
     
-    
-    
+    func didDeleteBook(at index: Int) {
+        books.remove(at: index)
+        view.reloadCollectionView()
+        view.showAlert(message: "Kitap başarıyla silindi!")
+    }
     
 }
 

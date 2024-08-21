@@ -140,7 +140,6 @@ final class ProfileViewController: UIViewController {
         
         setViews()
         setupCollectionView()
-        setupLongPressGesture()
 
     }
     
@@ -252,23 +251,6 @@ final class ProfileViewController: UIViewController {
         present(picker,animated: true)
     }
     
-    private func setupLongPressGesture() {
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-        self.collectionView.addGestureRecognizer(longPressGesture)
-    }
-    
-    @objc private func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
-        let point = gesture.location(in: self.collectionView)
-        
-        if let indexPath = self.collectionView.indexPathForItem(at: point) {
-            if gesture.state == .began {
-                let cell = self.collectionView.cellForItem(at: indexPath)
-                selectedCell = cell
-                presenter.didLongPressCell(at: indexPath)
-            }
-        }
-    }
-    
 
 }
 
@@ -333,6 +315,7 @@ extension ProfileViewController: ProfileViewInterface {
         
         presenter.setupFollowStats()
         presenter.setupFollowButton()
+        presenter.tappedTabButtons(postsButton) //List posts at first
     }
     
     
@@ -354,25 +337,6 @@ extension ProfileViewController: ProfileViewInterface {
         ac.addAction(UIAlertAction(title: "Tamam", style: .default))
         self.present(ac, animated: true)
     }
-    
-    func showContextMenu(for indexPath: IndexPath) {
-        
-        if let cell = collectionView.cellForItem(at: indexPath) as? CustomPostCell {
-            
-            let interaction = UIContextMenuInteraction(delegate: self)
-            cell.addInteraction(interaction)
-            self.indexPath = indexPath
-
-        }
-        else if let cell = collectionView.cellForItem(at: indexPath) as? CustomBookCell{
-            
-            let interaction = UIContextMenuInteraction(delegate: self)
-            cell.addInteraction(interaction)
-            self.indexPath = indexPath
-            
-        }
-    }
-    
     
 }
 
@@ -396,6 +360,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! CustomBookCell
+            cell.trashDelegate = self
             presenter.configure(cell: cell, at: indexPath)
             return cell
         }
@@ -436,44 +401,32 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
 }
 
-extension ProfileViewController: UIContextMenuInteractionDelegate {
-    
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
 
-        let menu = UIMenu(title: "", children: [
-            UIAction(title: "Sil", image: UIImage(systemName: "trash.fill")) { action in
-                if let indexPath = self.indexPath{
-                    self.presenter.tappedDeleteForCell(indexPath: indexPath)
-                }
+extension ProfileViewController: CustomPostCellTrashDelegate{
+    
+    func trashButtonTapped(in cell: CustomPostCell) {
+        let ac = UIAlertController(title: nil, message: "Gönderiyi silmek istiyor musunuz?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Tamam", style: .default,handler: {_ in 
+            if let indexPath = self.collectionView.indexPath(for: cell) {
+                self.presenter.trashButtonTapped(index: indexPath.item,cellType: Constants.TabButtons.posts)
             }
-//            UIAction(title: "Menu Item 2", image: UIImage(systemName: "heart.fill")) { action in
-//                self.handleMenuItem2()
-//            }
-        ])
-
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-            return menu
-        }
-        
-    }
-    
-    
-    private func handleMenuItem1() {
-        print("Menu Item 1 selected")
-    }
-
-    private func handleMenuItem2() {
-        print("Menu Item 2 selected")
+        }))
+        ac.addAction(UIAlertAction(title: "İptal", style: .cancel))
+        self.present(ac,animated: true)
     }
 }
 
-extension ProfileViewController: CustomPostCellTrashDelegate{
-    func trashButtonTapped(in cell: CustomPostCell) {
-        if let indexPath = collectionView.indexPath(for: cell) {
-            presenter.trashButtonTapped(index: indexPath.item)
-        }
+extension ProfileViewController: CustomBookCellTrashDelegate{
+    func trashButtonTapped(in cell: CustomBookCell) {
+        let ac = UIAlertController(title: nil, message: "Kitabı silmek istiyor musunuz?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Tamam", style: .default,handler: {_ in
+            if let indexPath = self.collectionView.indexPath(for: cell) {
+                self.presenter.trashButtonTapped(index: indexPath.item,cellType: Constants.TabButtons.library)
+            }
+        }))
+        ac.addAction(UIAlertAction(title: "İptal", style: .cancel))
+        self.present(ac,animated: true)
     }
-    
     
 }
 

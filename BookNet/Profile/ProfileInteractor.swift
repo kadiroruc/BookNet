@@ -197,6 +197,18 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
             }
         }
     }
+    
+    func deleteBook(userId: String, bookId: String, index: Int) {
+        let postRef = Database.database().reference().child("posts").child(userId).child(bookId)
+
+        postRef.removeValue {[weak self] error, _ in
+            if let error = error {
+                self?.presenter?.showMessage(error.localizedDescription)
+            } else {
+                self?.presenter?.didDeleteBook(at: index)
+            }
+        }
+    }
 
     func checkDidRequestedBefore(senderId: String, receiverId: String, email: String, requestedBook: String) {
         
