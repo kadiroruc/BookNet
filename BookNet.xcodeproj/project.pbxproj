@@ -14,7 +14,6 @@
 		E91AFB372C7384C400872A00 /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AFAD22C7384C400872A00 /* AddBookViewController.swift */; };
 		E91AFB382C7384C400872A00 /* AddBookWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AFAD32C7384C400872A00 /* AddBookWireframe.swift */; };
 		E91AFB3B2C7384C400872A00 /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AFAD92C7384C400872A00 /* CustomBookCell.swift */; };
-		E91AFB3C2C7384C400872A00 /* CustomContextMenuInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AFADA2C7384C400872A00 /* CustomContextMenuInteraction.swift */; };
 		E91AFB3D2C7384C400872A00 /* CustomPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AFADB2C7384C400872A00 /* CustomPostCell.swift */; };
 		E91AFB3E2C7384C400872A00 /* CustomRequestsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AFADC2C7384C400872A00 /* CustomRequestsCell.swift */; };
 		E91AFB3F2C7384C400872A00 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AFADD2C7384C400872A00 /* PhotoSelectorCell.swift */; };
@@ -115,7 +114,6 @@
 		E91AFAD22C7384C400872A00 /* AddBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
 		E91AFAD32C7384C400872A00 /* AddBookWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookWireframe.swift; sourceTree = "<group>"; };
 		E91AFAD92C7384C400872A00 /* CustomBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
-		E91AFADA2C7384C400872A00 /* CustomContextMenuInteraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomContextMenuInteraction.swift; sourceTree = "<group>"; };
 		E91AFADB2C7384C400872A00 /* CustomPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPostCell.swift; sourceTree = "<group>"; };
 		E91AFADC2C7384C400872A00 /* CustomRequestsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRequestsCell.swift; sourceTree = "<group>"; };
 		E91AFADD2C7384C400872A00 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
@@ -237,7 +235,6 @@
 			children = (
 				E91AFADB2C7384C400872A00 /* CustomPostCell.swift */,
 				E91AFAD92C7384C400872A00 /* CustomBookCell.swift */,
-				E91AFADA2C7384C400872A00 /* CustomContextMenuInteraction.swift */,
 				E91AFADC2C7384C400872A00 /* CustomRequestsCell.swift */,
 				E91AFADD2C7384C400872A00 /* PhotoSelectorCell.swift */,
 				E91AFADE2C7384C400872A00 /* PhotoSelectorHeader.swift */,
@@ -605,7 +602,6 @@
 				E91AFB6D2C7384C400872A00 /* ShareBookInterfaces.swift in Sources */,
 				E91AFB732C7384C400872A00 /* SignUpPresenter.swift in Sources */,
 				E91AFB772C7384C400872A00 /* SwapInterfaces.swift in Sources */,
-				E91AFB3C2C7384C400872A00 /* CustomContextMenuInteraction.swift in Sources */,
 				E91AFB3B2C7384C400872A00 /* CustomBookCell.swift in Sources */,
 				E91AFB4D2C7384C400872A00 /* PostModel.swift in Sources */,
 				E91AFB682C7384C400872A00 /* SearchInterfaces.swift in Sources */,

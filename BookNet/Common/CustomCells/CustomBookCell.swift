@@ -48,7 +48,7 @@ class CustomBookCell: UICollectionViewCell {
     
     let requestButton: UIButton = {
         let button = UIButton()
-        button.setTitle("İste", for: .normal)
+        button.setTitle("Request", for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 15
         button.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)

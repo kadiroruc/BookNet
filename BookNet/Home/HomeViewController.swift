@@ -49,6 +49,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     @objc func handleRefresh() {
         presenter.handleRefresh()
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) {
+//            self.collectionView.refreshControl?.endRefreshing()
+//        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -85,7 +89,7 @@ extension HomeViewController: HomeViewInterface {
     }
     
     func showMessage(message: String) {
-        showAlert(title: "Hata", message: message)
+        showAlert(title: nil, message: message)
     }
 }
 

@@ -17,7 +17,7 @@ final class SearchViewController: UIViewController,UICollectionViewDataSource, U
 
     lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
-        sb.placeholder = "Kitap ismi girin"
+        sb.placeholder = "Enter a book name"
         sb.barTintColor = .gray
         sb.searchTextField.backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230)
         sb.delegate = self
@@ -40,7 +40,6 @@ final class SearchViewController: UIViewController,UICollectionViewDataSource, U
         super.viewDidLoad()
         
         setupViews()
-
         presenter.viewDidLoad()
     }
 
@@ -51,29 +50,38 @@ final class SearchViewController: UIViewController,UICollectionViewDataSource, U
     }
     
     private func setupViews() {
-         view.addSubview(searchBar)
-         view.addSubview(collectionView)
-
-         searchBar.translatesAutoresizingMaskIntoConstraints = false
-         collectionView.translatesAutoresizingMaskIntoConstraints = false
-         
-         NSLayoutConstraint.activate([
-             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-         ])
+        
+        view.addSubview(searchBar)
+        view.addSubview(collectionView)
+        
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
         
         collectionView.backgroundColor = .white
-
+        
         navigationController?.navigationBar.addSubview(searchBar)
         let navBar = navigationController?.navigationBar
         searchBar.anchor(top: navBar?.topAnchor, left: navBar?.leftAnchor, bottom: navBar?.bottomAnchor, right: navBar?.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
-
-
+        
+        
         collectionView.alwaysBounceVertical = true
-        collectionView.keyboardDismissMode = .onDrag
-     }
+        //collectionView.keyboardDismissMode = .onDrag
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func hideKeyboard(){
+        searchBar.resignFirstResponder()
+    }
 
     // MARK: - UISearchBarDelegate
 

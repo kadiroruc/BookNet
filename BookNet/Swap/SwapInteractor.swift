@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseDatabase
 
 final class SwapInteractor {
     
@@ -79,7 +79,7 @@ extension SwapInteractor: SwapInteractorInterface {
         ref.removeValue {[weak self] error, _ in
             if error != nil {
                 DispatchQueue.main.async {
-                    self?.presenter?.didFail("Kitap isteği reddelirken hata oluştu.")
+                    self?.presenter?.didFail("There was an error rejecting a book request.")
                 }
                 return
             }

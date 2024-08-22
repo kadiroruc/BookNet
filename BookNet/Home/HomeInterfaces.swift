@@ -29,7 +29,7 @@ protocol HomeInteractorInputInterface: AnyObject {
 
 protocol HomeInteractorOutputInterface: AnyObject {
     func didFetchPosts(_ posts: [PostModel])
-    func didFailToFetchPosts(with error: Error)
+    func didFailToFetchPosts(with message: String)
 }
 
 protocol HomeWireframeInterface: AnyObject {

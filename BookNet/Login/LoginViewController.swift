@@ -28,7 +28,7 @@ final class LoginViewController: UIViewController {
     }()
     let signUpLabel: UILabel = {
         let lb = UILabel()
-        lb.text = "Giriş Yap"
+        lb.text = "Login"
         lb.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         lb.font = UIFont.systemFont(ofSize: 44)
         return lb
@@ -80,7 +80,7 @@ final class LoginViewController: UIViewController {
     
     let loginButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Giriş Yap", for: .normal)
+        button.setTitle("Login", for: .normal)
         button.backgroundColor = UIColor.rgb(red: 255, green: 236, blue: 178)
         button.layer.cornerRadius = 22.5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -91,8 +91,8 @@ final class LoginViewController: UIViewController {
     }()
     let dontHaveAccountButton: UIButton={
         let button = UIButton()
-        let firstString = NSAttributedString(string: "Hesabın yok mu?",attributes: [.font:UIFont.systemFont(ofSize: 16),.foregroundColor:UIColor.lightGray])
-        let secondString = NSAttributedString(string: " Kayıt Ol",attributes: [.font:UIFont.boldSystemFont(ofSize: 16),.foregroundColor:UIColor.rgb(red: 251, green: 189, blue: 16)])
+        let firstString = NSAttributedString(string: "Don't have an account yet?",attributes: [.font:UIFont.systemFont(ofSize: 16),.foregroundColor:UIColor.lightGray])
+        let secondString = NSAttributedString(string: " Sign Up",attributes: [.font:UIFont.boldSystemFont(ofSize: 16),.foregroundColor:UIColor.rgb(red: 251, green: 189, blue: 16)])
         let combinedString = NSMutableAttributedString(attributedString: firstString)
         combinedString.append(secondString)
         button.setAttributedTitle(combinedString, for: .normal)
@@ -161,6 +161,10 @@ final class LoginViewController: UIViewController {
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 30, paddingRight: 0, width: 0, height: 50)
         
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        
     }
     
     fileprivate func setupInputFields(){
@@ -183,6 +187,9 @@ final class LoginViewController: UIViewController {
 
     }
 
+    @objc func hideKeyboard(){
+        view.endEditing(true)
+    }
 }
 
 // MARK: - Extensions -
@@ -198,7 +205,7 @@ extension LoginViewController: LoginViewInterface {
     }
 
     func showError(_ message: String) {
-        showAlert(title: "Failed to Login", message: message)
+        showAlert(title: "Failed To Login", message: message)
     }
     
     func updateLoginButton(isEnabled: Bool) {

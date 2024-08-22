@@ -19,7 +19,7 @@ final class ProfileViewController: UIViewController {
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    var currentCellType = "Gönderiler"
+    var currentCellType = "Posts"
     
     var indexPath: IndexPath?
     var selectedCell: UICollectionViewCell?
@@ -31,13 +31,13 @@ final class ProfileViewController: UIViewController {
         roundedView.clipsToBounds = true
         
         let label = UILabel()
-        label.text = "Profilim"
+        label.text = "Profile"
         label.font = UIFont.systemFont(ofSize: 40)
         label.textColor = .white
         
         roundedView.addSubview(label)
         
-        label.anchor(top: roundedView.topAnchor, left: nil, bottom: roundedView.bottomAnchor, right: roundedView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 30, width: 0, height: 0)
+        label.anchor(top: roundedView.topAnchor, left: nil, bottom: roundedView.bottomAnchor, right: roundedView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 25, width: 0, height: 0)
         
         return roundedView
     }()
@@ -51,7 +51,7 @@ final class ProfileViewController: UIViewController {
     
     let followersLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 26)
+        label.font = UIFont.systemFont(ofSize: 22)
         label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         label.numberOfLines = 0
         return label
@@ -59,7 +59,7 @@ final class ProfileViewController: UIViewController {
     
     let followingLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 26)
+        label.font = UIFont.systemFont(ofSize: 22)
         label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         label.numberOfLines = 0
         
@@ -71,6 +71,9 @@ final class ProfileViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.6
+        label.numberOfLines = 2
         return label
     }()
     
@@ -79,7 +82,10 @@ final class ProfileViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         label.textAlignment = .center
-        
+        label.text = "City and Score Soon"
+        label.layer.borderWidth = 1
+        label.layer.borderColor = CGColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+        label.layer.cornerRadius = 10
         return label
     }()
     
@@ -94,7 +100,7 @@ final class ProfileViewController: UIViewController {
     
     let libraryButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Kütüphane", for: .normal)
+        button.setTitle("Library", for: .normal)
         button.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
@@ -103,7 +109,7 @@ final class ProfileViewController: UIViewController {
     }()
     let postsButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Gönderiler", for: .normal)
+        button.setTitle("Posts", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         button.layer.cornerRadius = 20
@@ -113,7 +119,7 @@ final class ProfileViewController: UIViewController {
     }()
     let readingListButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Okuma Listesi", for: .normal)
+        button.setTitle("Reading List", for: .normal)
         button.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
         button.layer.cornerRadius = 20
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
@@ -123,7 +129,7 @@ final class ProfileViewController: UIViewController {
     
     let followButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Takip Et", for: .normal)
+        button.setTitle("Follow", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         button.layer.cornerRadius = 13
@@ -167,17 +173,17 @@ final class ProfileViewController: UIViewController {
         followersLabel.anchor(top: titleLabel.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 90, height: 100)
         
         view.addSubview(followingLabel)
-        followingLabel.anchor(top: titleLabel.bottomAnchor, left: followersLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
+        followingLabel.anchor(top: titleLabel.bottomAnchor, left: followersLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
         
         view.addSubview(followButton)
         followButton.anchor(top: followersLabel.bottomAnchor, left: followersLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: -5, paddingLeft: 10, paddingBottom: 0, paddingRight: 35, width: 0, height: 0)
         
         view.addSubview(usernameLabel)
-        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 20)
+        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 40)
         usernameLabel.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor).isActive = true
         
         view.addSubview(locationLabel)
-        locationLabel.anchor(top: usernameLabel.topAnchor, left: followersLabel.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 90, height: 0)
+        locationLabel.anchor(top: usernameLabel.topAnchor, left: followButton.leftAnchor, bottom: nil, right: followButton.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 22)
         
         view.addSubview(scoreLabel)
         scoreLabel.anchor(top: usernameLabel.topAnchor, left: followingLabel.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 70, height: 0)
@@ -194,11 +200,11 @@ final class ProfileViewController: UIViewController {
     }
     
     func setMenu(){
-        let logOutItem = UIAction(title: "Çıkış Yap") { action in
+        let logOutItem = UIAction(title: "Log Out") { action in
             self.tappedLogOutButton()
         }
         
-        let profileItem = UIAction(title: "Profil Resmini Değiştir") { action in
+        let profileItem = UIAction(title: "Change Profile Picture") { action in
             self.handleChangeProfile()
         }
         
@@ -334,7 +340,7 @@ extension ProfileViewController: ProfileViewInterface {
     
     func showAlert(message: String) {
         let ac = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Tamam", style: .default))
+        ac.addAction(UIAlertAction(title: "Okay", style: .default))
         self.present(ac, animated: true)
     }
     
@@ -405,26 +411,26 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 extension ProfileViewController: CustomPostCellTrashDelegate{
     
     func trashButtonTapped(in cell: CustomPostCell) {
-        let ac = UIAlertController(title: nil, message: "Gönderiyi silmek istiyor musunuz?", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Tamam", style: .default,handler: {_ in 
+        let ac = UIAlertController(title: nil, message: "Do you want to delete the post?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Okay", style: .default,handler: {_ in
             if let indexPath = self.collectionView.indexPath(for: cell) {
                 self.presenter.trashButtonTapped(index: indexPath.item,cellType: Constants.TabButtons.posts)
             }
         }))
-        ac.addAction(UIAlertAction(title: "İptal", style: .cancel))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         self.present(ac,animated: true)
     }
 }
 
 extension ProfileViewController: CustomBookCellTrashDelegate{
     func trashButtonTapped(in cell: CustomBookCell) {
-        let ac = UIAlertController(title: nil, message: "Kitabı silmek istiyor musunuz?", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Tamam", style: .default,handler: {_ in
+        let ac = UIAlertController(title: nil, message: "Do you want to delete the book?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Okay", style: .default,handler: {_ in
             if let indexPath = self.collectionView.indexPath(for: cell) {
                 self.presenter.trashButtonTapped(index: indexPath.item,cellType: Constants.TabButtons.library)
             }
         }))
-        ac.addAction(UIAlertAction(title: "İptal", style: .cancel))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         self.present(ac,animated: true)
     }
     

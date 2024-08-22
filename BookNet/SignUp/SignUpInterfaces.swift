@@ -19,6 +19,7 @@ protocol SignUpViewInterface: ViewInterface {
     func hideLoading()
     func showError(_ message: String)
     func updateSignUpButton(isEnabled: Bool)
+    func showMessage(_ message: String)
 }
 
 protocol SignUpInteractorInputInterface: InteractorInterface {

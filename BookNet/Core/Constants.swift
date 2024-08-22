@@ -20,9 +20,9 @@ enum Constants {
     }
     
     enum TabButtons{
-        static let library = "Kütüphane"
-        static let posts = "Gönderiler"
-        static let readingList = "Okuma Listesi"
+        static let library = "Library"
+        static let posts = "Posts"
+        static let readingList = "Reading List"
     }
 
 }

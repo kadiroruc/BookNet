@@ -77,8 +77,9 @@ final class HomePresenter: HomePresenterInterface {
 }
 
 extension HomePresenter: HomeInteractorOutputInterface {
-    func didFailToFetchPosts(with error: any Error) {
-        
+    func didFailToFetchPosts(with message: String) {
+        view.endRefreshing()
+        //view.showMessage(message: message)
     }
     
     func didFetchPosts(_ posts: [PostModel]) {

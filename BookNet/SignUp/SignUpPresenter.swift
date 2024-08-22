@@ -48,6 +48,7 @@ extension SignUpPresenter: SignUpPresenterInterface {
 extension SignUpPresenter: SignUpInteractorOutputInterface{
     func signUpDidSucceed(with uid: String) {
         view.hideLoading()
+        view.showMessage("You signed up successfully. You can login now.")
         //wireframe.navigateToProfileScreen(with: uid)
     }
     

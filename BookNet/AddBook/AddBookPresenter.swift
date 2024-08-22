@@ -46,12 +46,12 @@ extension AddBookPresenter: AddBookInteractorOutputInterface{
     func didUploadBook() {
         view.hideLoading()
         view.pop()
-        view.show(title: nil, message: "Kitap başarıyla eklendi.")
+        view.show(title: nil, message: "The book has been successfully added.")
         
     }
     
     func didFailToUploadBook(_ error: String) {
-        view.show(title: "Hata", message: error)
+        view.show(title: "Error", message: error)
         view.enableShareButton()
     }
     

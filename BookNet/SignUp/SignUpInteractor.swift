@@ -31,10 +31,10 @@ extension SignUpInteractor: SignUpInteractorInputInterface {
             
             Database.database().reference().child("users").updateChildValues(values,withCompletionBlock: { err, ref in
                 if let err = error{
-                    print("Failed to save user info into db",err)
+                    
                     return
                 }
-                print("Sucessfully saved user info into db")
+                
 
                 self?.presenter?.signUpDidSucceed(with: uid)
             })

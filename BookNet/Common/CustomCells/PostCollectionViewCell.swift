@@ -73,13 +73,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         button.tintColor = .black
         return button
     }()
-//    let commentButton: UIButton = {
-//        let button = UIButton()
-//        button.setImage(UIImage(systemName: "message"), for: .normal)
-//        button.tintColor = .black
-//        return button
-//    }()
-//
+
   
     override init(frame: CGRect) {
         super.init(frame: frame)

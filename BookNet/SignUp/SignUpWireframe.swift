@@ -30,7 +30,7 @@ final class SignUpWireframe: BaseWireframe<SignUpViewController> {
 extension SignUpWireframe: SignUpWireframeInterface {
     
     func navigateToProfileScreen(with uid: String) {
-        
+        navigationController?.setRootWireframe(TabBarWireframe(),animated: true)
     }
     
     func navigateToLoginScreen() {

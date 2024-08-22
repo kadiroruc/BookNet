@@ -27,7 +27,7 @@ class CustomImageView: UIImageView{
         
         URLSession.shared.dataTask(with: imageUrl) {[weak self] data, response, error in
             if let err = error{
-                print("Failed to catch post image",err)
+                
                 return
             }
             if imageUrl.absoluteString != self?.lastURLUsedtoLoadImage{

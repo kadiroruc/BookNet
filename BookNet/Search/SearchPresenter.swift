@@ -53,7 +53,6 @@ extension SearchPresenter: SearchPresenterInterface {
 
     func didSelectItem(at index: Int) {
         if let userId = filteredBooks[index].userId{
-            //print(userId)
             wireframe.navigateToProfile(with: userId)
         }
         

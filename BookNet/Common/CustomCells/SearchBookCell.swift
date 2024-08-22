@@ -9,15 +9,6 @@ import UIKit
 
 class SearchBookCell: UICollectionViewCell{
     
-    var user: UserModel?{
-        didSet{
-//            usernameLabel.text = user?.username
-//            guard let profileImageUrl = user?.profileImageUrl else {return}
-//            
-//            profileImageView.loadImage(urlString: profileImageUrl)
-        }
-    }
-    
     var book: BookModel?{
         didSet{
             bookNameLabel.text = book?.bookName
@@ -33,12 +24,7 @@ class SearchBookCell: UICollectionViewCell{
         iv.clipsToBounds = true
         return iv
     }()
-//    var usernameLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "Username"
-//        label.font = UIFont.boldSystemFont(ofSize: 14)
-//        return label
-//    }()
+    
     var bookNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Username"

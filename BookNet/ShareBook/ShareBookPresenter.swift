@@ -46,12 +46,12 @@ extension ShareBookPresenter: ShareBookInteractorOutputInterface{
     func didUploadPost() {
         view.hideLoading()
         view.pop()
-        view.show(title: nil, message: "Kitap başarıyla paylaşıldı.")
+        view.show(title: nil, message: "The book has been successfully shared.")
         
     }
     
     func didFailToUploadPost(_ error: String) {
-        view.show(title: "Hata", message: error)
+        view.show(title: "Error", message: error)
         view.enableShareButton()
     }
     

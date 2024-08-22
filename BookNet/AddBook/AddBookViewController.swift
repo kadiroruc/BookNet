@@ -26,7 +26,7 @@ final class AddBookViewController: UIViewController {
         tf.backgroundColor = .white
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.layer.cornerRadius = 10
-        tf.placeholder = "Kitap İsmi"
+        tf.placeholder = "Book Name"
         tf.textAlignment = .center
         return tf
     }()
@@ -35,7 +35,7 @@ final class AddBookViewController: UIViewController {
         tf.backgroundColor = .white
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.layer.cornerRadius = 10
-        tf.placeholder = "Yazar İsmi"
+        tf.placeholder = "Author Name"
         tf.textAlignment = .center
         return tf
     }()
@@ -43,7 +43,7 @@ final class AddBookViewController: UIViewController {
        
         let button = UIButton()
         button.backgroundColor = .white
-        button.setTitle("Kitabı Ekle", for: .normal)
+        button.setTitle("Add Book", for: .normal)
         button.setTitleColor(UIColor.rgb(red: 251, green: 186, blue: 18), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
         button.layer.cornerRadius = 20
@@ -59,7 +59,7 @@ final class AddBookViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
         
         view.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
-        title = "Takas İçin Kitap Ekle"
+        title = "Add Book For Swap"
         
         setupImageAndTextViews()
         
@@ -90,6 +90,9 @@ final class AddBookViewController: UIViewController {
         shareButton.anchor(top: containerView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 50)
         shareButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        
     }
     
     @objc func handleAdd(){
@@ -98,11 +101,15 @@ final class AddBookViewController: UIViewController {
             if let authorName = authorNameTextField.text, authorName.count > 0{
                 presenter.handleAdd(bookName: bookName, authorName: authorName)
             }else{
-                self.show(title: "Hata", message: "Yazar ismi girin")
+                self.show(title: "Error", message: "Enter an author name")
             }
         }else{
-            self.show(title: "Hata", message: "Kitap ismi girin")
+            self.show(title: "Error", message: "Enter a book name")
         }
+    }
+    
+    @objc func hideKeyboard(){
+        view.endEditing(true)
     }
 
 }

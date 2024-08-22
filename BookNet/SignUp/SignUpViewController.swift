@@ -28,7 +28,7 @@ final class SignUpViewController: UIViewController {
     }()
     let signUpLabel: UILabel = {
         let lb = UILabel()
-        lb.text = "Kayıt Ol"
+        lb.text = "Sign Up"
         lb.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         lb.font = UIFont.systemFont(ofSize: 44)
         return lb
@@ -39,7 +39,7 @@ final class SignUpViewController: UIViewController {
     
         let view = UIView()
         let tf = UITextField()
-        tf.placeholder = "Ad Soyad"
+        tf.placeholder = "Name"
         tf.font = UIFont.systemFont(ofSize: 16)
         tf.autocapitalizationType = .none
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
@@ -102,7 +102,7 @@ final class SignUpViewController: UIViewController {
 
     let signUpButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Kayıt Ol", for: .normal)
+        button.setTitle("Sign Up", for: .normal)
         button.backgroundColor = UIColor.rgb(red: 255, green: 236, blue: 178)
         button.layer.cornerRadius = 22.5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -113,8 +113,8 @@ final class SignUpViewController: UIViewController {
     }()
     let alreadyHaveAccountButton: UIButton={
         let button = UIButton()
-        let firstString = NSAttributedString(string: "Hesabın var mı?",attributes: [.font:UIFont.systemFont(ofSize: 16),.foregroundColor:UIColor.lightGray])
-        let secondString = NSAttributedString(string: " Giriş Yap",attributes: [.font:UIFont.boldSystemFont(ofSize: 16),.foregroundColor:UIColor.rgb(red: 251, green: 189, blue: 16)])
+        let firstString = NSAttributedString(string: "Do you have an account?",attributes: [.font:UIFont.systemFont(ofSize: 16),.foregroundColor:UIColor.lightGray])
+        let secondString = NSAttributedString(string: " Login",attributes: [.font:UIFont.boldSystemFont(ofSize: 16),.foregroundColor:UIColor.rgb(red: 251, green: 189, blue: 16)])
         let combinedString = NSMutableAttributedString(attributedString: firstString)
         combinedString.append(secondString)
         button.setAttributedTitle(combinedString, for: .normal)
@@ -182,6 +182,10 @@ final class SignUpViewController: UIViewController {
         signUpButton.anchor(top: stackView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 160, height: 45)
         
         signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
 
     }
     
@@ -210,6 +214,10 @@ final class SignUpViewController: UIViewController {
         presenter.showLogin()
     }
     
+    @objc func hideKeyboard(){
+        view.endEditing(true)
+    }
+    
 }
 
 // MARK: - Extensions -
@@ -224,7 +232,20 @@ extension SignUpViewController: SignUpViewInterface {
     }
 
     func showError(_ message: String) {
-        showAlert(title: "Failed to Sign Up", message: message)
+        showAlert(title: "Failed To Sign Up", message: message)
+    }
+    
+    func showMessage(_ message: String) {
+        showAlert(title: "Success", message: message)
+        signUpButton.isEnabled = false
+        signUpButton.backgroundColor = .systemGray6
+        let tf1 = usernameView.subviews[1] as! UITextField
+        tf1.text = ""
+        let tf2 = emailView.subviews[1] as! UITextField
+        tf2.text = ""
+        let tf3 = passwordView.subviews[1] as! UITextField
+        tf3.text = ""
+        
     }
     
     func updateSignUpButton(isEnabled: Bool) {

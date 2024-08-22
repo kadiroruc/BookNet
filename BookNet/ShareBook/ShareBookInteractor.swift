@@ -41,7 +41,6 @@ extension ShareBookInteractor: ShareBookInteractorInterface {
                     
                     let databaseRef = Database.database().reference().child("posts").child(uid)
                     let postRef = databaseRef.childByAutoId()
-                    print(postRef.key)
                     let values = ["postId":postRef.key,
                                   "bookImageUrl":imageUrl.absoluteString,
                                   "bookName":bookName,

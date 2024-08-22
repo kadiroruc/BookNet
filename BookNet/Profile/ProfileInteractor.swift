@@ -233,7 +233,6 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
             }
             
             if !requested{
-                print("asdas")
                 self?.sendRequest(senderId: senderId, receiverId: receiverId, email: email, requestedBook: requestedBook)
             }
             
@@ -254,10 +253,10 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
         
         ref.setValue(value) {[weak self] error, ref in
             if error != nil{
-                self?.presenter?.showMessage("İstek gönderilirken hata oluştu!")
+                self?.presenter?.showMessage("Error sending request!")
                 return
             }
-            self?.presenter?.showMessage("İstek başarıyla gönderildi")
+            self?.presenter?.showMessage("Request sent successfully.")
         }
     }
     

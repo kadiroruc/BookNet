@@ -52,7 +52,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
          view.showLoading()
          guard let currentUserId = Auth.auth().currentUser?.uid, let userId = user?.uid else { return }
          
-         if view.followButtonTitle == "Takibi Bırak" {
+         if view.followButtonTitle == "Unfollow" {
              interactor.unfollowUser(currentUserId: currentUserId, userId: userId)
          } else {
              interactor.followUser(currentUserId: currentUserId, userId: userId)
@@ -83,7 +83,6 @@ extension ProfilePresenter: ProfilePresenterInterface {
     }
     
     func tappedTabButtons(_ sender: UIButton) {
-        
         if sender == selectedButton {
             return
         }
@@ -93,7 +92,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
         view.updateTabButtonsAppearance(sender: sender)
         
         if sender.titleLabel?.text == Constants.TabButtons.library {
-            
+
             interactor.fetchUserBooks(for: self.user?.uid)
             
             currentCellType = Constants.TabButtons.library
@@ -108,6 +107,8 @@ extension ProfilePresenter: ProfilePresenterInterface {
             currentCellType = Constants.TabButtons.posts
             
             view.updateTabCellType(with: CustomPostCell.self, reuseIdentifier: CustomPostCell.identifier)
+        }else if sender.titleLabel?.text == Constants.TabButtons.readingList{
+            view.showAlert(message: "Preparing...")
         }
     }
     
@@ -178,7 +179,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
 extension ProfilePresenter: ProfileInteractorOutputInterface {
     
     func didCheckIfFollowing(isFollowing: Bool) {
-        let title = isFollowing ? "Takibi Bırak" : "Takip Et"
+        let title = isFollowing ? "Unfollow" : "Follow"
         
         view.updateFollowButtonTitle(with: title)
     }
@@ -189,7 +190,7 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
             interactor.fetchFollowerCount(forUserId: uid)
         }
         
-        view.updateFollowButtonTitle(with: "Takibi Bırak")
+        view.updateFollowButtonTitle(with: "Unfollow")
     }
 
     func didUnfollowUser() {
@@ -197,7 +198,7 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
         if let uid = user?.uid{
             interactor.fetchFollowerCount(forUserId: uid)
         }
-        view.updateFollowButtonTitle(with: "Takip Et")
+        view.updateFollowButtonTitle(with: "Follow")
     }
     
     func didFetchUserBooks(_ books: [BookModel]) {
@@ -234,8 +235,8 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
     }
     
     func didFetchFollowingCount(_ count: Int) {
-        let firstString1 = NSAttributedString(string: "Takip", attributes: [.font: UIFont.boldSystemFont(ofSize: 26)])
-        let secondString1 = NSAttributedString(string: "\n     \(count)", attributes: [.font: UIFont.systemFont(ofSize: 24)])
+        let firstString1 = NSAttributedString(string: "Follow", attributes: [.font: UIFont.boldSystemFont(ofSize: 20)])
+        let secondString1 = NSAttributedString(string: "\n      \(count)", attributes: [.font: UIFont.systemFont(ofSize: 20)])
         let combinedString1 = NSMutableAttributedString(attributedString: firstString1)
         combinedString1.append(secondString1)
         
@@ -243,8 +244,8 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
     }
 
     func didFetchFollowerCount(_ count: Int) {
-        let firstString1 = NSAttributedString(string: "Takipçi", attributes: [.font: UIFont.boldSystemFont(ofSize: 26)])
-        let secondString1 = NSAttributedString(string: "\n       \(count)", attributes: [.font: UIFont.systemFont(ofSize: 24)])
+        let firstString1 = NSAttributedString(string: "Followers", attributes: [.font: UIFont.boldSystemFont(ofSize: 20)])
+        let secondString1 = NSAttributedString(string: "\n         \(count)", attributes: [.font: UIFont.systemFont(ofSize: 20)])
         let combinedString1 = NSMutableAttributedString(attributedString: firstString1)
         combinedString1.append(secondString1)
         
@@ -254,17 +255,17 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
     func didDeletePost(at index: Int) {
         posts.remove(at: index)
         view.reloadCollectionView()
-        view.showAlert(message: "Gönderi başarı ile silindi!")
+        view.showAlert(message: "The post successfully deleted")
     }
     
     func didRequestedBefore() {
-        view.showAlert(message: "Bu kullanıcıdan daha önce kitap isteğinde bulundunuz.")
+        view.showAlert(message: "You have already requested book from this user.")
     }
     
     func didDeleteBook(at index: Int) {
         books.remove(at: index)
         view.reloadCollectionView()
-        view.showAlert(message: "Kitap başarıyla silindi!")
+        view.showAlert(message: "The book successfully deleted")
     }
     
 }

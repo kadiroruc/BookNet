@@ -58,9 +58,9 @@ final class PhotoSelectorViewController: UIViewController, UICollectionViewDeleg
     
     fileprivate func setupNavigationButtons() {
         navigationController?.navigationBar.tintColor = UIColor.rgb(red: 251, green: 186, blue: 18)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "İptal", style: .plain, target: self, action: #selector(handleCancel))
-        let addBarButton = UIBarButtonItem(title: "Ekle", style: .plain, target: self, action: #selector(handleAdd))
-        let shareButton = UIBarButtonItem(title: "Paylaş", style: .plain, target: self, action: #selector(handleShare))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        let addBarButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAdd))
+        let shareButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(handleShare))
         navigationItem.rightBarButtonItems = [addBarButton, shareButton]
     }
     

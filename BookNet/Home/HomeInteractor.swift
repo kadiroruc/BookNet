@@ -76,6 +76,9 @@ extension HomeInteractor: HomeInteractorInputInterface{
                 self?.presenter?.didFetchPosts(self?.posts ?? [])
             }
         }
+        if self.posts.count == 0{
+            self.presenter?.didFailToFetchPosts(with: "No Posts Found")
+        }
     }
     
     func addlikeToPost(userIdOfPost: String, postId: String, userIdOfLike: String, index: Int) {

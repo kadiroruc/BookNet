@@ -66,7 +66,7 @@ extension SwapPresenter: SwapPresenterInterface {
                     if status == "accepted" {
                         cell.acceptButton.isEnabled = false
                         //cell.subviews.first?.backgroundColor = .green
-                        cell.usernameLabel.text = "\(cell.usernameLabel.text!)  -> Onayladın"
+                        cell.usernameLabel.text = "\(cell.usernameLabel.text!)  -> You accepted"
                         cell.usernameLabel.textColor = UIColor.rgb(red: 0, green: 160, blue: 0)
                     }
                     
@@ -111,21 +111,23 @@ extension SwapPresenter: SwapInteractorOutputInterface {
     func didFetchRequests(_ requests: [RequestModel]) {
         self.requests = requests
         view.reloadData()
+        view.hideLoading()
     }
     
     func didFail(_ error: String) {
         view.hideLoading()
         view.showMessage(error)
+        view.hideLoading()
     }
     
     func didAcceptRequest() {
         view.hideLoading()
-        view.showMessage("Kitap isteği onaylandı. Kullanıcının kitaplarından birini seçebilirsiniz. ")
+        view.showMessage("Book request approved. You can select one of the user's books. ")
     }
     
     func didCancelRequest(index: Int) {
         view.hideLoading()
-        view.showMessage("Kitap isteği başarıyla silindi")
+        view.showMessage("Book request successfully deleted")
         requests.remove(at: index)
         view.reloadData()
     }
