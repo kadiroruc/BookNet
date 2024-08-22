@@ -9,7 +9,7 @@ import UIKit
 
 protocol SignUpWireframeInterface: WireframeInterface {
     
-    func navigateToProfileScreen(with uid: String)
+    func navigateToProfileScreen()
     func navigateToLoginScreen()
 }
 

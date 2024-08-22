@@ -32,7 +32,19 @@ extension LoginWireframe: LoginWireframeInterface {
     
     
     func navigateToProfileScreen() {
-        navigationController?.setRootWireframe(TabBarWireframe(),animated: true)
+        
+        let initialViewController = UINavigationController()
+        initialViewController.setRootWireframe(TabBarWireframe())
+        
+        
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = initialViewController // Veya sadece newRootViewController
+            window.makeKeyAndVisible()
+            
+            
+        }
+        
+
     }
     
     func navigateToSignUpScreen() {

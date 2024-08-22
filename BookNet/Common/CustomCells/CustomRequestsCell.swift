@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftUI
+//import SwiftUI
 
 protocol CustomRequestsCellDelegate: AnyObject{
     func tappedSeeProfileButton(at indexPath: IndexPath)
@@ -33,6 +33,8 @@ class CustomRequestsCell: UICollectionViewCell {
     lazy var usernameLabel: UILabel = {
         let lb = UILabel()
         lb.textColor = .black
+        lb.numberOfLines = 3
+        lb.font = UIFont.systemFont(ofSize: 16)
         return lb
     }()
     
@@ -98,7 +100,7 @@ class CustomRequestsCell: UICollectionViewCell {
         
         profileImageView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 15, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
         
-        usernameLabel.anchor(top: nil, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 30, paddingBottom: 0, paddingRight: 0, width: 0, height:0 )
+        usernameLabel.anchor(top: nil, left: profileImageView.rightAnchor, bottom: nil, right: seeProfileButton.leftAnchor, paddingTop: 0, paddingLeft: 30, paddingBottom: 0, paddingRight: 3, width: 0, height:60 )
         usernameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
         
         

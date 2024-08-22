@@ -29,8 +29,18 @@ final class SignUpWireframe: BaseWireframe<SignUpViewController> {
 
 extension SignUpWireframe: SignUpWireframeInterface {
     
-    func navigateToProfileScreen(with uid: String) {
-        navigationController?.setRootWireframe(TabBarWireframe(),animated: true)
+    func navigateToProfileScreen() {
+        //navigationController?.setRootWireframe(TabBarWireframe(),animated: true)
+        
+        let initialViewController = UINavigationController()
+        initialViewController.setRootWireframe(TabBarWireframe())
+        
+        
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = initialViewController // Veya sadece newRootViewController
+            window.makeKeyAndVisible()
+            
+        }
     }
     
     func navigateToLoginScreen() {

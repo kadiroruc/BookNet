@@ -217,6 +217,7 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
         
         ref.observeSingleEvent(of: .value) {[weak self] snapshot,arg   in
             guard let dictionaries = snapshot.value as? [String:Any] else{
+                self?.sendRequest(senderId: senderId, receiverId: receiverId, email: email, requestedBook: requestedBook)
                 return
             }
             
@@ -227,13 +228,15 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
                 
                 if requestDictionaries["senderId"] as! String == senderId, requestDictionaries["receiverId"] as! String == receiverId, requestDictionaries["status"] as! String == "pending"{
                     requested = true
-                    self?.presenter?.didRequestedBefore()
+                    
                     
                 }
             }
-            
+            print(requested)
             if !requested{
                 self?.sendRequest(senderId: senderId, receiverId: receiverId, email: email, requestedBook: requestedBook)
+            }else{
+                self?.presenter?.didRequestedBefore()
             }
             
         }
