@@ -1,0 +1,17 @@
+# Xcode dosyaları
+.DS_Store
+/build/
+DerivedData/
+*.xcworkspace
+*.xcuserdata
+*.xcuserdatad
+
+# CocoaPods
+/Pods/
+
+# Firebase dosyaları
+GoogleService-Info.plist
+firebase-debug.log
+
+# Çevre Değişkenleri
+.env
