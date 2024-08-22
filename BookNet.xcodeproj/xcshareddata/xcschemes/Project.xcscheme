@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E9B949F02BD437D00025D344"
-               BuildableName = "Project.app"
-               BlueprintName = "Project"
+               BuildableName = "BookNet.app"
+               BlueprintName = "BookNet"
                ReferencedContainer = "container:BookNet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -58,8 +58,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E9B949F02BD437D00025D344"
-            BuildableName = "Project.app"
-            BlueprintName = "Project"
+            BuildableName = "BookNet.app"
+            BlueprintName = "BookNet"
             ReferencedContainer = "container:BookNet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -82,8 +82,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E9B949F02BD437D00025D344"
-            BuildableName = "Project.app"
-            BlueprintName = "Project"
+            BuildableName = "BookNet.app"
+            BlueprintName = "BookNet"
             ReferencedContainer = "container:BookNet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

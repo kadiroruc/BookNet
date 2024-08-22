@@ -39,6 +39,7 @@ extension PhotoSelectorWireframe: PhotoSelectorWireframeInterface {
         let shareBookWireFrame = ShareBookWireframe(image: image)
         viewController.tabBarController?.tabBar.isHidden = true
         navigationController?.pushWireframe(shareBookWireFrame)
+        
     }
     
 }

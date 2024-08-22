@@ -68,6 +68,7 @@ final class ShareBookViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
         
         view.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        
         title = "Share Book"
         
         setupImageAndTextViews()

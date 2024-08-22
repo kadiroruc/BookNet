@@ -184,7 +184,7 @@
 		E91AFB2D2C7384C400872A00 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		E91AFB2E2C7384C400872A00 /* VCPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCPreview.swift; sourceTree = "<group>"; };
 		E91AFB312C7384C400872A00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E99E5FBD2C73881E00EF2AF2 /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E99E5FBD2C73881E00EF2AF2 /* BookNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99E5FC22C738CA800EF2AF2 /* BookNetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookNetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99E5FC42C738CA800EF2AF2 /* BookNetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookNetTests.swift; sourceTree = "<group>"; };
 		E99E5FCD2C73981F00EF2AF2 /* HomeInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractorTests.swift; sourceTree = "<group>"; };
@@ -453,7 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				E91AFB332C7384C400872A00 /* BookNet */,
-				E99E5FBD2C73881E00EF2AF2 /* Project.app */,
+				E99E5FBD2C73881E00EF2AF2 /* BookNet.app */,
 				E99E5FC22C738CA800EF2AF2 /* BookNetTests.xctest */,
 				E99E5FC32C738CA800EF2AF2 /* BookNetTests */,
 			);
@@ -480,9 +480,9 @@
 			productReference = E99E5FC22C738CA800EF2AF2 /* BookNetTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E9B949F02BD437D00025D344 /* Project */ = {
+		E9B949F02BD437D00025D344 /* BookNet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E9B94A052BD437D20025D344 /* Build configuration list for PBXNativeTarget "Project" */;
+			buildConfigurationList = E9B94A052BD437D20025D344 /* Build configuration list for PBXNativeTarget "BookNet" */;
 			buildPhases = (
 				E9B949ED2BD437D00025D344 /* Sources */,
 				E9B949EE2BD437D00025D344 /* Frameworks */,
@@ -492,7 +492,7 @@
 			);
 			dependencies = (
 			);
-			name = Project;
+			name = BookNet;
 			packageProductDependencies = (
 				E9D9FA8C2BD5469200BAADD5 /* FirebaseAuth */,
 				E9D9FA8E2BD5469200BAADD5 /* FirebaseAuthCombine-Community */,
@@ -503,7 +503,7 @@
 				E915CE192C622AA600490DA6 /* PKHUD */,
 			);
 			productName = Project;
-			productReference = E99E5FBD2C73881E00EF2AF2 /* Project.app */;
+			productReference = E99E5FBD2C73881E00EF2AF2 /* BookNet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -542,7 +542,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E9B949F02BD437D00025D344 /* Project */,
+				E9B949F02BD437D00025D344 /* BookNet */,
 				E99E5FC12C738CA800EF2AF2 /* BookNetTests */,
 			);
 		};
@@ -666,7 +666,7 @@
 /* Begin PBXTargetDependency section */
 		E99E5FC72C738CA800EF2AF2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E9B949F02BD437D00025D344 /* Project */;
+			target = E9B949F02BD437D00025D344 /* BookNet */;
 			targetProxy = E99E5FC62C738CA800EF2AF2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -686,7 +686,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Project";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BookNet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BookNet";
 			};
 			name = Debug;
 		};
@@ -704,7 +704,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Project";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BookNet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BookNet";
 			};
 			name = Release;
 		};
@@ -837,10 +837,11 @@
 				DEVELOPMENT_TEAM = 9W5Z8G2RNJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookNet/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to access your photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -864,10 +865,11 @@
 				DEVELOPMENT_TEAM = 9W5Z8G2RNJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookNet/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to access your photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -902,7 +904,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E9B94A052BD437D20025D344 /* Build configuration list for PBXNativeTarget "Project" */ = {
+		E9B94A052BD437D20025D344 /* Build configuration list for PBXNativeTarget "BookNet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E9B94A062BD437D20025D344 /* Debug */,
