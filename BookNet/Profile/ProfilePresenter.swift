@@ -40,7 +40,7 @@ final class ProfilePresenter {
 extension ProfilePresenter: ProfilePresenterInterface {
     
     func setupFollowButton() {
-         guard let currentUserId = Auth.auth().currentUser?.uid, let userId = user?.uid else { return }
+         guard let currentUserId = Auth.auth().currentUser?.uid, let userId = uid else { return }
         
          if currentUserId != userId {
              view.showFollowButton()
@@ -146,6 +146,20 @@ extension ProfilePresenter: ProfilePresenterInterface {
             cell.dateLabel.text = post.creationDate.timeAgoDisplay()
             cell.postDescriptionLabel.text = post.autherName
             cell.trashButton.isHidden = false
+            cell.likeButton.isEnabled = false
+            
+            if let likes = post.likes{
+                cell.likeCountLabel.text = "\(likes.count)"
+                
+                if let uid = Auth.auth().currentUser?.uid{
+                    if likes.contains(uid){
+                        cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                    }else{
+                        cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                    }
+                }
+
+            }
             
         } else if currentCellType == Constants.TabButtons.library, let cell = cell as? CustomBookCell {
             
@@ -172,6 +186,11 @@ extension ProfilePresenter: ProfilePresenterInterface {
             interactor.deleteBook(userId: uid, bookId: books[index].id, index: index)
         }
 
+    }
+    
+    func handleChangeLocation(location: String){
+        guard let uid = uid else{return}
+        self.interactor.changeLocation(for: uid, newLocation: location)
     }
     
 }
@@ -235,21 +254,11 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
     }
     
     func didFetchFollowingCount(_ count: Int) {
-        let firstString1 = NSAttributedString(string: "Follow", attributes: [.font: UIFont.boldSystemFont(ofSize: 20)])
-        let secondString1 = NSAttributedString(string: "\n      \(count)", attributes: [.font: UIFont.systemFont(ofSize: 20)])
-        let combinedString1 = NSMutableAttributedString(attributedString: firstString1)
-        combinedString1.append(secondString1)
-        
-        view.updateFollowingLabel(with: combinedString1)
+        view.updateFollowingLabel(with: "\(count)")
     }
 
     func didFetchFollowerCount(_ count: Int) {
-        let firstString1 = NSAttributedString(string: "Followers", attributes: [.font: UIFont.boldSystemFont(ofSize: 20)])
-        let secondString1 = NSAttributedString(string: "\n         \(count)", attributes: [.font: UIFont.systemFont(ofSize: 20)])
-        let combinedString1 = NSMutableAttributedString(attributedString: firstString1)
-        combinedString1.append(secondString1)
-        
-        view.updateFollowersLabel(with: combinedString1)
+        view.updateFollowersLabel(with: "\(count)")
     }
     
     func didDeletePost(at index: Int) {
@@ -266,6 +275,10 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
         books.remove(at: index)
         view.reloadCollectionView()
         view.showAlert(message: "The book successfully deleted")
+    }
+    
+    func didChangeLocation(_ newLocation: String) {
+        view.updateLocation(newLocation)
     }
     
 }

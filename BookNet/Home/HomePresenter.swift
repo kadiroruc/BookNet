@@ -66,6 +66,7 @@ final class HomePresenter: HomePresenterInterface {
     func didSelectPost(at index: Int) {
         let userId = posts[index].user.uid
         wireframe.navigateToProfile(with: userId)
+        
     }
     
     func likeButtonTapped(for index: Int) {

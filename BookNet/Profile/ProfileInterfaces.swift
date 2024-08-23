@@ -24,10 +24,11 @@ protocol ProfileViewInterface: ViewInterface {
     func updateTabCellType(with cellType: UICollectionViewCell.Type, reuseIdentifier: String)
     func reloadCollectionView()
     func showAlert(message: String)
-    func updateFollowingLabel(with text: NSAttributedString)
-    func updateFollowersLabel(with text: NSAttributedString)
+    func updateFollowingLabel(with text: String)
+    func updateFollowersLabel(with text: String)
     func updateFollowButtonTitle(with title: String)
     func showFollowButton()
+    func updateLocation(_ newLocation: String)
     
 }
 
@@ -51,6 +52,8 @@ protocol ProfilePresenterInterface: PresenterInterface {
     func followButtonTapped()
     func trashButtonTapped(index: Int, cellType: String)
     
+    func handleChangeLocation(location: String)
+    
 }
 
 protocol ProfileInteractorOutputInterface: AnyObject {
@@ -69,6 +72,7 @@ protocol ProfileInteractorOutputInterface: AnyObject {
     func didDeletePost(at index: Int)
     func didRequestedBefore()
     func didDeleteBook(at index: Int)
+    func didChangeLocation(_ newLocation: String)
 }
 
 protocol ProfileInteractorInputInterface: AnyObject {
@@ -86,4 +90,5 @@ protocol ProfileInteractorInputInterface: AnyObject {
     func deletePost(forUserId userId: String, postId: String, index: Int)
     func checkDidRequestedBefore(senderId:String,receiverId:String,email: String,requestedBook:String)
     func deleteBook(userId: String, bookId: String, index: Int)
+    func changeLocation(for userId: String, newLocation: String)
 }

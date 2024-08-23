@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 final class TabBarWireframe: BaseWireframe<TabBarController> {
 
@@ -27,7 +28,8 @@ final class TabBarWireframe: BaseWireframe<TabBarController> {
 
 extension TabBarWireframe: TabBarWireframeInterface {
     func setupViewControllers() {
-        let profileWireframe = ProfileWireframe(uid: nil)
+        
+        let profileWireframe = ProfileWireframe(uid: Auth.auth().currentUser?.uid ?? nil)
         let profileVC = profileWireframe.viewController
         let profileNC = UINavigationController(rootViewController: profileVC)
         

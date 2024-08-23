@@ -17,7 +17,7 @@ final class SignUpInteractor {
 
 extension SignUpInteractor: SignUpInteractorInputInterface {
     
-    func signUp(username: String, password: String, email: String) {
+    func signUp(username: String, password: String, email: String, location: String) {
         
         Auth.auth().createUser(withEmail: email, password: password) {[weak self] user, error in
             if let error = error{
@@ -26,7 +26,7 @@ extension SignUpInteractor: SignUpInteractorInputInterface {
             }
             
             guard let uid = user?.user.uid else{return}
-            let dictionaryValues = ["username":username]
+            let dictionaryValues = ["username":username, "location":location]
             let values = [uid:dictionaryValues]
             
             Database.database().reference().child("users").updateChildValues(values,withCompletionBlock: { err, ref in

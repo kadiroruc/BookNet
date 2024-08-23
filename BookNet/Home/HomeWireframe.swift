@@ -28,7 +28,6 @@ extension HomeWireframe: HomeWireframeInterface {
         let profileWireFrame = ProfileWireframe(uid: userId)
         let profileVC = profileWireFrame.viewController
         profileVC.titleLabel.isHidden = true
-        profileVC.followButton.isHidden = false
     
         navigationController?.pushWireframe(profileWireFrame, animated: true)
     }

@@ -38,9 +38,8 @@ extension LoginWireframe: LoginWireframeInterface {
         
         
         if let window = UIApplication.shared.windows.first {
-            window.rootViewController = initialViewController // Veya sadece newRootViewController
+            window.rootViewController = initialViewController
             window.makeKeyAndVisible()
-            
             
         }
         

@@ -24,7 +24,7 @@ protocol SignUpViewInterface: ViewInterface {
 
 protocol SignUpInteractorInputInterface: InteractorInterface {
     // Presenter -> Interactor
-    func signUp(username: String, password: String, email: String)
+    func signUp(username: String, password: String, email: String, location: String)
 }
 
 protocol SignUpInteractorOutputInterface: PresenterInterface {
@@ -36,9 +36,9 @@ protocol SignUpInteractorOutputInterface: PresenterInterface {
 protocol SignUpPresenterInterface: PresenterInterface {
 
     // View -> Presenter
-    func signUpButtonTapped(username: String, password: String, email: String)
+    func signUpButtonTapped(username: String, password: String, email: String, location: String)
     func showLogin()
-    func handleTextInputChange(email: String?, password: String?, username: String?)
+    func handleTextInputChange(email: String?, password: String?, username: String?, location: String?)
 }
 
 protocol SignUpInteractorInterface: InteractorInterface {

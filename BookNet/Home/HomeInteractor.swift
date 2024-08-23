@@ -53,30 +53,35 @@ extension HomeInteractor: HomeInteractorInputInterface{
     }
     
     fileprivate func fetchPostWithUser(user: UserModel){
+        
         let ref = Database.database().reference().child("posts").child(user.uid)
-        ref.observeSingleEvent(of: .value) {[weak self] snapshot in
+        
+        let sixDaysAgoTimestamp = Date().timeIntervalSince1970 - (5 * 24 * 60 * 60)
+        
+        ref.queryOrdered(byChild: "creationDate").queryStarting(atValue: sixDaysAgoTimestamp).observeSingleEvent(of: .value) {[weak self] snapshot in
             
-            
-            guard let dictionaries = snapshot.value as? [String:Any] else{return}
-            
-            
-            dictionaries.forEach { key,value in
-                guard let dictionary = value as? [String:Any] else {return}
+            guard let dictionaries = snapshot.value as? [String: Any] else {
+                    self?.presenter?.didFailToFetchPosts(with: "No Posts Found")
+                    return
+                }
+                
+                dictionaries.forEach { key, value in
+                    guard let dictionary = value as? [String: Any] else { return }
 
-                var post = PostModel(user: user,dictionary: dictionary)
-                post.id = key
-                
-                guard let uid = Auth.auth().currentUser?.uid else{return}
-                
-                self?.posts.append(post)
-                self?.posts.sort(by: { p1, p2 in
-                    return p1.creationDate.compare(p2.creationDate) == .orderedDescending
-                })
-                
-                self?.presenter?.didFetchPosts(self?.posts ?? [])
-            }
+                    var post = PostModel(user: user, dictionary: dictionary)
+                    post.id = key
+                    
+                    guard let uid = Auth.auth().currentUser?.uid else { return }
+
+                    self?.posts.append(post)
+                    self?.posts.sort(by: { p1, p2 in
+                        return p1.creationDate.compare(p2.creationDate) == .orderedDescending
+                    })
+                    
+                    self?.presenter?.didFetchPosts(self?.posts ?? [])
+                }
         }
-        if self.posts.count == 0{
+        if self.posts.isEmpty == true {
             self.presenter?.didFailToFetchPosts(with: "No Posts Found")
         }
     }

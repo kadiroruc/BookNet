@@ -99,6 +99,27 @@ final class SignUpViewController: UIViewController {
         return view
     }()
     
+    let locationView: UIView = {
+        let view = UIView()
+        let tf = UITextField()
+        tf.placeholder = "Location: Province / District"
+        tf.font = UIFont.systemFont(ofSize: 16)
+        tf.autocapitalizationType = .none
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        let icon = UIImageView(image: UIImage(systemName: "location"))
+        icon.tintColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        let lineView = UIView()
+        lineView.backgroundColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        view.addSubview(icon)
+        view.addSubview(tf)
+        view.addSubview(lineView)
+        icon.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 7, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 27, height: 28)
+        tf.anchor(top: view.topAnchor, left: icon.rightAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 49)
+        lineView.anchor(top: tf.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 1)
+        
+        return view
+    }()
+    
 
     let signUpButton: UIButton = {
         let button = UIButton()
@@ -144,7 +165,7 @@ final class SignUpViewController: UIViewController {
         
         view.addSubview(logoImageView)
         
-        logoImageView.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 150, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 180, height: 180)
+        logoImageView.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 130, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 180, height: 160)
         
         
         logoImageView.heightAnchor.constraint(equalToConstant: 140).isActive = true
@@ -154,7 +175,7 @@ final class SignUpViewController: UIViewController {
         
         view.addSubview(signUpLabel)
         
-        signUpLabel.anchor(top: logoImageView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        signUpLabel.anchor(top: logoImageView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         signUpLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
@@ -166,7 +187,7 @@ final class SignUpViewController: UIViewController {
         
     }
     fileprivate func setupInputFields(){
-        let stackView = UIStackView(arrangedSubviews: [usernameView,emailView,passwordView])
+        let stackView = UIStackView(arrangedSubviews: [usernameView,emailView,passwordView,locationView])
 
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
@@ -174,7 +195,7 @@ final class SignUpViewController: UIViewController {
         
         view.addSubview(stackView)
         
-        stackView.anchor(top: signUpLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 60, paddingBottom: 0, paddingRight: 60, width: 0, height: 150)
+        stackView.anchor(top: signUpLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 60, paddingBottom: 0, paddingRight: 60, width: 0, height: 190)
         
         
         view.addSubview(signUpButton)
@@ -193,8 +214,9 @@ final class SignUpViewController: UIViewController {
         let emailTextField = emailView.subviews.compactMap { $0 as? UITextField }.first
         let passwordTextField = passwordView.subviews.compactMap { $0 as? UITextField }.first
         let usernameTextField = usernameView.subviews.compactMap { $0 as? UITextField }.first
+        let locationTextField = locationView.subviews.compactMap { $0 as? UITextField }.first
         
-        presenter.handleTextInputChange(email: emailTextField?.text, password: passwordTextField?.text, username: usernameTextField?.text)
+        presenter.handleTextInputChange(email: emailTextField?.text, password: passwordTextField?.text, username: usernameTextField?.text,location: locationTextField?.text)
         
     }
     
@@ -202,12 +224,14 @@ final class SignUpViewController: UIViewController {
         let emailTextField = emailView.subviews.compactMap { $0 as? UITextField }.first
         let passwordTextField = passwordView.subviews.compactMap { $0 as? UITextField }.first
         let usernameTextField = usernameView.subviews.compactMap { $0 as? UITextField }.first
+        let locationTextField = locationView.subviews.compactMap { $0 as? UITextField }.first
         
         guard let email = emailTextField?.text, email.count > 0 else{return}
         guard let password = passwordTextField?.text, password.count > 0 else{return}
         guard let username = usernameTextField?.text, username.count > 0 else{return}
+        guard let location = locationTextField?.text, location.count > 0 else{return}
         
-        presenter.signUpButtonTapped(username: username, password: password, email: email)
+        presenter.signUpButtonTapped(username: username, password: password, email: email,location: location)
     }
     
     @objc func handleAlreadyHaveAccount(){

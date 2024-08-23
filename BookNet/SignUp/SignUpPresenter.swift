@@ -29,17 +29,17 @@ final class SignUpPresenter {
 extension SignUpPresenter: SignUpPresenterInterface {
 
     
-    func signUpButtonTapped(username: String, password: String, email: String) {
+    func signUpButtonTapped(username: String, password: String, email: String, location: String) {
         view.showLoading()
-        interactor.signUp(username: username, password: password, email: email)
+        interactor.signUp(username: username, password: password, email: email,location: location)
     }
     
     func showLogin() {
         wireframe.navigateToLoginScreen()
     }
     
-    func handleTextInputChange(email: String?, password: String?, username: String?) {
-        let isFormValid = (email?.count ?? 0 > 0) && (password?.count ?? 0 > 0) && (username?.count ?? 0 > 0)
+    func handleTextInputChange(email: String?, password: String?, username: String?, location: String?) {
+        let isFormValid = (email?.count ?? 0 > 0) && (password?.count ?? 0 > 0) && (username?.count ?? 0 > 0) && (location?.count ?? 0 > 0)
         view.updateSignUpButton(isEnabled: isFormValid)
     }
     

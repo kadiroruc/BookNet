@@ -17,6 +17,7 @@ final class SwapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Book Requests"
         setupCollectionView()
         presenter.viewDidLoad()
     }

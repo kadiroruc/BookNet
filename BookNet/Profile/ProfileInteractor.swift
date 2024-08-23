@@ -51,10 +51,14 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
     
     func fetchFollowingCount(forUserId userId: String) {
         let ref = Database.database().reference().child("following").child(userId)
-        
+
         ref.observeSingleEvent(of: .value) { snapshot in
-            if let followingDict = snapshot.value as? [String: Any] {
-                self.presenter?.didFetchFollowingCount(followingDict.count)
+            if snapshot.exists() {
+                if let followingDict = snapshot.value as? [String: Any] {
+                    self.presenter?.didFetchFollowingCount(followingDict.count)
+                } else {
+                    self.presenter?.didFetchFollowingCount(0)
+                }
             } else {
                 self.presenter?.didFetchFollowingCount(0)
             }
@@ -261,6 +265,19 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
             }
             self?.presenter?.showMessage("Request sent successfully.")
         }
+    }
+    
+    func changeLocation(for userId: String, newLocation: String) {
+        let ref = Database.database().reference().child("users").child(userId).child("location")
+        
+        ref.setValue(newLocation) {[weak self] error, _ in
+            if error != nil{
+                self?.presenter?.showMessage("Error changing location")
+            }else{
+                self?.presenter?.didChangeLocation(newLocation)
+            }
+        }
+        
     }
     
     

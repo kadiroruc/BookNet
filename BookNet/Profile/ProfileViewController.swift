@@ -51,18 +51,37 @@ final class ProfileViewController: UIViewController {
     
     let followersLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 22)
+        label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
-        label.numberOfLines = 0
+        label.text = "Followers"
         return label
     }()
     
     let followingLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 22)
+        label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
-        label.numberOfLines = 0
+        label.text = "Following"
         
+        return label
+    }()
+    let followersCount: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.6
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let followingCount: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.6
+        label.textAlignment = .center
         return label
     }()
     
@@ -82,21 +101,26 @@ final class ProfileViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         label.textAlignment = .center
-        label.text = "City and Score Soon"
-        label.layer.borderWidth = 1
-        label.layer.borderColor = CGColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
-        label.layer.cornerRadius = 10
+        label.numberOfLines = 2
+
         return label
     }()
     
-    let scoreLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
-        label.textAlignment = .center
-        
-        return label
+    let locationIcon: UIImageView = {
+        let icon = UIImageView()
+        icon.image = UIImage(systemName: "location")
+        icon.tintColor = .black
+        return icon
     }()
+    
+//    let scoreLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont.systemFont(ofSize: 14)
+//        label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
+//        label.textAlignment = .center
+//        
+//        return label
+//    }()
     
     let libraryButton: UIButton = {
         let button = UIButton()
@@ -169,11 +193,20 @@ final class ProfileViewController: UIViewController {
         view.addSubview(profileImageView)
         profileImageView.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 140, height: 140)
         
+        
         view.addSubview(followersLabel)
-        followersLabel.anchor(top: titleLabel.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 90, height: 100)
+        followersLabel.anchor(top: titleLabel.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 90, height: 0)
         
         view.addSubview(followingLabel)
-        followingLabel.anchor(top: titleLabel.bottomAnchor, left: followersLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 100, height: 100)
+        followingLabel.anchor(top: titleLabel.bottomAnchor, left: followersLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 15, paddingBottom: 0, paddingRight: 0, width: 90, height: 0)
+        
+        view.addSubview(followersCount)
+        followersCount.anchor(top: followersLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 3, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 0)
+        followersCount.centerXAnchor.constraint(equalTo: followersLabel.centerXAnchor).isActive = true
+        
+        view.addSubview(followingCount)
+        followingCount.anchor(top: followingLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 3, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 0)
+        followingCount.centerXAnchor.constraint(equalTo: followingLabel.centerXAnchor).isActive = true
         
         view.addSubview(followButton)
         followButton.anchor(top: followersLabel.bottomAnchor, left: followersLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: -5, paddingLeft: 10, paddingBottom: 0, paddingRight: 35, width: 0, height: 0)
@@ -182,11 +215,26 @@ final class ProfileViewController: UIViewController {
         usernameLabel.anchor(top: profileImageView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 40)
         usernameLabel.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor).isActive = true
         
-        view.addSubview(locationLabel)
-        locationLabel.anchor(top: usernameLabel.topAnchor, left: followButton.leftAnchor, bottom: nil, right: followButton.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 22)
+        let container = UIView()
+        container.addSubview(locationIcon)
+        container.addSubview(locationLabel)
         
-        view.addSubview(scoreLabel)
-        scoreLabel.anchor(top: usernameLabel.topAnchor, left: followingLabel.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 70, height: 0)
+        container.layer.borderWidth = 1
+        container.layer.borderColor = CGColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
+        container.layer.cornerRadius = 10
+        
+        
+        locationIcon.anchor(top: container.topAnchor, left: container.leftAnchor, bottom: container.bottomAnchor, right: nil, paddingTop: 10, paddingLeft: 8, paddingBottom: 10, paddingRight: 0, width: 23, height: 0)
+        
+        locationLabel.anchor(top: nil, left: locationIcon.rightAnchor, bottom: nil, right: container.rightAnchor, paddingTop: 0, paddingLeft: 3, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        locationLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
+        
+        view.addSubview(container)
+        container.anchor(top: nil, left: followButton.leftAnchor, bottom: nil, right: followButton.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 45)
+        container.centerYAnchor.constraint(equalTo: usernameLabel.centerYAnchor).isActive = true
+        
+        
+        
         
         let stackView = UIStackView(arrangedSubviews: [postsButton,libraryButton,readingListButton])
         stackView.axis = .horizontal
@@ -208,7 +256,11 @@ final class ProfileViewController: UIViewController {
             self.handleChangeProfile()
         }
         
-        let menu = UIMenu(title: "",options: .displayInline,children: [profileItem,logOutItem])
+        let locationItem = UIAction(title: "Change Location") { action in
+            self.handleChangeLocation()
+        }
+        
+        let menu = UIMenu(title: "",options: .displayInline,children: [profileItem,locationItem,logOutItem])
         
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"),menu: menu)
@@ -257,6 +309,26 @@ final class ProfileViewController: UIViewController {
         present(picker,animated: true)
     }
     
+    func handleChangeLocation(){
+        let alertController = UIAlertController(title: nil, message: "Please enter your new location", preferredStyle: .alert)
+          
+          alertController.addTextField { textField in
+              textField.placeholder = "Your Location: Province / District"
+          }
+          
+          let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+          alertController.addAction(cancelAction)
+          
+          let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self] _ in
+              if let text = alertController.textFields?.first?.text {
+                  self?.presenter.handleChangeLocation(location: text)
+              }
+          }
+          alertController.addAction(submitAction)
+          
+          present(alertController, animated: true, completion: nil)
+    }
+    
 
 }
 
@@ -276,12 +348,12 @@ extension ProfileViewController: ProfileViewInterface {
         return followButton.titleLabel?.text
     }
     
-    func updateFollowingLabel(with text: NSAttributedString) {
-        followingLabel.attributedText = text
+    func updateFollowingLabel(with text: String) {
+        followingCount.text = text
     }
 
-    func updateFollowersLabel(with text: NSAttributedString) {
-        followersLabel.attributedText = text
+    func updateFollowersLabel(with text: String) {
+        followersCount.text = text
     }
     
     func reloadCollectionView() {
@@ -316,10 +388,12 @@ extension ProfileViewController: ProfileViewInterface {
     
     func showUser(with user: UserModel) {
         usernameLabel.text = user.username
+        locationLabel.text = "\(user.location) "
         profileImageView.loadImage(urlString: user.profileImageUrl)
         profileImageView.clipsToBounds = true
         
         presenter.setupFollowStats()
+        
         presenter.setupFollowButton()
         presenter.tappedTabButtons(postsButton) //List posts at first
     }
@@ -342,6 +416,11 @@ extension ProfileViewController: ProfileViewInterface {
         let ac = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Okay", style: .default))
         self.present(ac, animated: true)
+    }
+    
+    func updateLocation(_ newLocation: String) {
+        locationLabel.text = newLocation
+        showAlert(message: "Location Updated Successfully")
     }
     
 }
