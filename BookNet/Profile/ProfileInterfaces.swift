@@ -29,6 +29,7 @@ protocol ProfileViewInterface: ViewInterface {
     func updateFollowButtonTitle(with title: String)
     func showFollowButton()
     func updateLocation(_ newLocation: String)
+    func hideMenu()
     
 }
 

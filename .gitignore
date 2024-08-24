@@ -1,10 +1,15 @@
-# Xcode dosyaları
+# Xcode specific files
 .DS_Store
-/build/
+build/
 DerivedData/
-*.xcworkspace
-*.xcuserdata
-*.xcuserdatad
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+*.xcuserstate
 
 # CocoaPods
 /Pods/
@@ -13,5 +18,21 @@ DerivedData/
 GoogleService-Info.plist
 firebase-debug.log
 
+#API
+Config.xcconfig
+
 # Çevre Değişkenleri
 .env
+
+# Swift Package Manager
+/.build/
+
+# Carthage
+Carthage/Build/
+
+
+GoogleMobileAds/
+
+
+# Exclude xcuserdata (User-specific Xcode workspace settings)
+**/xcuserdata/

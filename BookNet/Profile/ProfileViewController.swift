@@ -10,12 +10,15 @@ import PKHUD
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import GoogleMobileAds
 
 final class ProfileViewController: UIViewController {
 
     // MARK: - Public properties -
 
     var presenter: ProfilePresenterInterface!
+    
+    var bannerView: GADBannerView!
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
@@ -170,6 +173,7 @@ final class ProfileViewController: UIViewController {
         
         setViews()
         setupCollectionView()
+        setBannerView()
 
     }
     
@@ -178,6 +182,27 @@ final class ProfileViewController: UIViewController {
         presenter.viewWillAppear()
         
     }
+    
+    func setBannerView(){
+        let viewWidth = view.frame.inset(by: view.safeAreaInsets).width
+
+        let adaptiveSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
+        bannerView = GADBannerView(adSize: adaptiveSize)
+        
+        if let path = Bundle.main.path(forResource: "Config", ofType: "plist"),
+           let config = NSDictionary(contentsOfFile: path) as? [String: Any] {
+            if let adUnitID = config["GADProfileBannerAdUnitID"] as? String{
+                bannerView.adUnitID = adUnitID
+            }
+        }
+
+        bannerView.rootViewController = self
+
+        bannerView.load(GADRequest())
+        
+        bannerView.delegate = self
+    }
+    
     
     func setViews(){
         view.backgroundColor = .white
@@ -209,7 +234,7 @@ final class ProfileViewController: UIViewController {
         followingCount.centerXAnchor.constraint(equalTo: followingLabel.centerXAnchor).isActive = true
         
         view.addSubview(followButton)
-        followButton.anchor(top: followersLabel.bottomAnchor, left: followersLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: -5, paddingLeft: 10, paddingBottom: 0, paddingRight: 35, width: 0, height: 0)
+        followButton.anchor(top: followersCount.bottomAnchor, left: followersLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
         
         view.addSubview(usernameLabel)
         usernameLabel.anchor(top: profileImageView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 100, height: 40)
@@ -230,7 +255,7 @@ final class ProfileViewController: UIViewController {
         locationLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
         
         view.addSubview(container)
-        container.anchor(top: nil, left: followButton.leftAnchor, bottom: nil, right: followButton.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 45)
+        container.anchor(top: nil, left: followersLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 40)
         container.centerYAnchor.constraint(equalTo: usernameLabel.centerYAnchor).isActive = true
         
         
@@ -243,7 +268,7 @@ final class ProfileViewController: UIViewController {
         
         view.addSubview(stackView)
         
-        stackView.anchor(top: usernameLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 5, paddingBottom: 0, paddingRight: 5, width: 0, height: 50)
+        stackView.anchor(top: usernameLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 15, paddingLeft: 5, paddingBottom: 0, paddingRight: 5, width: 0, height: 50)
         
     }
     
@@ -423,6 +448,10 @@ extension ProfileViewController: ProfileViewInterface {
         showAlert(message: "Location Updated Successfully")
     }
     
+    func hideMenu() {
+        navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    
 }
 
 //MARK: - Collection View
@@ -515,3 +544,31 @@ extension ProfileViewController: CustomBookCellTrashDelegate{
     
 }
 
+extension ProfileViewController: GADBannerViewDelegate{
+    
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+      // Add banner to view and add constraints as above.
+      addBannerViewToView(bannerView)
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+          [NSLayoutConstraint(item: bannerView,
+                              attribute: .bottom,
+                              relatedBy: .equal,
+                              toItem: view.safeAreaLayoutGuide,
+                              attribute: .bottom,
+                              multiplier: 1,
+                              constant: 0),
+           NSLayoutConstraint(item: bannerView,
+                              attribute: .centerX,
+                              relatedBy: .equal,
+                              toItem: view,
+                              attribute: .centerX,
+                              multiplier: 1,
+                              constant: 0)
+          ])
+       }
+}

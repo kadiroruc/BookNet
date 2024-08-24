@@ -45,6 +45,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
          if currentUserId != userId {
              view.showFollowButton()
              interactor.checkIfFollowing(currentUserId: currentUserId, userId: userId)
+             view.hideMenu()
          }
      }
 
@@ -132,7 +133,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
     }
 
     func sizeForItem(at indexPath: IndexPath) -> CGSize {
-        return currentCellType == Constants.TabButtons.posts ? CGSize(width: UIScreen.main.bounds.width, height: 300) : CGSize(width: UIScreen.main.bounds.width, height: 130)
+        return currentCellType == Constants.TabButtons.posts ? CGSize(width: UIScreen.main.bounds.width, height: 285) : CGSize(width: UIScreen.main.bounds.width, height: 130)
     }
 
     func configure(cell: UICollectionViewCell, at indexPath: IndexPath) {

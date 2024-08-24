@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9028A062C78C41A00910FA3 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = E9028A052C78C41A00910FA3 /* GoogleMobileAds */; };
 		E915CE1A2C622AA600490DA6 /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = E915CE192C622AA600490DA6 /* PKHUD */; };
 		E91AFB342C7384C400872A00 /* AddBookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AFACF2C7384C400872A00 /* AddBookInteractor.swift */; };
 		E91AFB352C7384C400872A00 /* AddBookInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AFAD02C7384C400872A00 /* AddBookInterfaces.swift */; };
@@ -84,6 +85,7 @@
 		E91AFB802C7384C400872A00 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AFB2D2C7384C400872A00 /* CustomImageView.swift */; };
 		E91AFB812C7384C400872A00 /* VCPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91AFB2E2C7384C400872A00 /* VCPreview.swift */; };
 		E91AFB822C7384C400872A00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E91AFB312C7384C400872A00 /* GoogleService-Info.plist */; };
+		E93DB5F52C79B022009E1938 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93DB5F42C79B022009E1938 /* Configuration.swift */; };
 		E97C04F72C77CD1E000F02F5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E97C04F62C77CD1E000F02F5 /* Launch Screen.storyboard */; };
 		E99E5FC52C738CA800EF2AF2 /* BookNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E5FC42C738CA800EF2AF2 /* BookNetTests.swift */; };
 		E99E5FCE2C73981F00EF2AF2 /* HomeInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E5FCD2C73981F00EF2AF2 /* HomeInteractorTests.swift */; };
@@ -109,6 +111,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E9028A032C78C19800910FA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = BookNet/Info.plist; sourceTree = "<group>"; };
 		E91AFACF2C7384C400872A00 /* AddBookInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookInteractor.swift; sourceTree = "<group>"; };
 		E91AFAD02C7384C400872A00 /* AddBookInterfaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookInterfaces.swift; sourceTree = "<group>"; };
 		E91AFAD12C7384C400872A00 /* AddBookPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookPresenter.swift; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 		E91AFB2D2C7384C400872A00 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		E91AFB2E2C7384C400872A00 /* VCPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCPreview.swift; sourceTree = "<group>"; };
 		E91AFB312C7384C400872A00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E93DB5F32C79ABE3009E1938 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		E93DB5F42C79B022009E1938 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		E97C04F62C77CD1E000F02F5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E99E5FBD2C73881E00EF2AF2 /* BookNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99E5FC22C738CA800EF2AF2 /* BookNetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookNetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +215,7 @@
 				E9D9FA932BD5469200BAADD5 /* FirebaseDatabaseSwift in Frameworks */,
 				E9D9FA912BD5469200BAADD5 /* FirebaseDatabase in Frameworks */,
 				E9D9FA8D2BD5469200BAADD5 /* FirebaseAuth in Frameworks */,
+				E9028A062C78C41A00910FA3 /* GoogleMobileAds in Frameworks */,
 				E9D9FA952BD5469200BAADD5 /* FirebaseStorage in Frameworks */,
 				E9D9FA972BD5469200BAADD5 /* FirebaseStorageCombine-Community in Frameworks */,
 				E9D9FA8F2BD5469200BAADD5 /* FirebaseAuthCombine-Community in Frameworks */,
@@ -455,6 +461,9 @@
 		E9B949E82BD437D00025D344 = {
 			isa = PBXGroup;
 			children = (
+				E93DB5F32C79ABE3009E1938 /* Config.xcconfig */,
+				E9028A032C78C19800910FA3 /* Info.plist */,
+				E93DB5F42C79B022009E1938 /* Configuration.swift */,
 				E91AFB332C7384C400872A00 /* BookNet */,
 				E99E5FBD2C73881E00EF2AF2 /* BookNet.app */,
 				E99E5FC22C738CA800EF2AF2 /* BookNetTests.xctest */,
@@ -504,6 +513,7 @@
 				E9D9FA942BD5469200BAADD5 /* FirebaseStorage */,
 				E9D9FA962BD5469200BAADD5 /* FirebaseStorageCombine-Community */,
 				E915CE192C622AA600490DA6 /* PKHUD */,
+				E9028A052C78C41A00910FA3 /* GoogleMobileAds */,
 			);
 			productName = Project;
 			productReference = E99E5FBD2C73881E00EF2AF2 /* BookNet.app */;
@@ -540,6 +550,7 @@
 			packageReferences = (
 				E9D9FA8B2BD5469200BAADD5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E915CE182C622AA600490DA6 /* XCRemoteSwiftPackageReference "PKHUD" */,
+				E9028A042C78C41A00910FA3 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = E9B949E82BD437D00025D344;
 			projectDirPath = "";
@@ -624,6 +635,7 @@
 				E91AFB672C7384C400872A00 /* SearchInteractor.swift in Sources */,
 				E91AFB572C7384C400872A00 /* HomeWireframe.swift in Sources */,
 				E91AFB5E2C7384C400872A00 /* PhotoSelectorInterfaces.swift in Sources */,
+				E93DB5F52C79B022009E1938 /* Configuration.swift in Sources */,
 				E91AFB742C7384C400872A00 /* SignUpViewController.swift in Sources */,
 				E91AFB5A2C7384C400872A00 /* LoginPresenter.swift in Sources */,
 				E91AFB622C7384C400872A00 /* ProfileInteractor.swift in Sources */,
@@ -833,6 +845,7 @@
 		};
 		E9B94A062BD437D20025D344 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E93DB5F32C79ABE3009E1938 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -861,6 +874,7 @@
 		};
 		E9B94A072BD437D20025D344 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E93DB5F32C79ABE3009E1938 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -920,6 +934,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E9028A042C78C41A00910FA3 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.8.0;
+			};
+		};
 		E915CE182C622AA600490DA6 /* XCRemoteSwiftPackageReference "PKHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pkluz/PKHUD.git";
@@ -939,6 +961,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E9028A052C78C41A00910FA3 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9028A042C78C41A00910FA3 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
 		E915CE192C622AA600490DA6 /* PKHUD */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E915CE182C622AA600490DA6 /* XCRemoteSwiftPackageReference "PKHUD" */;

@@ -126,4 +126,3 @@ extension SearchViewController: SearchViewInterface {
         collectionView.reloadData()
     }
 }
-

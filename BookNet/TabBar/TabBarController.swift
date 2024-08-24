@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-final class TabBarController: UIViewController {
+final class TabBarController: UIViewController, UITabBarControllerDelegate, GADFullScreenContentDelegate {
 
     // MARK: - Public properties -
 
     var presenter: TabBarPresenterInterface!
+    
+    private var interstitial: GADInterstitialAd?
     
     private let tabBar = UITabBarController()
 
@@ -21,6 +24,26 @@ final class TabBarController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupTabBar()
+        
+        Task {
+            await loadInterstitial()
+        }
+    }
+    
+    func loadInterstitial() async{
+        if let path = Bundle.main.path(forResource: "Config", ofType: "plist"),
+           let config = NSDictionary(contentsOfFile: path) as? [String: Any] {
+            if let adUnitID = config["GADInterstitialAdUnitID"] as? String{
+                do {
+                  interstitial = try await GADInterstitialAd.load(
+                    withAdUnitID: adUnitID, request: GADRequest())
+                    
+                    interstitial?.fullScreenContentDelegate = self
+                } catch {
+                  print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                }
+            }
+        }
     }
 
     private func setupTabBar() {
@@ -32,6 +55,8 @@ final class TabBarController: UIViewController {
         tabBar.didMove(toParent: self)
         tabBar.tabBar.tintColor = Constants.Colors.appYellow
         
+        tabBar.delegate = self
+        
         presenter?.setupViewControllers()
     }
 
@@ -40,6 +65,28 @@ final class TabBarController: UIViewController {
         tabBar.selectedIndex = 0
     }
     
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController){
+
+        
+        if tabBar.selectedIndex == 1{
+            guard let interstitial = interstitial else {
+                return print("Ad wasn't ready.")
+            }
+            
+            // The UIViewController parameter is an optional.
+            interstitial.present(fromRootViewController: viewController)
+        }
+        
+    }
+    
+    func adDidDismissFullScreenContent(_ ad: any GADFullScreenPresentingAd) {
+        if tabBar.selectedIndex == 1{
+            Task {
+                await loadInterstitial()
+            }
+        }
+
+    }
     
 
 }

@@ -7,11 +7,13 @@
 
 import UIKit
 import Firebase
+import GoogleMobileAds
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var presenter: HomePresenterInterface!
     var collectionView: UICollectionView!
+    var bannerView: GADBannerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,28 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         navigationItem.titleView?.tintColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         
         presenter.viewDidLoad()
+        
+        setBannerView()
+    }
+    
+    func setBannerView(){
+        let viewWidth = view.frame.inset(by: view.safeAreaInsets).width
+
+        let adaptiveSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
+        bannerView = GADBannerView(adSize: adaptiveSize)
+        
+        do{
+            bannerView.adUnitID = try Configuration.value(for: "TEST_BANNER_API_KEY")
+        }catch{
+            print("hata")
+        }
+        
+
+        bannerView.rootViewController = self
+
+        bannerView.load(GADRequest())
+        
+        bannerView.delegate = self
     }
 
     private func setupCollectionView() {
@@ -35,7 +59,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -143),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -50,9 +74,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @objc func handleRefresh() {
         presenter.handleRefresh()
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) {
-//            self.collectionView.refreshControl?.endRefreshing()
-//        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -99,4 +120,32 @@ extension HomeViewController: CustomPostCellLikeDelegate{
             presenter.likeButtonTapped(for: indexPath.item)
         }
     }
+}
+
+extension HomeViewController: GADBannerViewDelegate{
+    func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+      // Add banner to view and add constraints as above.
+      addBannerViewToView(bannerView)
+    }
+    
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+          [NSLayoutConstraint(item: bannerView,
+                              attribute: .bottom,
+                              relatedBy: .equal,
+                              toItem: view.safeAreaLayoutGuide,
+                              attribute: .bottom,
+                              multiplier: 1,
+                              constant: 0),
+           NSLayoutConstraint(item: bannerView,
+                              attribute: .centerX,
+                              relatedBy: .equal,
+                              toItem: view,
+                              attribute: .centerX,
+                              multiplier: 1,
+                              constant: 0)
+          ])
+       }
 }

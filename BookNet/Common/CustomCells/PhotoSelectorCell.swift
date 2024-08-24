@@ -1,6 +1,5 @@
 //
 //  PhotoSelectorCell.swift
-//  InstagramClone
 //
 //  Created by Abdulkadir Oruç on 21.10.2023.
 //

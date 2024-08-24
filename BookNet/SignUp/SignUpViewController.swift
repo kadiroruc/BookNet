@@ -195,7 +195,7 @@ final class SignUpViewController: UIViewController {
         
         view.addSubview(stackView)
         
-        stackView.anchor(top: signUpLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 60, paddingBottom: 0, paddingRight: 60, width: 0, height: 190)
+        stackView.anchor(top: signUpLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 60, paddingBottom: 0, paddingRight: 60, width: 0, height: 190)
         
         
         view.addSubview(signUpButton)
