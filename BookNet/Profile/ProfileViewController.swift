@@ -273,20 +273,24 @@ final class ProfileViewController: UIViewController {
     }
     
     func setMenu(){
-        let logOutItem = UIAction(title: "Log Out") { action in
+        let logOutItem = UIAction(title: "Log Out") { _ in
             self.tappedLogOutButton()
         }
         
-        let profileItem = UIAction(title: "Change Profile Picture") { action in
+        let profileItem = UIAction(title: "Change Profile Picture") { _ in
             self.handleChangeProfile()
         }
         
-        let locationItem = UIAction(title: "Change Location") { action in
+        let locationItem = UIAction(title: "Change Location") { _ in
             self.handleChangeLocation()
         }
         
+        let deleteAccountItem = UIAction(title: "Delete Account") { _ in
+            self.handleDeleteAccount()
+        }
         
-        let menu = UIMenu(title: "",options: .displayInline,children: [profileItem,locationItem,logOutItem])
+        
+        let menu = UIMenu(title: "",options: .displayInline,children: [profileItem,locationItem,deleteAccountItem,logOutItem])
         
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"),menu: menu)
@@ -353,6 +357,18 @@ final class ProfileViewController: UIViewController {
           alertController.addAction(submitAction)
           
           present(alertController, animated: true, completion: nil)
+    }
+    
+    func handleDeleteAccount(){
+        let ac = UIAlertController(title: "Deleting Account", message: "Are you sure you want to delete your account?", preferredStyle: .alert)
+        
+        ac.addAction(UIAlertAction(title: "Okay", style: .destructive, handler: { _ in
+            self.presenter.handleDeleteAccount()
+        }))
+        
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        present(ac,animated: true)
     }
     
 
@@ -451,6 +467,10 @@ extension ProfileViewController: ProfileViewInterface {
     
     func hideMenu() {
         navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    
+    func updateBlockButtonTitle(title: String) {
+        followButton.setTitle(title, for: .normal)
     }
     
 }

@@ -36,20 +36,28 @@ extension HomeInteractor: HomeInteractorInputInterface{
         
         //Fetch following user ids
         
-        Database.database().reference().child("following").child(currentUserUid).observeSingleEvent(of: .value) {[weak self] snapshot in
-            guard let userIdsDictionary = snapshot.value as? [String:Any] else{return}
-            
-            userIdsDictionary.forEach { key,value in
-                Database.database().reference().child("users").child(key).observeSingleEvent(of: .value) { snapshot in
-                    guard let userDictionary = snapshot.value as? [String:Any] else{return}
-                    let user = UserModel(uid: key, dictionary: userDictionary)
+        fetchBlockedUsers { [weak self] blockedUserIds in
+            Database.database().reference().child("following").child(currentUserUid).observeSingleEvent(of: .value) {[weak self] snapshot in
+                guard let userIdsDictionary = snapshot.value as? [String:Any] else{return}
+                
+                userIdsDictionary.forEach { key,value in
                     
-                    DispatchQueue.main.async {
-                        self?.fetchPostWithUser(user: user)
+                    Database.database().reference().child("users").child(key).observeSingleEvent(of: .value) { snapshot in
+                        guard let userDictionary = snapshot.value as? [String:Any] else{return}
+                        let user = UserModel(uid: key, dictionary: userDictionary)
+                        
+                        if !(blockedUserIds.contains(key)){
+                            DispatchQueue.main.async {
+                                self?.fetchPostWithUser(user: user)
+                            }
+                        }
+
                     }
                 }
             }
         }
+        
+
     }
     
     fileprivate func fetchPostWithUser(user: UserModel){
@@ -86,6 +94,23 @@ extension HomeInteractor: HomeInteractorInputInterface{
         }
     }
     
+    func fetchBlockedUsers(completion: @escaping ([String]) -> Void) {
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        
+        let ref = Database.database().reference().child("users").child(currentUserId).child("blockedUsers")
+        
+        ref.observeSingleEvent(of: .value) { snapshot in
+            var blockedUserIds: [String] = []
+            
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let userId = child.key
+                blockedUserIds.append(userId)
+            }
+            
+            completion(blockedUserIds)
+        }
+    }
+    
     func addlikeToPost(userIdOfPost: String, postId: String, userIdOfLike: String, index: Int) {
         
         let postRef = Database.database().reference().child("posts").child(userIdOfPost).child(postId).child("likes")
@@ -111,5 +136,41 @@ extension HomeInteractor: HomeInteractorInputInterface{
         }
     }
     
+    func reportPost(postId: String, userId: String) {
+        let ref = Database.database().reference().child("posts").child(userId).child(postId)
+        
+        ref.child("reported").observeSingleEvent(of: .value) {[weak self] snapshot in
+            
+            if let reported = snapshot.value as? Bool {
+                if reported == false {
+                    
+                    ref.child("reported").setValue(true)
+                    ref.child("reports").child(Auth.auth().currentUser?.uid ?? "unknown").setValue(true)
+                    self?.presenter?.showMessage("Report Submitted, thank you for your report.")
+                } else {
+                    self?.presenter?.showMessage("This post has already been reported.")
+                }
+            } else {
+                
+                ref.child("reported").setValue(true)
+                ref.child("reports").child(Auth.auth().currentUser?.uid ?? "unknown").setValue(true)
+                self?.presenter?.showMessage("Report Submitted, thank you for your report.")
+            }
+        }
+    }
+    
+    func blockUser(userId: String) {
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("users").child(currentUserId).child("blockedUsers").child(userId)
+        
+        ref.setValue(true) {[weak self] error, _ in
+            if error != nil {
+                self?.presenter?.showMessage("Failed to block user.")
+            } else {
+                self?.presenter?.showMessage("You have blocked the user. You won't see posts of this user anymore.")
+            }
+        }
+    }
+
 
 }

@@ -43,6 +43,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
          guard let currentUserId = Auth.auth().currentUser?.uid, let userId = uid else { return }
         
          if currentUserId != userId {
+             interactor.checkBlock(currentUserId: currentUserId, userId: userId)
              view.showFollowButton()
              interactor.checkIfFollowing(currentUserId: currentUserId, userId: userId)
              view.hideMenu()
@@ -55,8 +56,10 @@ extension ProfilePresenter: ProfilePresenterInterface {
          
          if view.followButtonTitle == "Unfollow" {
              interactor.unfollowUser(currentUserId: currentUserId, userId: userId)
-         } else {
+         } else if view.followButtonTitle == "Follow" {
              interactor.followUser(currentUserId: currentUserId, userId: userId)
+         }else if view.followButtonTitle == "Unblock"{
+             interactor.unblockUser(blockedUserId: userId)
          }
      }
 
@@ -194,6 +197,10 @@ extension ProfilePresenter: ProfilePresenterInterface {
         self.interactor.changeLocation(for: uid, newLocation: location)
     }
     
+    func handleDeleteAccount() {
+        guard let uid = uid else{return}
+        self.interactor.deleteAccount(userId: uid)
+    }
 }
 
 extension ProfilePresenter: ProfileInteractorOutputInterface {
@@ -280,6 +287,22 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
     
     func didChangeLocation(_ newLocation: String) {
         view.updateLocation(newLocation)
+    }
+    
+    func blockedUser() {
+        view.updateBlockButtonTitle(title: "Unblock")
+    }
+    
+    func didUnblockUser(message: String) {
+        view.showAlert(message: message)
+        guard let currentUserId = Auth.auth().currentUser?.uid, let userId = uid else { return }
+        interactor.checkIfFollowing(currentUserId: currentUserId, userId: userId)
+        view.hideLoading()
+    }
+    
+    func didDeletedUser() {
+        wireframe.navigateToLoginScreen()
+        view.showAlert(message: "Your account and your datas was successfully deleted.")
     }
     
 }

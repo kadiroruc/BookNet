@@ -279,5 +279,70 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
         
     }
     
+    func checkBlock(currentUserId: String, userId: String) {
+        let ref = Database.database().reference().child("users").child(currentUserId).child("blockedUsers")
+        
+        ref.child(userId).observeSingleEvent(of: .value) {[weak self] snapshot in
+            if snapshot.exists() {
+                // Kullanıcı engellenmiş
+                self?.presenter?.blockedUser()
+            }
+        }
+    }
+    
+    func unblockUser(blockedUserId: String) {
+        guard let currentUserId = Auth.auth().currentUser?.uid else {return}
+        
+        let ref = Database.database().reference().child("users").child(currentUserId).child("blockedUsers")
+        
+        ref.child(blockedUserId).removeValue {[weak self] error, _ in
+            if let error = error {
+                self?.presenter?.showMessage("Error removing blocked user")
+            } else {
+                self?.presenter?.didUnblockUser(message: "User has been unblocked.")
+
+            }
+        }
+    }
+    
+    func deleteAccount(userId: String) {
+        
+        guard let currentUser = Auth.auth().currentUser, currentUser.uid == userId else {return}
+        
+        let postsRef = Database.database().reference().child("posts").child(userId)
+        postsRef.removeValue {[weak self] error,ref  in
+                if error != nil {
+                    self?.presenter?.showMessage("Error")
+                    return
+                }
+                
+                // 2. Kullanıcının Kitaplarını Silme
+                let booksRef = Database.database().reference().child("books").child(userId)
+                booksRef.removeValue { error,ref in
+                    if error != nil {
+                        self?.presenter?.showMessage("Error")
+                        return
+                    }
+                    
+                    // 3. Kullanıcı Verilerini Silme
+                    let userRef = Database.database().reference().child("users").child(userId)
+                    userRef.removeValue { error,ref in
+                        if error != nil {
+                            self?.presenter?.showMessage("Error")
+                            return
+                        }
+                        
+                        currentUser.delete { error in
+                            if error != nil {
+                                self?.presenter?.showMessage("Error")
+                            } else {
+                                self?.presenter?.didDeletedUser()
+                            }
+                        }
+                    }
+                }
+            }
+            
+    }
     
 }

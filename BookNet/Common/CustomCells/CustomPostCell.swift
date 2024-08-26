@@ -13,13 +13,18 @@ protocol CustomPostCellLikeDelegate: AnyObject{
 protocol CustomPostCellTrashDelegate: AnyObject{
     func trashButtonTapped(in cell: CustomPostCell)
 }
-
+protocol CustomPostCellReportAndBlockDelegate: AnyObject {
+    func reportButtonTapped(in cell: CustomPostCell)
+    func blockButtonTapped(in cell: CustomPostCell)
+    
+}
 class CustomPostCell: UICollectionViewCell {
     
     static let identifier = "postCell"
     
     weak var likeDelegate: CustomPostCellLikeDelegate?
     weak var trashDelegate: CustomPostCellTrashDelegate?
+    weak var reportAndBlockDelegate: CustomPostCellReportAndBlockDelegate?
     
     let profileImageView: CustomImageView = {
         let iv = CustomImageView()
@@ -93,6 +98,14 @@ class CustomPostCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    let menuButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(menuButtonTapped), for: .touchUpInside)
+        return button
+    }()
 
 
     
@@ -129,6 +142,19 @@ class CustomPostCell: UICollectionViewCell {
         self.trashDelegate?.trashButtonTapped(in: self)
     }
     
+    @objc func menuButtonTapped(){
+        let menu = UIMenu(title: "Post Options", children: [
+            UIAction(title: "Report the post", handler: { _ in
+                self.reportAndBlockDelegate?.reportButtonTapped(in: self)
+            }),
+            UIAction(title: "Block The User", handler: { _ in
+                self.reportAndBlockDelegate?.blockButtonTapped(in: self)
+            })
+        ])
+        menuButton.menu = menu
+        menuButton.showsMenuAsPrimaryAction = true
+    }
+    
     func setViews(){
         
         layer.cornerRadius = 15
@@ -140,11 +166,16 @@ class CustomPostCell: UICollectionViewCell {
         headerView.addSubview(profileImageView)
         headerView.addSubview(usernameLabel)
         headerView.addSubview(dateLabel)
+        headerView.addSubview(menuButton)
         
         
         profileImageView.anchor(top: headerView.centerYAnchor, left: headerView.leftAnchor, bottom: nil, right: nil, paddingTop: -20, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 40, height: 40)
         usernameLabel.anchor(top: headerView.centerYAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: -15, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 70, height: 30)
-        dateLabel.anchor(top: headerView.centerYAnchor, left: nil, bottom: nil, right: headerView.rightAnchor, paddingTop: -15, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 100, height: 50)
+        dateLabel.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 100, height: 50)
+        dateLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
+        
+        menuButton.anchor(top: nil, left: dateLabel.rightAnchor, bottom: nil, right: headerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
+        menuButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
         
         
         let midView = UIView()

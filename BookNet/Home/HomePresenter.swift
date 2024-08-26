@@ -75,6 +75,18 @@ final class HomePresenter: HomePresenterInterface {
             interactor.addlikeToPost(userIdOfPost: posts[index].user.uid, postId: posts[index].postId, userIdOfLike: currentUserId,index: index)
         }
     }
+    
+    func reportPost(index: Int) {
+        if posts[index].postId != ""{
+            interactor.reportPost(postId: posts[index].postId, userId: posts[index].user.uid)
+        }
+    }
+    func blockUser(index: Int) {
+        if posts[index].user.uid != ""{
+            interactor.blockUser(userId: posts[index].user.uid)
+        }
+    }
+    
 }
 
 extension HomePresenter: HomeInteractorOutputInterface {
@@ -87,6 +99,10 @@ extension HomePresenter: HomeInteractorOutputInterface {
         self.posts = posts
         view.reloadData()
         view.endRefreshing()
+    }
+    
+    func showMessage(_ message: String) {
+        view.showMessage(message: message)
     }
 }
 

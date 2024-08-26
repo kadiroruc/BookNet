@@ -30,6 +30,7 @@ protocol ProfileViewInterface: ViewInterface {
     func showFollowButton()
     func updateLocation(_ newLocation: String)
     func hideMenu()
+    func updateBlockButtonTitle(title: String)
     
 }
 
@@ -54,6 +55,7 @@ protocol ProfilePresenterInterface: PresenterInterface {
     func trashButtonTapped(index: Int, cellType: String)
     
     func handleChangeLocation(location: String)
+    func handleDeleteAccount()
     
 }
 
@@ -74,6 +76,9 @@ protocol ProfileInteractorOutputInterface: AnyObject {
     func didRequestedBefore()
     func didDeleteBook(at index: Int)
     func didChangeLocation(_ newLocation: String)
+    func blockedUser()
+    func didUnblockUser(message: String)
+    func didDeletedUser()
 }
 
 protocol ProfileInteractorInputInterface: AnyObject {
@@ -92,4 +97,7 @@ protocol ProfileInteractorInputInterface: AnyObject {
     func checkDidRequestedBefore(senderId:String,receiverId:String,email: String,requestedBook:String)
     func deleteBook(userId: String, bookId: String, index: Int)
     func changeLocation(for userId: String, newLocation: String)
+    func checkBlock(currentUserId: String, userId: String)
+    func unblockUser(blockedUserId: String)
+    func deleteAccount(userId: String)
 }

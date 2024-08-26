@@ -84,6 +84,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomPostCell.identifier, for: indexPath) as! CustomPostCell
         cell.likeDelegate = self
+        cell.reportAndBlockDelegate = self
         presenter.configureCell(cell, for: indexPath.item)
         return cell
     }
@@ -121,6 +122,34 @@ extension HomeViewController: CustomPostCellLikeDelegate{
             presenter.likeButtonTapped(for: indexPath.item)
         }
     }
+}
+
+extension HomeViewController: CustomPostCellReportAndBlockDelegate{
+    func reportButtonTapped(in cell: CustomPostCell) {
+        let ac = UIAlertController(title: nil, message: "Do you want to report the user?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Okay", style: .default,handler: {_ in
+            if let indexPath = self.collectionView.indexPath(for: cell) {
+
+                self.presenter.reportPost(index: indexPath.item)
+            }
+        }))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(ac,animated: true)
+    }
+    
+    func blockButtonTapped(in cell: CustomPostCell) {
+        let ac = UIAlertController(title: nil, message: "Do you want to block the user?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Okay", style: .default,handler: {_ in
+            if let indexPath = self.collectionView.indexPath(for: cell) {
+                self.presenter.blockUser(index: indexPath.item)
+                
+            }
+        }))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(ac,animated: true)
+    }
+    
+    
 }
 
 extension HomeViewController: GADBannerViewDelegate{
