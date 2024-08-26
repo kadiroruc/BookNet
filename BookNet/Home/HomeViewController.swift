@@ -35,9 +35,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         bannerView = GADBannerView(adSize: adaptiveSize)
         
         do{
-            bannerView.adUnitID = try Configuration.value(for: "TEST_BANNER_API_KEY")
+            let adUnitID: String = try Configuration.value(for: "HOME_BANNER_API_KEY")
+            bannerView.adUnitID = adUnitID
         }catch{
-            print("hata")
+            
         }
         
 
@@ -88,7 +89,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 300)
+        return CGSize(width: view.frame.width, height: 280)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

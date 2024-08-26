@@ -20,6 +20,7 @@ protocol SignUpViewInterface: ViewInterface {
     func showError(_ message: String)
     func updateSignUpButton(isEnabled: Bool)
     func showMessage(_ message: String)
+    func showEULA()
 }
 
 protocol SignUpInteractorInputInterface: InteractorInterface {

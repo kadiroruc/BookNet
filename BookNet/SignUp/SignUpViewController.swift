@@ -7,6 +7,7 @@
 
 import UIKit
 import PKHUD
+import WebKit
 
 final class SignUpViewController: UIViewController {
 
@@ -151,6 +152,7 @@ final class SignUpViewController: UIViewController {
         super.viewDidLoad()
         
         setViews()
+        showEULA()
     }
     
     func setViews(){
@@ -275,6 +277,43 @@ extension SignUpViewController: SignUpViewInterface {
     func updateSignUpButton(isEnabled: Bool) {
         signUpButton.isEnabled = isEnabled
         signUpButton.backgroundColor = isEnabled ? UIColor.rgb(red: 251, green: 189, blue: 16) : UIColor.rgb(red: 255, green: 236, blue: 178)
+    }
+    
+    func showEULA(){
+        if let filePath = Bundle.main.path(forResource: "EULA", ofType: "html"),
+           let htmlContent = try? String(contentsOfFile: filePath, encoding: .utf8) {
+
+            let alert = UIAlertController(title: "End User Licence Agreement", message: nil, preferredStyle: .alert)
+            
+            // WKWebView oluşturulması
+            let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: 300, height: 350))
+            webView.isOpaque = false
+            webView.backgroundColor = .clear
+            webView.scrollView.backgroundColor = .clear
+            webView.loadHTMLString(htmlContent, baseURL: nil)
+            
+            alert.view.addSubview(webView)
+            
+            // Auto Layout ayarları
+            webView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                        webView.leadingAnchor.constraint(equalTo: alert.view.leadingAnchor),
+                        webView.trailingAnchor.constraint(equalTo: alert.view.trailingAnchor),
+                        webView.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 45),
+                        webView.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor, constant: -45),
+                        webView.heightAnchor.constraint(equalToConstant: 350)  // Yüksekliği belirleyin
+                    ])
+
+                    // Alert boyutunu ayarlamak için preferredContentSize kullanımı
+                    let height = NSLayoutConstraint(item: alert.view!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 450)
+                    alert.view.addConstraint(height)
+            
+            alert.addAction(UIAlertAction(title: "I Agree", style: .default, handler: nil))
+            
+            self.present(alert, animated: true)
+        } else {
+            print("Cannot find HTML File")
+        }
     }
     
 }

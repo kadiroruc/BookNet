@@ -189,11 +189,11 @@ final class ProfileViewController: UIViewController {
         let adaptiveSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
         bannerView = GADBannerView(adSize: adaptiveSize)
         
-        if let path = Bundle.main.path(forResource: "Config", ofType: "plist"),
-           let config = NSDictionary(contentsOfFile: path) as? [String: Any] {
-            if let adUnitID = config["GADProfileBannerAdUnitID"] as? String{
-                bannerView.adUnitID = adUnitID
-            }
+        do{
+            let adUnitID: String = try Configuration.value(for: "PROFILE_BANNER_API_KEY")
+            bannerView.adUnitID = adUnitID
+        }catch{
+            
         }
 
         bannerView.rootViewController = self
@@ -285,6 +285,7 @@ final class ProfileViewController: UIViewController {
             self.handleChangeLocation()
         }
         
+        
         let menu = UIMenu(title: "",options: .displayInline,children: [profileItem,locationItem,logOutItem])
         
         
@@ -307,7 +308,7 @@ final class ProfileViewController: UIViewController {
         
         view.addSubview(collectionView)
         
-        collectionView.anchor(top: libraryButton.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        collectionView.anchor(top: libraryButton.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 15, paddingLeft: 0, paddingBottom: 50, paddingRight: 0, width: 0, height: 0)
         
         collectionView.register(CustomPostCell.self, forCellWithReuseIdentifier: CustomPostCell.identifier)
         

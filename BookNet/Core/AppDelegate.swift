@@ -25,8 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
         
-        Thread.sleep(forTimeInterval: 1)
-        
         let initialViewController = UINavigationController()
         
         if Auth.auth().currentUser == nil{

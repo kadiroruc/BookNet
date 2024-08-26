@@ -31,19 +31,22 @@ final class TabBarController: UIViewController, UITabBarControllerDelegate, GADF
     }
     
     func loadInterstitial() async{
-        if let path = Bundle.main.path(forResource: "Config", ofType: "plist"),
-           let config = NSDictionary(contentsOfFile: path) as? [String: Any] {
-            if let adUnitID = config["GADInterstitialAdUnitID"] as? String{
-                do {
-                  interstitial = try await GADInterstitialAd.load(
-                    withAdUnitID: adUnitID, request: GADRequest())
-                    
-                    interstitial?.fullScreenContentDelegate = self
-                } catch {
-                  print("Failed to load interstitial ad with error: \(error.localizedDescription)")
-                }
+        
+        do{
+            let adUnitId: String = try Configuration.value(for: "INTERSTITIAL_API_KEY")
+            
+            do {
+              interstitial = try await GADInterstitialAd.load(
+                withAdUnitID: adUnitId, request: GADRequest())
+                
+                interstitial?.fullScreenContentDelegate = self
+            } catch {
+
             }
+        }catch{
+            
         }
+
     }
 
     private func setupTabBar() {
@@ -69,9 +72,7 @@ final class TabBarController: UIViewController, UITabBarControllerDelegate, GADF
 
         
         if tabBar.selectedIndex == 1{
-            guard let interstitial = interstitial else {
-                return print("Ad wasn't ready.")
-            }
+            guard let interstitial = interstitial else {return}
             
             // The UIViewController parameter is an optional.
             interstitial.present(fromRootViewController: viewController)

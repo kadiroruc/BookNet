@@ -236,7 +236,6 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
                     
                 }
             }
-            print(requested)
             if !requested{
                 self?.sendRequest(senderId: senderId, receiverId: receiverId, email: email, requestedBook: requestedBook)
             }else{
