@@ -75,6 +75,12 @@ extension HomeInteractor: HomeInteractorInputInterface{
                 
                 dictionaries.forEach { key, value in
                     guard let dictionary = value as? [String: Any] else { return }
+                    
+                    let reportedCount = dictionary["reported"] as? Int ?? 0
+                    
+                    if reportedCount > 20 {
+                        return
+                    }
 
                     var post = PostModel(user: user, dictionary: dictionary)
                     post.id = key

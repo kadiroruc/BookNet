@@ -87,6 +87,8 @@
 		E91AFB822C7384C400872A00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E91AFB312C7384C400872A00 /* GoogleService-Info.plist */; };
 		E93DB5F52C79B022009E1938 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93DB5F42C79B022009E1938 /* Configuration.swift */; };
 		E93E05022C7C580800FDCECD /* EULA.html in Resources */ = {isa = PBXBuildFile; fileRef = E93E05012C7C580800FDCECD /* EULA.html */; };
+		E93E05062C7DDFCB00FDCECD /* badWords.txt in Resources */ = {isa = PBXBuildFile; fileRef = E93E05052C7DDFCB00FDCECD /* badWords.txt */; };
+		E93E05082C7DE26000FDCECD /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E05072C7DE26000FDCECD /* StringExtension.swift */; };
 		E97C04F72C77CD1E000F02F5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E97C04F62C77CD1E000F02F5 /* Launch Screen.storyboard */; };
 		E99E5FC52C738CA800EF2AF2 /* BookNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E5FC42C738CA800EF2AF2 /* BookNetTests.swift */; };
 		E99E5FCE2C73981F00EF2AF2 /* HomeInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99E5FCD2C73981F00EF2AF2 /* HomeInteractorTests.swift */; };
@@ -192,6 +194,8 @@
 		E93DB5F32C79ABE3009E1938 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E93DB5F42C79B022009E1938 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		E93E05012C7C580800FDCECD /* EULA.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = EULA.html; sourceTree = "<group>"; };
+		E93E05052C7DDFCB00FDCECD /* badWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = badWords.txt; sourceTree = "<group>"; };
+		E93E05072C7DE26000FDCECD /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		E97C04F62C77CD1E000F02F5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E99E5FBD2C73881E00EF2AF2 /* BookNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99E5FC22C738CA800EF2AF2 /* BookNetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookNetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,6 +307,7 @@
 				E91AFAF32C7384C400872A00 /* DateExtension.swift */,
 				E91AFAF42C7384C400872A00 /* FirebaseExtension.swift */,
 				E91AFAF52C7384C400872A00 /* UIViewExtension.swift */,
+				E93E05072C7DE26000FDCECD /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -443,10 +448,19 @@
 				E91AFB262C7384C400872A00 /* Swap */,
 				E91AFB2B2C7384C400872A00 /* TabBar */,
 				E91AFB2F2C7384C400872A00 /* Utils */,
+				E93E05042C7DDF9B00FDCECD /* Resources */,
 				E91AFB312C7384C400872A00 /* GoogleService-Info.plist */,
-				E93E05012C7C580800FDCECD /* EULA.html */,
 			);
 			path = BookNet;
+			sourceTree = "<group>";
+		};
+		E93E05042C7DDF9B00FDCECD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E93E05012C7C580800FDCECD /* EULA.html */,
+				E93E05052C7DDFCB00FDCECD /* badWords.txt */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		E99E5FC32C738CA800EF2AF2 /* BookNetTests */ = {
@@ -577,6 +591,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E93E05062C7DDFCB00FDCECD /* badWords.txt in Resources */,
 				E97C04F72C77CD1E000F02F5 /* Launch Screen.storyboard in Resources */,
 				E93E05022C7C580800FDCECD /* EULA.html in Resources */,
 				E91AFB822C7384C400872A00 /* GoogleService-Info.plist in Resources */,
@@ -619,6 +634,7 @@
 				E91AFB562C7384C400872A00 /* HomeViewController.swift in Sources */,
 				E91AFB452C7384C400872A00 /* InteractorInterface.swift in Sources */,
 				E91AFB6D2C7384C400872A00 /* ShareBookInterfaces.swift in Sources */,
+				E93E05082C7DE26000FDCECD /* StringExtension.swift in Sources */,
 				E91AFB732C7384C400872A00 /* SignUpPresenter.swift in Sources */,
 				E91AFB772C7384C400872A00 /* SwapInterfaces.swift in Sources */,
 				E91AFB3B2C7384C400872A00 /* CustomBookCell.swift in Sources */,
@@ -859,7 +875,7 @@
 				DEVELOPMENT_TEAM = 9W5Z8G2RNJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookNet/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to access your photo library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Access to the photo library is necessary for users to add books to their library and share posts about books. This allows them to upload and share book cover photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -892,7 +908,7 @@
 				DEVELOPMENT_TEAM = 9W5Z8G2RNJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookNet/Info.plist;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need to access your photo library.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Access to the photo library is necessary for users to add books to their library and share posts about books. This allows them to upload and share book cover photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

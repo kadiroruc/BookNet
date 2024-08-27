@@ -36,3 +36,5 @@ GoogleMobileAds/
 
 # Exclude xcuserdata (User-specific Xcode workspace settings)
 **/xcuserdata/
+
+badWords.txt

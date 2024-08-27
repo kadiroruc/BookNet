@@ -31,6 +31,10 @@ final class AddBookPresenter {
 extension AddBookPresenter: AddBookPresenterInterface {
     
     func handleAdd(bookName: String, authorName: String) {
+        if (bookName.containsInappropriateWords() || authorName.containsInappropriateWords()) {
+            view.show(title: nil, message: "Inappropriate words!")
+            return
+        }
         view.disableShareButton()
         view.showLoading()
         interactor.uploadBook(bookName: bookName, authorName: authorName, image: image)

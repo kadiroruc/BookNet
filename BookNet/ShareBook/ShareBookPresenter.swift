@@ -32,6 +32,11 @@ final class ShareBookPresenter {
 extension ShareBookPresenter: ShareBookPresenterInterface {
     
     func handleShare(bookName: String, authorName: String, postText: String) {
+        
+        if (bookName.containsInappropriateWords() || authorName.containsInappropriateWords() || postText.containsInappropriateWords()) {
+            view.show(title: nil, message: "Inappropriate words!")
+            return
+        }
         view.disableShareButton()
         view.showLoading()
         interactor.uploadPost(bookName: bookName, authorName: authorName, postText: postText, image: image)
@@ -40,6 +45,7 @@ extension ShareBookPresenter: ShareBookPresenterInterface {
     func viewDidLoad() {
         view.showImage(image)
     }
+    
 }
 
 extension ShareBookPresenter: ShareBookInteractorOutputInterface{

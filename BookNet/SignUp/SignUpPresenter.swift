@@ -30,6 +30,10 @@ extension SignUpPresenter: SignUpPresenterInterface {
 
     
     func signUpButtonTapped(username: String, password: String, email: String, location: String) {
+        if (username.containsInappropriateWords() || email.containsInappropriateWords() || location.containsInappropriateWords()) {
+            view.showMessage("Inappropriate words!")
+            return
+        }
         view.showLoading()
         interactor.signUp(username: username, password: password, email: email,location: location)
     }
