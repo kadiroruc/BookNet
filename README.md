@@ -1,10 +1,10 @@
 
 # BookNet - Book Swap App
-## App Store
-- https://apps.apple.com/tr/app/booknet/id6661023061?l=tr
 
 The book swap application aims to create a social environment by bringing people with common interests together, to offer an environmentally friendly approach by reducing paper consumption, and to reduce carbon emissions and facilitate accessibility without dealing with cargo.
 
+## App Store
+- https://apps.apple.com/tr/app/booknet/id6661023061?l=tr
 
 ## Goals
 
