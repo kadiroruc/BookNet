@@ -196,6 +196,7 @@
 		E93E05012C7C580800FDCECD /* EULA.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = EULA.html; sourceTree = "<group>"; };
 		E93E05052C7DDFCB00FDCECD /* badWords.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = badWords.txt; sourceTree = "<group>"; };
 		E93E05072C7DE26000FDCECD /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		E956CD682C86F97A00275D3F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E97C04F62C77CD1E000F02F5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E99E5FBD2C73881E00EF2AF2 /* BookNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99E5FC22C738CA800EF2AF2 /* BookNetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookNetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -481,6 +482,7 @@
 				E93DB5F32C79ABE3009E1938 /* Config.xcconfig */,
 				E9028A032C78C19800910FA3 /* Info.plist */,
 				E93DB5F42C79B022009E1938 /* Configuration.swift */,
+				E956CD682C86F97A00275D3F /* README.md */,
 				E91AFB332C7384C400872A00 /* BookNet */,
 				E99E5FBD2C73881E00EF2AF2 /* BookNet.app */,
 				E99E5FC22C738CA800EF2AF2 /* BookNetTests.xctest */,
@@ -880,15 +882,17 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abdulkadiroruc.Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -913,15 +917,17 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abdulkadiroruc.Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

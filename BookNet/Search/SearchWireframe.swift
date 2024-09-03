@@ -31,12 +31,7 @@ extension SearchWireframe: SearchWireframeInterface {
     func navigateToProfile(with userId: String) {
 
         
-        let profileWireFrame = ProfileWireframe(uid: userId)
-        let profileVC = profileWireFrame.viewController
-        profileVC.titleLabel.isHidden = true
-        profileVC.followButton.isHidden = false
-        
-        navigationController?.pushWireframe(profileWireFrame, animated: true)
+        navigationController?.pushWireframe(ProfileWireframe(uid: userId), animated: true)
     }
     
 }

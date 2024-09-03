@@ -151,6 +151,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
             cell.postDescriptionLabel.text = post.autherName
             cell.trashButton.isHidden = false
             cell.likeButton.isEnabled = false
+            cell.menuButton.isHidden = true
             
             if let likes = post.likes{
                 cell.likeCountLabel.text = "\(likes.count)"

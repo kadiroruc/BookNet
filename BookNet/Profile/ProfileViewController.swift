@@ -289,8 +289,13 @@ final class ProfileViewController: UIViewController {
             self.handleDeleteAccount()
         }
         
+        let eulaItem = UIAction(title: "EULA & Terms And Conditions") { _ in
+            self.handleEULA()
+        }
+
         
-        let menu = UIMenu(title: "",options: .displayInline,children: [profileItem,locationItem,deleteAccountItem,logOutItem])
+        
+        let menu = UIMenu(title: "",options: .displayInline,children: [profileItem,locationItem,deleteAccountItem,eulaItem,logOutItem])
         
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"),menu: menu)
@@ -371,6 +376,40 @@ final class ProfileViewController: UIViewController {
         present(ac,animated: true)
     }
     
+    func handleEULA(){
+        if let filePath = Bundle.main.path(forResource: "EULA", ofType: "html"),
+           let htmlContent = try? String(contentsOfFile: filePath, encoding: .utf8) {
+
+            let alert = UIAlertController(title: "End User Licence Agreement", message: nil, preferredStyle: .alert)
+            
+            // WKWebView oluşturulması
+            let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: 300, height: 350))
+            webView.isOpaque = false
+            webView.backgroundColor = .clear
+            webView.scrollView.backgroundColor = .clear
+            webView.loadHTMLString(htmlContent, baseURL: nil)
+            
+            alert.view.addSubview(webView)
+            
+            // Auto Layout ayarları
+            webView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                        webView.leadingAnchor.constraint(equalTo: alert.view.leadingAnchor),
+                        webView.trailingAnchor.constraint(equalTo: alert.view.trailingAnchor),
+                        webView.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 45),
+                        webView.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor, constant: -45),
+                        webView.heightAnchor.constraint(equalToConstant: 350)  // Yüksekliği belirleyin
+                    ])
+
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(alert, animated: true)
+        } else {
+            print("Cannot find HTML File")
+        }
+    }
+    
 
 }
 
@@ -384,6 +423,7 @@ extension ProfileViewController: ProfileViewInterface {
 
     func showFollowButton() {
         followButton.isHidden = false
+        titleLabel.isHidden = true
     }
     
     var followButtonTitle: String? {
