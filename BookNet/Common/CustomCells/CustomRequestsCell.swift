@@ -13,10 +13,14 @@ protocol CustomRequestsCellDelegate: AnyObject{
     func tappedCancelButton(at indexPath: IndexPath)
     func tappedAcceptButton(at indexPath: IndexPath)
 }
+protocol CustomRequestsCellEmailDelegate: AnyObject{
+    func tappedEmailLabel(for email: String)
+}
 
 class CustomRequestsCell: UICollectionViewCell {
     
     weak var delegate: CustomRequestsCellDelegate?
+    weak var emailDelegate: CustomRequestsCellEmailDelegate?
     var indexPath: IndexPath?
     
     
@@ -58,7 +62,11 @@ class CustomRequestsCell: UICollectionViewCell {
     lazy var emailLabel: UILabel = {
         let lb = UILabel()
         lb.textAlignment = .center
-        lb.textColor = .black
+        lb.textColor = .link
+        lb.isUserInteractionEnabled = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedEmailLabel))
+        lb.addGestureRecognizer(tapGesture)
         return lb
     }()
     
@@ -159,6 +167,13 @@ class CustomRequestsCell: UICollectionViewCell {
             delegate?.tappedAcceptButton(at: indexPath)
         }
     }
+    
+    @objc func tappedEmailLabel() {
+        guard let email = emailLabel.text else { return }
+
+        emailDelegate?.tappedEmailLabel(for: email)
+    }
+
 }
 
 //struct ViewControllerPrevieww: PreviewProvider{

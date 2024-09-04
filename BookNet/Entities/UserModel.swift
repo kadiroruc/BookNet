@@ -11,7 +11,7 @@ struct UserModel{
     let username: String
     let profileImageUrl: String
     let uid: String
-    let location: String
+    var location: String
     
     init(uid: String, dictionary: [String:Any]){
         self.username = dictionary["username"] as? String ?? ""

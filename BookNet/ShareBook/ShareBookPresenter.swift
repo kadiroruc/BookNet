@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 final class ShareBookPresenter {
     
@@ -39,6 +40,7 @@ extension ShareBookPresenter: ShareBookPresenterInterface {
         }
         view.disableShareButton()
         view.showLoading()
+
         interactor.uploadPost(bookName: bookName, authorName: authorName, postText: postText, image: image)
     }
     

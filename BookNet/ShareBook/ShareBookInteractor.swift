@@ -38,10 +38,14 @@ extension ShareBookInteractor: ShareBookInteractorInterface {
                 if let imageUrl = url{
                     
                     guard let uid = Auth.auth().currentUser?.uid else{return}
+                    guard let username = Auth.auth().currentUser?.displayName else{return}
                     
                     let databaseRef = Database.database().reference().child("posts").child(uid)
                     let postRef = databaseRef.childByAutoId()
-                    let values = ["postId":postRef.key,
+                    let values = ["userId":uid,
+                                  "username":username,
+                                  "userProfileImageUrl":Auth.auth().currentUser?.photoURL?.absoluteString ?? "",
+                                  "postId":postRef.key,
                                   "bookImageUrl":imageUrl.absoluteString,
                                   "bookName":bookName,
                                   "authorName":authorName,

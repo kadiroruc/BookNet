@@ -26,7 +26,7 @@ final class LoginViewController: UIViewController {
         return iv
         
     }()
-    let signUpLabel: UILabel = {
+    let loginLabel: UILabel = {
         let lb = UILabel()
         lb.text = "Login"
         lb.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
@@ -147,11 +147,11 @@ final class LoginViewController: UIViewController {
         
         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        view.addSubview(signUpLabel)
+        view.addSubview(loginLabel)
         
-        signUpLabel.anchor(top: logoImageView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        loginLabel.anchor(top: logoImageView.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        signUpLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
         
         setupInputFields()
@@ -174,7 +174,7 @@ final class LoginViewController: UIViewController {
         
         view.addSubview(stackView)
         
-        stackView.anchor(top: signUpLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 60, paddingBottom: 0, paddingRight: 60, width: 0, height: 100)
+        stackView.anchor(top: loginLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 80, paddingLeft: 60, paddingBottom: 0, paddingRight: 60, width: 0, height: 100)
         
         
         view.addSubview(loginButton)

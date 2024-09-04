@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class PostCollectionViewCell: UICollectionViewCell {
     
@@ -83,15 +84,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func set(forPost post: PostModel) {
-        self.usernameLabel.text = post.user.username
-        self.profileImageView.loadImage(urlString: post.user.profileImageUrl)
-        self.bookImageView.loadImage(urlString: post.bookImageUrl)
-        self.bookLabel.text = post.bookName
-        self.postLabel.text = "\"\(post.postText)\""
-        self.dateLabel.text = post.creationDate.timeAgoDisplay()
-        self.postDescriptionLabel.text = post.autherName
-    }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

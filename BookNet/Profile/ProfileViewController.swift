@@ -48,7 +48,7 @@ final class ProfileViewController: UIViewController {
     let profileImageView: CustomImageView = {
         let iv = CustomImageView()
         iv.backgroundColor = .systemGray
-        iv.layer.cornerRadius = 70
+        iv.layer.cornerRadius = 65
         return iv
     }()
     
@@ -57,6 +57,7 @@ final class ProfileViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         label.text = "Followers"
+        label.textAlignment = .center
         return label
     }()
     
@@ -65,7 +66,7 @@ final class ProfileViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = UIColor.rgb(red: 251, green: 186, blue: 18)
         label.text = "Following"
-        
+        label.textAlignment = .center
         return label
     }()
     let followersCount: UILabel = {
@@ -174,7 +175,6 @@ final class ProfileViewController: UIViewController {
         setViews()
         setupCollectionView()
         setBannerView()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -213,25 +213,29 @@ final class ProfileViewController: UIViewController {
         
         view.addSubview(titleLabel)
         
-        titleLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 100, paddingLeft: -30, paddingBottom: 0, paddingRight: 0, width: 220, height: 60)
+        titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: -40, paddingLeft: -30, paddingBottom: 0, paddingRight: 0, width: 220, height: 60)
         
         view.addSubview(profileImageView)
-        profileImageView.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 140, height: 140)
+        profileImageView.anchor(top: titleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 130, height: 130)
         
         
         view.addSubview(followersLabel)
-        followersLabel.anchor(top: titleLabel.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 90, height: 0)
+        followersLabel.anchor(top: titleLabel.bottomAnchor, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 25, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
         
         view.addSubview(followingLabel)
-        followingLabel.anchor(top: titleLabel.bottomAnchor, left: followersLabel.rightAnchor, bottom: nil, right: nil, paddingTop: 30, paddingLeft: 15, paddingBottom: 0, paddingRight: 0, width: 90, height: 0)
+        followingLabel.anchor(top: titleLabel.bottomAnchor, left: followersLabel.rightAnchor, bottom: nil, right: view.safeAreaLayoutGuide.rightAnchor, paddingTop: 30, paddingLeft: 15, paddingBottom: 0, paddingRight: 10, width: 0, height: 0)
+        
         
         view.addSubview(followersCount)
-        followersCount.anchor(top: followersLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 3, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 0)
+        followersCount.anchor(top: followersLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 3, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         followersCount.centerXAnchor.constraint(equalTo: followersLabel.centerXAnchor).isActive = true
         
+
         view.addSubview(followingCount)
-        followingCount.anchor(top: followingLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 3, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 60, height: 0)
+        followingCount.anchor(top: followingLabel.bottomAnchor, left: nil, bottom: nil, right: nil, paddingTop: 3, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         followingCount.centerXAnchor.constraint(equalTo: followingLabel.centerXAnchor).isActive = true
+        
         
         view.addSubview(followButton)
         followButton.anchor(top: followersCount.bottomAnchor, left: followersLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
@@ -255,7 +259,7 @@ final class ProfileViewController: UIViewController {
         locationLabel.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
         
         view.addSubview(container)
-        container.anchor(top: nil, left: followersLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 40)
+        container.anchor(top: nil, left: followersLabel.leftAnchor, bottom: nil, right: followingLabel.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 10, width: 0, height: 40)
         container.centerYAnchor.constraint(equalTo: usernameLabel.centerYAnchor).isActive = true
         
         

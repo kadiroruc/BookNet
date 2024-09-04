@@ -25,11 +25,9 @@ extension HomeInteractor: HomeInteractorInputInterface{
         
         Database.database().reference().child("users").child(currentUserUid).observeSingleEvent(of: .value) {[weak self] snapshot in
             guard let userDictionary = snapshot.value as? [String:Any] else{return}
-            let user = UserModel(uid: currentUserUid, dictionary: userDictionary)
-            
+
             DispatchQueue.main.async {
-                
-                self?.fetchPostWithUser(user: user)
+                self?.fetchPostWithUser(userId: currentUserUid)
             }
         }
         
@@ -41,28 +39,22 @@ extension HomeInteractor: HomeInteractorInputInterface{
                 guard let userIdsDictionary = snapshot.value as? [String:Any] else{return}
                 
                 userIdsDictionary.forEach { key,value in
-                    
-                    Database.database().reference().child("users").child(key).observeSingleEvent(of: .value) { snapshot in
-                        guard let userDictionary = snapshot.value as? [String:Any] else{return}
-                        let user = UserModel(uid: key, dictionary: userDictionary)
-                        
-                        if !(blockedUserIds.contains(key)){
-                            DispatchQueue.main.async {
-                                self?.fetchPostWithUser(user: user)
-                            }
+                    if !(blockedUserIds.contains(key)){
+                        DispatchQueue.main.async {
+                            self?.fetchPostWithUser(userId: key)
                         }
-
                     }
                 }
+
             }
         }
         
 
     }
     
-    fileprivate func fetchPostWithUser(user: UserModel){
+    fileprivate func fetchPostWithUser(userId: String){
         
-        let ref = Database.database().reference().child("posts").child(user.uid)
+        let ref = Database.database().reference().child("posts").child(userId)
         
         let sixDaysAgoTimestamp = Date().timeIntervalSince1970 - (5 * 24 * 60 * 60)
         
@@ -82,8 +74,7 @@ extension HomeInteractor: HomeInteractorInputInterface{
                         return
                     }
 
-                    var post = PostModel(user: user, dictionary: dictionary)
-                    post.id = key
+                    var post = PostModel(dictionary: dictionary)
                     
                     guard let uid = Auth.auth().currentUser?.uid else { return }
 

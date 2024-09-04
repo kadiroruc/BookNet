@@ -90,6 +90,7 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
     
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) {[weak self] snapshot,arg  in
             guard let userDictionary = snapshot.value as? [String:Any] else{return}
+            
             let user = UserModel(uid: uid, dictionary: userDictionary)
             
             self?.presenter?.didFetchUserProfile(user)
@@ -126,12 +127,8 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
         ref.observe(.childAdded) {[weak self] snapshot in
             
             guard let dictionary = snapshot.value as? [String:Any] else {return}
-            
-            let key = snapshot.key
-            
 
-            
-            let post = PostModel(user: user, dictionary: dictionary)
+            let post = PostModel(dictionary: dictionary)
             
             posts.insert(post, at: 0)
             
@@ -169,8 +166,8 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
             storageRef.downloadURL { url, error in
                 if let imageUrl = url{
                     let profileImageUrl = imageUrl.absoluteString
-                    
-                    let dictionaryValues = ["username":user.username, "profileImageUrl":profileImageUrl]
+
+                    let dictionaryValues = ["username":user.username,"location":user.location, "profileImageUrl":profileImageUrl]
                     
                     let values = [uid:dictionaryValues]
                     
@@ -182,6 +179,18 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
         
                         self?.presenter?.updateProfileImage(with: profileImageUrl)
                         
+                        if let user = Auth.auth().currentUser {
+                            let changeRequest = user.createProfileChangeRequest()
+                            changeRequest.photoURL = URL(string: profileImageUrl)
+                            changeRequest.commitChanges { error in
+                                if let error = error {
+                                    print("Error updating profile: \(error.localizedDescription)")
+                                } else {
+                                    print("Profile photo updated successfully")
+                                }
+                            }
+                        }
+                        
                     })
                 }
             }
@@ -190,8 +199,7 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
     }
 
     func deletePost(forUserId userId: String, postId: String, index: Int) {
-        let ref = Database.database().reference()
-        let postRef = ref.child("posts").child(userId).child(postId)
+        let postRef = Database.database().reference().child("posts").child(userId).child(postId)
 
         postRef.removeValue {[weak self] error, _ in
             if let error = error {
@@ -203,7 +211,7 @@ extension ProfileInteractor: ProfileInteractorInputInterface {
     }
     
     func deleteBook(userId: String, bookId: String, index: Int) {
-        let postRef = Database.database().reference().child("posts").child(userId).child(bookId)
+        let postRef = Database.database().reference().child("books").child(userId).child(bookId)
 
         postRef.removeValue {[weak self] error, _ in
             if let error = error {

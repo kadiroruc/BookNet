@@ -142,8 +142,18 @@ extension ProfilePresenter: ProfilePresenterInterface {
     func configure(cell: UICollectionViewCell, at indexPath: IndexPath) {
         if currentCellType == Constants.TabButtons.posts, let cell = cell as? CustomPostCell {
             let post = posts[indexPath.item]
-            cell.usernameLabel.text = post.user.username
-            cell.profileImageView.loadImage(urlString: post.user.profileImageUrl)
+            cell.usernameLabel.text = post.username
+            
+            if post.userProfileImageUrl != ""{
+                cell.profileImageView.loadImage(urlString: post.userProfileImageUrl)
+            }else{
+                if post.userId == Auth.auth().currentUser?.uid{
+                    if let userProfileImageUrl = Auth.auth().currentUser?.photoURL?.absoluteString{
+                        cell.profileImageView.loadImage(urlString: userProfileImageUrl)
+                    }
+                }
+            }
+
             cell.bookImageView.loadImage(urlString: post.bookImageUrl)
             cell.bookLabel.text = post.bookName
             cell.postLabel.text = "\"\(post.postText)\""
@@ -287,6 +297,7 @@ extension ProfilePresenter: ProfileInteractorOutputInterface {
     }
     
     func didChangeLocation(_ newLocation: String) {
+        self.user?.location = newLocation
         view.updateLocation(newLocation)
     }
     

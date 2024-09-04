@@ -47,8 +47,19 @@ final class HomePresenter: HomePresenterInterface {
         cell.postLabel.text = post.postText
         cell.postDescriptionLabel.text = post.autherName
         cell.dateLabel.text = post.creationDate.timeAgoDisplay()
-        cell.profileImageView.loadImage(urlString: post.user.profileImageUrl)
-        cell.usernameLabel.text = post.user.username
+        
+        if post.userProfileImageUrl != ""{
+            cell.profileImageView.loadImage(urlString: post.userProfileImageUrl)
+        }else{
+            if post.userId == Auth.auth().currentUser?.uid{
+                if let userProfileImageUrl = Auth.auth().currentUser?.photoURL?.absoluteString{
+                    cell.profileImageView.loadImage(urlString: userProfileImageUrl)
+                }
+            }
+        }
+
+        
+        cell.usernameLabel.text = post.username
         if let likes = post.likes{
             cell.likeCountLabel.text = "\(likes.count)"
             
@@ -64,7 +75,7 @@ final class HomePresenter: HomePresenterInterface {
     }
 
     func didSelectPost(at index: Int) {
-        let userId = posts[index].user.uid
+        let userId = posts[index].userId
         wireframe.navigateToProfile(with: userId)
         
     }
@@ -72,18 +83,18 @@ final class HomePresenter: HomePresenterInterface {
     func likeButtonTapped(for index: Int) {
         guard let currentUserId = Auth.auth().currentUser?.uid else{return}
         if posts[index].postId != ""{
-            interactor.addlikeToPost(userIdOfPost: posts[index].user.uid, postId: posts[index].postId, userIdOfLike: currentUserId,index: index)
+            interactor.addlikeToPost(userIdOfPost: posts[index].userId, postId: posts[index].postId, userIdOfLike: currentUserId,index: index)
         }
     }
     
     func reportPost(index: Int) {
         if posts[index].postId != ""{
-            interactor.reportPost(postId: posts[index].postId, userId: posts[index].user.uid)
+            interactor.reportPost(postId: posts[index].postId, userId: posts[index].userId)
         }
     }
     func blockUser(index: Int) {
-        if posts[index].user.uid != ""{
-            interactor.blockUser(userId: posts[index].user.uid)
+        if posts[index].userId != ""{
+            interactor.blockUser(userId: posts[index].userId)
         }
     }
     

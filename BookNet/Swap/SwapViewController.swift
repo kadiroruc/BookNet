@@ -7,8 +7,9 @@
 
 import UIKit
 import PKHUD
+import MessageUI
 
-final class SwapViewController: UIViewController {
+final class SwapViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     //MARK: -  Properties
     
@@ -20,6 +21,7 @@ final class SwapViewController: UIViewController {
         navigationItem.title = "Book Requests"
         setupCollectionView()
         presenter.viewDidLoad()
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -64,7 +66,7 @@ extension SwapViewController: UICollectionViewDataSource, UICollectionViewDelega
         let request = presenter.request(at: indexPath.item)
         
         presenter.configureCell(cell, for: indexPath, request: request)
-        
+        cell.emailDelegate = self
  
         return cell
     }
@@ -98,3 +100,20 @@ extension SwapViewController: SwapViewInterface {
     }
 }
 
+extension SwapViewController: CustomRequestsCellEmailDelegate{
+    func tappedEmailLabel(for email: String) {
+        if MFMailComposeViewController.canSendMail() {
+            let mailComposeVC = MFMailComposeViewController()
+            mailComposeVC.mailComposeDelegate = self
+            mailComposeVC.setToRecipients([email])
+            mailComposeVC.setSubject("Subject")
+            mailComposeVC.setMessageBody("Your message here", isHTML: false)
+
+            self.present(mailComposeVC, animated: true, completion: nil)
+        } else {
+            print("Mail gönderilemiyor")
+            
+        }
+    }
+    
+}
